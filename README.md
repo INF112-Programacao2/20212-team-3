@@ -8,7 +8,7 @@ Este projeto foi realizado durante a disciplina de Programacao 2 - INF112, com o
 
 # Tema: Sistema de Gerenciamento de Supermercado
 
-O grupo criou um software para supermercado chamado NRW Supermarket, que busca facilitar o controle de estoque, funcionarios e financeiro dos supermercados brasileiros.
+O grupo criou um software para supermercado chamado NRW Supermarket, que busca facilitar a gestão de estoque, de funcionarios e administração financeira dos supermercados brasileiros.
 
 ![Alt text](https://github.com/INF112-Programacao2/20212-team-3/blob/main/Imagens/logoNRW.gif)
 
