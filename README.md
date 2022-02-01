@@ -11,17 +11,17 @@ Walter Bueno de Brito Neto - 105471 <br>
 
 # Classes
 
- -Cliente
+ - Cliente
 
- -Produtos
+ - Produtos
 
- -Estoque
+ - Estoque
 
- -Funcionario
-   -Gerente 
-   -Operador de Caixa 
-   -Estoquista 
-   -Atendente 
+ - Funcionario
+   - Gerente 
+   - Operador de Caixa 
+   - Estoquista 
+   - Atendente 
 
 ## Venda
 
