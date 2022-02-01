@@ -11,19 +11,14 @@ Walter Bueno de Brito Neto - 105471 <br>
 ![Alt text](https://github.com/INF112-Programacao2/20212-team-3/blob/main/Imagens/logoNRW.gif)
 
 # Classes
-
  - Cliente
-
  - Produtos
-
  - Estoque
-
  - Funcionario
    - Gerente 
    - Operador de Caixa 
    - Estoquista 
    - Atendente 
-
  - Venda
 
 # User Stories
