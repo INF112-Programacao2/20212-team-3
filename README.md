@@ -1,5 +1,5 @@
 # Trabalho INF112 - Grupo 3
-Este projeto foi realizado durante a disciplina de Programacao 2 - INF112, com o intuito de praticar os conteudos abordados durante as aulas teoricas e praticas do curso.
+Este projeto foi realizado durante a disciplina de Programacao 2 - INF112, com o professor Julio Reis, no intuito de praticar os conteudos abordados durante as aulas teoricas e praticas do curso.
 
 ## Integrantes
 Rafael Zardo Crevelari - 105468 <br>
@@ -7,6 +7,8 @@ Natascha Siqueira Martinez Palhares - 105460 <br>
 Walter Bueno de Brito Neto - 105471 <br>
 
 # Tema: Sistema de Gerenciamento de Supermercado
+
+O grupo criou um software para supermercado chamado NRW Supermarket, que busca facilitar o controle de estoque, funcionarios e financeiro dos supermercados brasileiros.
 
 ![Alt text](https://github.com/INF112-Programacao2/20212-team-3/blob/main/Imagens/logoNRW.gif)
 
@@ -23,9 +25,9 @@ Walter Bueno de Brito Neto - 105471 <br>
 
 # User Stories
  - Como Operador de Caixa quero registrar as vendas, para que eu tenha maior
-controle do lucro
+controle do lucro.
  - Como Operador de Caixa quero cadastrar os clientes, para ajudar a entender
-as demandas dos consumidores
+as demandas dos consumidores.
  - Como Estoquista quero catalogar o estoque de produtos, para que eu tenha
 um maior domínio sobre o que será vendido.
  - Como Estoquista quero adicionar e remover produtos, para que eu tenha um
