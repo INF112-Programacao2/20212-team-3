@@ -1,1 +1,4 @@
-== NRW Express | Sistema de Gerenciamento de Supermercado ==
+# Trabalho INF112 - Grupo 2
+
+## Integrantes
+Rafael Zardo Crevelari
