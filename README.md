@@ -8,7 +8,7 @@ Walter Bueno de Brito Neto - 105471 <br>
 
 # Tema: Sistema de Gerenciamento de Supermercado
 
-![Alt text](https://github.com/INF112-Programacao2/20212-team-3/blob/main/Imagens/NRW_Logo.gif)
+![Alt text](https://github.com/INF112-Programacao2/20212-team-3/blob/main/Imagens/logo.gif)
 
 # Classes
 
