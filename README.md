@@ -8,3 +8,21 @@ Walter Bueno de Brito Neto - 105471 <br>
 # Tema
 
 ## Sistema de Gerenciamento de Supermercado
+
+# Classes
+
+ -Cliente
+
+ -Produtos
+
+ -Estoque
+
+ -Funcionario
+   -Gerente 
+   -Operador de Caixa 
+   -Estoquista 
+   -Atendente 
+
+## Venda
+
+# User Stories
