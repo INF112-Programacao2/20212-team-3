@@ -2,9 +2,11 @@
 Este projeto foi realizado durante a disciplina de Programacao 2 - INF112, com o professor Julio Reis, no intuito de praticar os conteudos abordados durante as aulas teoricas e praticas do curso.
 
 ## Integrantes
- - Rafael Zardo Crevelari - 105468 <br>
- - Natascha Siqueira Martinez Palhares - 105460 <br>
- - Walter Bueno de Brito Neto - 105471 <br>
+<ul>
+  <li><a href="https://github.com/NataschaPalhares">Natascha Siqueira Martinez Palhares - 105460 </a></li>
+  <li><a href="https://github.com/rafazardo">Rafael Zardo Crevelari - 105468 </a></li>
+  <li><a href="https://github.com/Morphy999">Walter Bueno de Brito Neto - 105471 </a></li>
+</ul>
 
 # Tema: Sistema de Gerenciamento de Supermercado
 
