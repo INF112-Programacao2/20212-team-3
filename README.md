@@ -1,4 +1,5 @@
 # Trabalho INF112 - Grupo 3
+Este projeto foi realizado durante a disciplina de Programacao 2 - INF112, com o intuito de praticar os conteudos abordados durante as aulas teoricas e praticas do curso.
 
 ## Integrantes
 Rafael Zardo Crevelari - 105468 <br>
