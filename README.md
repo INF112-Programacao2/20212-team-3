@@ -18,12 +18,12 @@ O grupo criou um software para supermercado chamado NRW Supermarket, que busca f
  - Cliente
  - Produtos
  - Estoque
+ - Venda
  - Funcionario
    - Gerente 
    - Operador de Caixa 
    - Estoquista 
    - Atendente 
- - Venda
 
 # User Stories
  - Como Operador de Caixa quero registrar as vendas, para que eu tenha maior
