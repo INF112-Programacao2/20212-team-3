@@ -1,6 +1,7 @@
 #ifdef NRW_FUNCIONARIO_H
 #define NRW_FUNCIONARIO_H
 
+#include <iostream>
 #include <string>
 
 class Funcionario {
