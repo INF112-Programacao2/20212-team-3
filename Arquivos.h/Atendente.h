@@ -20,6 +20,7 @@ public:
     void set_comissao(double comissao);
 
     virtual exibir_dados() override;
+    
 };
 
 #endif 

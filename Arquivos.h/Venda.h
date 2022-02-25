@@ -53,6 +53,7 @@ public:
 
     void imprimir_nota_fiscal();
     void exibir_vendas();
+    
 };
 
 #endif 
