@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-
 #include "Arquivos.h/Produto.h"
 
 class Estoque {
@@ -12,7 +11,7 @@ private:
     std::vector<Produto> _produtos; //Revisar - RFZ
 
 public:
-    Estoque(Produto produtos);
+    Estoque(Produto produto);
 
     void adicionar_produto(Produto produto, int codigo); //Revisar - RFZ
     void excluir_produto(Produto produto, int codigo); //Revisar - RFZ

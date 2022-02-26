@@ -68,6 +68,11 @@
         "*.tcc": "cpp",
         "deque": "cpp",
         "memory_resource": "cpp",
+<<<<<<< HEAD
+=======
+        "numeric": "cpp",
+        "random": "cpp",
+>>>>>>> 0a67dce264e8c1e5e34ef0af92e7d3352508a5d6
         "fstream": "cpp"
     }
 }
