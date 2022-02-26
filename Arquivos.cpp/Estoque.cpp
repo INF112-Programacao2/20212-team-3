@@ -7,15 +7,20 @@ Estoque::Estoque(Produto produto):
     _produto(produto) {}
 
 
-void Estoque::adicionar_produto(Produto produto, int codigo)
+void Estoque::adicionar_produto(Produto produto, int quantidade)
  {
-       
+       for(int i = 0;i < quantidade;i++){
+           _produtos.pushback(produto);
+       }
 
  }
 
- void Estoque::excluir_produto(Produto produto, int codigo)
- {
-
+ void Estoque::excluir_produto(Produto produto, int quantidade)
+{
+                                            // Pensar em tratamento de erro(quantidade > estoque)-----WB
+      for(int i = 0;i < quantidade;i++){
+          _produtos.erase(produto);
+      }
 
  }
 
