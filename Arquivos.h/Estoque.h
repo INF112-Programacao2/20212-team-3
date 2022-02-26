@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <vector>
-
 #include "Arquivos.h/Produto.h"
 
 class Estoque {
