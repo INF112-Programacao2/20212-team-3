@@ -68,11 +68,11 @@ void Venda::set_data(std::string data) {
     this->_data = data;
 }
 
-void Venda::set_cliente_atendido(Cliente cliente_atendido) { //Revisar - RFZ
+void Venda::set_cliente_atendido(Cliente *cliente_atendido) { //Revisar - RFZ
     this->_cliente_atendido = cliente_atendido;
 } 
 
-void Venda::set_atendente_consultado(Atendente atendente_consultado) {  //Revisar - RFZ
+void Venda::set_atendente_consultado(Atendente *atendente_consultado) {  //Revisar - RFZ
     this->_atendente_consultado = atendente_consultado;
 }
 
@@ -96,7 +96,7 @@ void Venda::set_troco(double troco) {
     this->_troco = troco;
 }
 
-void Venda::set_carrinho(Carrinho carrinho) { //Revisar - RFZ
+void Venda::set_carrinho(Carrinho *carrinho) { //Revisar - RFZ
     this->_carrinho = carrinho;
 }
 
