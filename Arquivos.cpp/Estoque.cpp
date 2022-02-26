@@ -1,10 +1,11 @@
+#include <iostream>
 #include <vector>
+
 #include "Arquivos.h/Estoque.h"
 #include "Arquivos.h/Produto.h"
-#include "iostream"
 
 Estoque::Estoque(Produto produto):
-    _produto(produto) {}
+    _produtos(produto) {}
 
 
 void Estoque::adicionar_produto(Produto produto, int quantidade) {

@@ -1,10 +1,10 @@
-#include "string"
-#include "Arquivos.h/Produto.h"
 #include <iostream>
+#include <string>
 
+#include "Arquivos.h/Produto.h"
 
 Produto::Produto(std::string nome, double preco, std::string validade, int codigo, std::string marca):
-_nome(nome),_preco(preco),_validade(validade),_codigo(codigo),_marca(marca) {};
+    _nome(nome), _preco(preco), _validade(validade), _codigo(codigo), _marca(marca) {}
 
 std::string Produto::get_nome() {
     return this->_nome;
@@ -47,11 +47,11 @@ void Produto::set_marca(std::string marca) {
 }
 
 void Produto::exibir_dados() {
-    std::cout << std::endl;
+    std::cout << "------------------------------------------------\n";
     std::cout << "Nome: " << Produto::get_nome() << std::endl;
     std::cout << "Preco " << Produto::get_preco() << std::endl; 
     std::cout << "Validade: " << Produto::get_validade() << std::endl;
     std::cout << "Codigo: " << Produto::get_codigo() << std::endl;
     std::cout << "Marca: " << Produto::get_marca() << std::endl;
-    std::cout << std::endl;
+    std::cout << "------------------------------------------------\n";
 }
