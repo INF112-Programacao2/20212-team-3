@@ -13,8 +13,8 @@ private:
 public:
     Estoque(Produto produto);
 
-    void adicionar_produto(Produto produto, int codigo); //Revisar - RFZ
-    void excluir_produto(Produto produto, int codigo); //Revisar - RFZ
+    void adicionar_produto(Produto produto, int quantidade); //Revisar - RFZ
+    void excluir_produto(Produto produto, int quantidade); //Revisar - RFZ
     void exibir_estoque();
 
 };
