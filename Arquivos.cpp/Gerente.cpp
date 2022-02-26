@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 
-#include "Arquivos.h/Funcionario.h"
 #include "Arquivos.h/Gerente.h"
 
 Gerente::Gerente(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool curso_superior):
