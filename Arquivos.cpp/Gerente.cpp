@@ -16,14 +16,14 @@ void Gerente::set_curso_superior(bool curso_superior) {
 }
 
 void Gerente::exibir_dados() { //Avaliar polimorfismo/hierarquia - RFZ
-    std::endl;
-    std::cout << "Nome: " << std::string Funcionario::get_nome() << std::endl;
-    std::cout << "Codigo: " << int Funcionario::get_codigo() << std::endl; 
-    std::cout << "Salario: " << double Funcionario::get_salario() << std::endl;
-    std::cout << "CPF: " << std::string Funcionario::get_cpf() << std::endl;
-    std::cout << "Endereco: " << std::string Funcionario::get_endereco() << std::endl;
-    std::cout << "E-mail: " << std::string Funcionario::get_email() << std::endl;
-    std::cout << "Data de Nascimento: " << std::string Funcionario::get_data_nascimento() << std::endl;
-    std::cout << "Senha: " << std::string Funcionario::get_senha() << std::endl;
-    std::cout << "Certificado de curso superior: " << bool Gerente::get_curso_superior() << std::endl;
+    std::cout << std::endl;
+    std::cout << "Nome: " << Funcionario::get_nome() << std::endl;
+    std::cout << "Codigo: " << Funcionario::get_codigo() << std::endl; 
+    std::cout << "Salario: " << Funcionario::get_salario() << std::endl;
+    std::cout << "CPF: " << Funcionario::get_cpf() << std::endl;
+    std::cout << "Endereco: " << Funcionario::get_endereco() << std::endl;
+    std::cout << "E-mail: " << Funcionario::get_email() << std::endl;
+    std::cout << "Data de Nascimento: " << Funcionario::get_data_nascimento() << std::endl;
+    std::cout << "Senha: " << Funcionario::get_senha() << std::endl;
+    std::cout << "Certificado de curso superior: " << Gerente::get_curso_superior() << std::endl;
 }
