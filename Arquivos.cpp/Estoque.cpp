@@ -3,11 +3,9 @@
 #include "Arquivos.h/Produto.h"
 #include "iostream"
 
-Estoque::Estoque(Produto produtos)
-{
+Estoque::Estoque(Produto produto):
+    _produto(produto) {}
 
-
-}
 
 void Estoque::adicionar_produto(Produto produto, int codigo)
  {

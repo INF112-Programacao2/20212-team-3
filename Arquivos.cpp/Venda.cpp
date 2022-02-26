@@ -119,7 +119,7 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << "Troco: " << Venda::get_troco() << std::endl; //Analisar funcao que calcula troco - RFZ
     std::cout << "__________________________" << std::endl; 
     std::cout << "Obrigado por comprar no nosso Supermercado!" << std::endl;
-    std::cout << "Todos direitos reservados, NRW Supermerkat - 2022" << std::endl;
+    std::cout << "Todos direitos reservados, NRW Supermarket - 2022" << std::endl;
 }
 
 void Venda::exibir_vendas() {
