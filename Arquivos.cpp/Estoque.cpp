@@ -4,7 +4,7 @@
 #include "iostream"
 
 Estoque::Estoque(Produto produto):
-    _produto(produto) {}
+    _produtos(produto) {}
 
 
 void Estoque::adicionar_produto(Produto produto, int quantidade) {

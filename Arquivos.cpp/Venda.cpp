@@ -4,6 +4,7 @@
 #include "Arquivos.h/Cliente.h"
 #include "Arquivos.h/Atendente.h"
 #include "Arquivos.h/Carrinho.h"
+#include "Arquivos.h/Venda.h"
 
 Venda::Venda(std::string forma_pagamento, std::string data, Cliente cliente_atendido, Atendente atendente_consultado, int quantidade_vendas, double desconto, double valor_final, double valor_recebido, double troco, Carrinho carrinho, double receita):
     _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _quantidade_vendas(quantidade_vendas), _desconto(desconto), _valor_final(valor_final), _valor_recebido(valor_recebido), _troco(troco), _carrinho(carrinho), _receita(receita) {}
