@@ -19,7 +19,7 @@ public:
 
     void set_informatica_basica(bool informatica_basica);
 
-    virtual exibir_dados() override;
+    virtual exibir_dados();
     
 };
 
