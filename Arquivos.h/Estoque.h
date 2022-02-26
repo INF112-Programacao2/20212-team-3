@@ -12,7 +12,7 @@ private:
     std::vector<Produto> _produtos; //Revisar - RFZ
 
 public:
-    Produto(Produto produtos);
+    Estoque(Produto produtos);
 
     void adicionar_produto(Produto produto, int codigo); //Revisar - RFZ
     void excluir_produto(Produto produto, int codigo); //Revisar - RFZ
