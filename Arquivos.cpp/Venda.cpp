@@ -118,9 +118,9 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << Venda::get_atendente_consultado() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Produtos Comprados:" << std::endl;
-    std::cout << Carrinho::exibir_produtos() << std::endl;
+    (*_carrinho).exibir_produtos();
     std::cout << "__________________________" << std::endl; 
-    std::cout << "Valor a Pagar: " << Carrinho::get_preco_total() << std::endl; 
+    std::cout << "Valor a Pagar: " << (*_carrinho).get_preco_total() << std::endl; 
     std::cout << "Forma de Pagamento: " << Venda::get_forma_pagamento() << std::endl;
     std::cout << "Desconto: " << Venda::get_desconto() << std::endl; 
     std::cout << "Valor Recebido: " << Venda::get_valor_recebido() << std::endl;
