@@ -6,7 +6,7 @@
 #include "Arquivos.h/Carrinho.h"
 #include "Arquivos.h/Venda.h"
 
-Venda::Venda(std::string forma_pagamento, std::string data, Cliente cliente_atendido, Atendente atendente_consultado, double valor_recebido, Carrinho carrinho):
+Venda::Venda(int forma_pagamento, std::string data, Cliente cliente_atendido, Atendente atendente_consultado, double valor_recebido, Carrinho carrinho):
     _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _valor_recebido(valor_recebido), _carrinho(carrinho) {}
 
 int Venda::get_forma_pagamento() {

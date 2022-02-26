@@ -25,9 +25,9 @@ private:
     double _receita;
 
 public:
-    Venda(std::string forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
+    Venda(int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
 
-    std::string get_forma_pagamento();
+    int get_forma_pagamento();
     std::string get_data();
     Cliente *get_cliente_atendido(); //Revisar - RFZ
     Atendente *get_atendente_consultado(); //Revisar - RFZ
@@ -39,7 +39,7 @@ public:
     Carrinho *get_carrinho(); //Revisar - RFZ
     double get_receita();
 
-    void set_forma_pagamento(std::string forma_pagamento);
+    void set_forma_pagamento(int forma_pagamento);
     void set_data(std::string data);
     void set_cliente_atendido(Cliente *cliente_atendido); //Revisar - RFZ
     void set_atendente_consultado(Atendente *atendente_consultado); //Revisar - RFZ
