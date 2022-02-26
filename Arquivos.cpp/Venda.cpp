@@ -17,11 +17,11 @@ std::string Venda::get_data() {
     return this->_data;
 }
 
-Cliente Venda::get_cliente_atendido() { //Revisar - RFZ
+Cliente* Venda::get_cliente_atendido() { //Revisar - RFZ
     return Cliente::exibir_dados();
 } 
 
-Atendente Venda::get_atendente_consultado() { //Revisar - RFZ
+Atendente* Venda::get_atendente_consultado() { //Revisar - RFZ
     return Atendente::exibir_dados();
 } 
 
@@ -52,7 +52,7 @@ double Venda::get_troco() {
     return this->_troco;
 }
 
-Carrinho Venda::get_carrinho() { //Revisar - RFZ
+Carrinho* Venda::get_carrinho() { //Revisar - RFZ
     return Carrinho::get_codigo();
 } 
 
