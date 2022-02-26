@@ -16,7 +16,7 @@ private:
     std::string _data;
     Cliente *_cliente_atendido; //Revisar - RFZ
     Atendente *_atendente_consultado; //Revisar - RFZ
-    int _quantidade_vendas;
+    int _quantidade_vendas = 1;
     double _desconto;
     double _valor_final;
     double _valor_recebido;
@@ -25,7 +25,7 @@ private:
     double _receita;
 
 public:
-    Venda(std::string forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, int quantidade_vendas, double desconto, double valor_final, double valor_recebido, double troco, Carrinho *carrinho, double receita); //Revisar - RFZ
+    Venda(std::string forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
 
     std::string get_forma_pagamento();
     std::string get_data();

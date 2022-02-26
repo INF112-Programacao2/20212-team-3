@@ -6,8 +6,8 @@
 #include "Arquivos.h/Carrinho.h"
 #include "Arquivos.h/Venda.h"
 
-Venda::Venda(std::string forma_pagamento, std::string data, Cliente cliente_atendido, Atendente atendente_consultado, int quantidade_vendas, double desconto, double valor_final, double valor_recebido, double troco, Carrinho carrinho, double receita):
-    _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _quantidade_vendas(quantidade_vendas), _desconto(desconto), _valor_final(valor_final), _valor_recebido(valor_recebido), _troco(troco), _carrinho(carrinho), _receita(receita) {}
+Venda::Venda(std::string forma_pagamento, std::string data, Cliente cliente_atendido, Atendente atendente_consultado, double valor_recebido, Carrinho carrinho):
+    _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _valor_recebido(valor_recebido), _carrinho(carrinho) {}
 
 std::string Venda::get_forma_pagamento() {
     return this->_forma_pagamento;
@@ -30,6 +30,13 @@ int Venda::get_quantidade_vendas() {
 }
 
 double Venda::get_desconto() {
+    if (Venda::get_forma_pagamento() == 1) { //Pagamento com cartao de credito
+        this->_desconto = 0.05;
+    } 
+    else { //Pagamento a vista
+        this->_desconto = 0.10;
+    }
+
     return this->_desconto;
 }
 
@@ -102,7 +109,7 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << "NRW Supermarket" << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "CUPOM FISCAL" << std::endl;
-    // std::cout << "Numero do Cupom: " << Venda::get_quantidade_vendas() << std::endl; //Verificar - RFZ
+    // std::cout << "Numero do Cupom: " << Venda::get_quantidade_vendas() << std::endl; //fazer no main, conforme sugerido walter.
     std::cout << "Data: " << Venda::get_data() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Dados do cliente: " << std::endl;
@@ -111,16 +118,17 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << Venda::get_atendente_consultado() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Produtos Comprados:" << std::endl;
-    std::cout << Carrinho::exibir_produtos() << std::endl; //Pensar em como colocar o preco na frente de cada produto - RFZ
+    std::cout << Carrinho::exibir_produtos() << std::endl;
     std::cout << "__________________________" << std::endl; 
-    std::cout << "Valor a Pagar: " << Venda::get_valor_final() << std::endl; //Analisar a existencia dessa funcao, valor final deveria ser calculado automatico - RFZ
+    std::cout << "Valor a Pagar: " << Carrinho::get_preco_total() << std::endl; 
     std::cout << "Forma de Pagamento: " << Venda::get_forma_pagamento() << std::endl;
-    std::cout << "Desconto: " << Venda::get_desconto() << std::endl; //Analisar funcao que calcula desconto - RFZ
+    std::cout << "Desconto: " << Venda::get_desconto() << std::endl; 
     std::cout << "Valor Recebido: " << Venda::get_valor_recebido() << std::endl;
-    std::cout << "Troco: " << Venda::get_troco() << std::endl; //Analisar funcao que calcula troco - RFZ
+    std::cout << "Troco: " << Venda::get_troco() << std::endl; //Analisar funcao que calcula troco, no main ou .cpp - RFZ
     std::cout << "__________________________" << std::endl; 
     std::cout << "Obrigado por comprar no nosso Supermercado!" << std::endl;
     std::cout << "Todos direitos reservados, NRW Supermarket - 2022" << std::endl;
+    
 }
 
 void Venda::exibir_vendas() {
