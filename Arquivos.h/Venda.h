@@ -12,7 +12,7 @@
 class Venda {
 
 private:
-    std::string _forma_pagamento;
+    int _forma_pagamento;
     std::string _data;
     Cliente *_cliente_atendido; //Revisar - RFZ
     Atendente *_atendente_consultado; //Revisar - RFZ
