@@ -9,7 +9,7 @@
 Venda::Venda(std::string forma_pagamento, std::string data, Cliente cliente_atendido, Atendente atendente_consultado, double valor_recebido, Carrinho carrinho):
     _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _valor_recebido(valor_recebido), _carrinho(carrinho) {}
 
-std::string Venda::get_forma_pagamento() {
+int Venda::get_forma_pagamento() {
     return this->_forma_pagamento;
 }
 
@@ -60,7 +60,7 @@ double Venda::get_receita() {
     return this->_receita;
 }
 
-void Venda::set_forma_pagamento(std::string forma_pagamento) {
+void Venda::set_forma_pagamento(int forma_pagamento) {
     this->_forma_pagamento = forma_pagamento;
 }
 
