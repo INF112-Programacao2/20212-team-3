@@ -34,7 +34,7 @@ void Cliente::set_cpf(std::string cpf) {
     this->_cpf = cpf;
 }
 
-void Cliente::set_telefone(std::strign telefone) {
+void Cliente::set_telefone(std::string telefone) {
     this->_telefone = telefone;
 }
 

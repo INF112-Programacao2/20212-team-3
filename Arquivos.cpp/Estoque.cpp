@@ -5,12 +5,12 @@
 #include "Arquivos.h/Produto.h"
 
 Estoque::Estoque(Produto produto):
-    _produtos(produto) {}
+    _produtos(produto) {};
 
 
 void Estoque::adicionar_produto(Produto produto, int quantidade) {
        for(int i = 0;i < quantidade;i++) {
-           _produtos.pushback(produto);
+           _produtos.push_back(produto);
        }
 
  }
