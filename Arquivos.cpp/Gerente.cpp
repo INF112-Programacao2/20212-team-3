@@ -15,7 +15,8 @@ void Gerente::set_curso_superior(bool curso_superior) {
 }
 
 void Gerente::exibir_dados() { //Avaliar polimorfismo/hierarquia - RFZ
-    std::cout << std::endl;
+    std::cout << "------------------------------------------------\n";
+    std::cout << "Dados do Gerente:\n";
     std::cout << "Nome: " << Funcionario::get_nome() << std::endl;
     std::cout << "Codigo: " << Funcionario::get_codigo() << std::endl; 
     std::cout << "Salario: " << Funcionario::get_salario() << std::endl;
@@ -25,4 +26,5 @@ void Gerente::exibir_dados() { //Avaliar polimorfismo/hierarquia - RFZ
     std::cout << "Data de Nascimento: " << Funcionario::get_data_nascimento() << std::endl;
     std::cout << "Senha: " << Funcionario::get_senha() << std::endl;
     std::cout << "Certificado de curso superior: " << Gerente::get_curso_superior() << std::endl;
+    std::cout << "------------------------------------------------\n";
 }

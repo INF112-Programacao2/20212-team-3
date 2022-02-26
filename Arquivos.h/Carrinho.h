@@ -17,10 +17,10 @@ public:
 
     int get_codigo();
 
-    int set_codigo();
+    void set_codigo();
 
-    void adicionar_produto();
-    void remover_produto();
+    void adicionar_produto(Produto produto, int quantidade);
+    void remover_produto(Produto produto, int quantidade);
     void exibir_produtos();
 
 };

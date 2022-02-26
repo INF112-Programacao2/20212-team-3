@@ -101,7 +101,7 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << "NRW Supermarket" << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "CUPOM FISCAL" << std::endl;
-    std::cout << "Numero do Cupom: " << Venda::get_quantidade_vendas() << std::endl; //Verificar - RFZ
+    // std::cout << "Numero do Cupom: " << Venda::get_quantidade_vendas() << std::endl; //Verificar - RFZ
     std::cout << "Data: " << Venda::get_data() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Dados do cliente: " << std::endl;
