@@ -26,8 +26,8 @@ void Carrinho::set_preco_total(double preco_total) {
 void Carrinho::adicionar_produto(Produto produto, int quantidade) {
     int contador;
 
-    for (contador = 0; contador < quantidade, contador++) {
-        _produtos.pushback(produto);
+    for (contador = 0; contador < quantidade; contador++) {
+        _produtos.push_back(produto);
     }
     Carrinho::calculo_preco_total();
 }
@@ -35,7 +35,7 @@ void Carrinho::adicionar_produto(Produto produto, int quantidade) {
 void Carrinho::remover_produto(Produto produto, int quantidade) { //Pensar 
     int contador;
 
-    for (contador = 0; contador < quantidade, contador++) {
+    for (contador = 0; contador < quantidade;contador++) {
         _produtos.erase(produto); //Verificar logica - RFZ
     }    
 }
@@ -43,8 +43,8 @@ void Carrinho::remover_produto(Produto produto, int quantidade) { //Pensar
 void Carrinho::exibir_produtos() {
     int contador;
 
-    for (contador = 0; contador < _produtos.size(), contador++) {
-        std::cout << "Produto: " << _produtos[contador] << " - " << "Preco: " << _produtos[contador].get_preco() << std::endl; //Verificar logica - RFZ
+    for (contador = 0; contador < _produtos.size(); contador++) {
+        std::cout << "Produto: " << _produtos[contador].get_nome() << " - " << "Preco: " << _produtos[contador].get_preco() << std::endl; //Verificar logica - RFZ
     }
     std::cout << "------------------------------------------------\n";
     std::cout << Carrinho::get_preco_total() << std::endl;
@@ -52,6 +52,6 @@ void Carrinho::exibir_produtos() {
 
 void Carrinho::calculo_preco_total() {
     int contador;
-    for (contador = 0, contador < _produtos.size(), contador++) {
-        _preco_total += _produtos[contador].getpreco();
+    for (contador = 0; contador < _produtos.size(); contador++) {
+        _preco_total += _produtos[contador].get_preco();
 }
