@@ -19,7 +19,7 @@ public:
 
     void set_ensino_medio_completo(bool ensino_medio_completo);
 
-    virtual exibir_dados();
+    virtual void exibir_dados();
     
 };
 

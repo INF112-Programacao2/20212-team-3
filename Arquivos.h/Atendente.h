@@ -19,7 +19,7 @@ public:
 
     void set_comissao(double comissao);
 
-    virtual exibir_dados();
+    virtual void exibir_dados();
     
 };
 

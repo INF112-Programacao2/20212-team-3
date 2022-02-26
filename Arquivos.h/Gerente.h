@@ -19,7 +19,7 @@ public:
 
     void set_curso_superior(bool curso_superior);
 
-    virtual exibir_dados();
+    virtual void exibir_dados();
 
 };
 
