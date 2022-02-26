@@ -1,4 +1,4 @@
-#ifdef NRW_GERENTE_H
+#ifndef NRW_GERENTE_H
 #define NRW_GERENTE_H
 
 #include <iostream>

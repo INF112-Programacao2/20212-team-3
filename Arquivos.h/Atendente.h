@@ -1,4 +1,4 @@
-#ifdef  NRW_ATENDENTE_H
+#ifndef  NRW_ATENDENTE_H
 #define NRW_ATENDENTE_H
 
 #include <iostream>

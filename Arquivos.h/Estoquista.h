@@ -1,4 +1,4 @@
-#ifdef NRW_ESTOQUISTA_H
+#ifndef NRW_ESTOQUISTA_H
 #define NRW_ESTOQUISTA_H
 
 #include <iostream>

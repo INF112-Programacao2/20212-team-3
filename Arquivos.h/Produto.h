@@ -1,4 +1,4 @@
-#ifdef NRW_PRODUTOS_H
+#ifndef NRW_PRODUTOS_H
 #define NRW_PRODUTOS_H
 
 #include <iostream>

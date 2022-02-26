@@ -1,4 +1,4 @@
-#ifdef NRW_CAIXA_H
+#ifndef NRW_CAIXA_H
 #define NRW_CAIXA_H
 
 #include <iostream>

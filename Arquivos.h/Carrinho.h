@@ -1,4 +1,4 @@
-#ifdef NRW_CARRINHO_H
+#ifndef NRW_CARRINHO_H
 #define NRW_CARRINHO_H
 
 #include <iostream>

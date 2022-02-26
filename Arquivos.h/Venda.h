@@ -1,4 +1,4 @@
-#ifdef NRW_VENDA_H
+#ifndef NRW_VENDA_H
 #define NRW_VENDA_H
 
 #include <iostream>
