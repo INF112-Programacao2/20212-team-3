@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 
-#include "Arquivos.h/Cliente.h"
-#include "Arquivos.h/Atendente.h"
-#include "Arquivos.h/Carrinho.h"
-#include "Arquivos.h/Venda.h"
+#include "Cliente.h"
+#include "Atendente.h"
+#include "Carrinho.h"
+#include "Venda.h"
 
 Venda::Venda(int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho):
     _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _valor_recebido(valor_recebido), _carrinho(carrinho) {}

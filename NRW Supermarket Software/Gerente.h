@@ -5,7 +5,7 @@
 #include <iomanip>
 #include <string>
 
-#include "Arquivos.h/Funcionario.h"
+#include "Funcionario.h"
 
 class Gerente : public Funcionario {
 

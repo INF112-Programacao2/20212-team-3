@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "Arquivos.h/Cliente.h"
+#include "Cliente.h"
 
 Cliente::Cliente(std::string nome, std::string cpf, std::string telefone, std::string endereco, int codigo):
     _nome(nome), _cpf(cpf), _telefone(telefone), _endereco(endereco), _codigo(codigo) {}

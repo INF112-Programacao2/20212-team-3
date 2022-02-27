@@ -5,9 +5,9 @@
 #include <iomanip>
 #include <string>
 
-#include "Arquivos.h/Cliente.h"
-#include "Arquivos.h/Atendente.h"
-#include "Arquivos.h/Carrinho.h"
+#include "Cliente.h"
+#include "Atendente.h"
+#include "Carrinho.h"
 
 class Venda {
 

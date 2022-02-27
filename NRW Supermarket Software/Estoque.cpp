@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 
-#include "Arquivos.h/Estoque.h"
-#include "Arquivos.h/Produto.h"
+#include "Estoque.h"
+#include "Produto.h"
 
 Estoque::Estoque(Produto produto):
     _produtos(produto) {};

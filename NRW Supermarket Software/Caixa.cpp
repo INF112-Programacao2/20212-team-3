@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "Arquivos.h/Caixa.h"
+#include "Caixa.h"
 
 Caixa::Caixa(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool ensino_medio_completo):
     Funcionario(nome, codigo, salario, cpf, endereco, email, data_nascimento, senha), _ensino_medio_completo(ensino_medio_completo) {}

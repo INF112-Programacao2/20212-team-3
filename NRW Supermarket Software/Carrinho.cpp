@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "Arquivos.h/Carrinho.h"
+#include "Carrinho.h"
 
 Carrinho::Carrinho(int codigo, Produto produto):
     _codigo(codigo), _produtos(produto) {}

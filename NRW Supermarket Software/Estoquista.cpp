@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "Arquivos.h/Estoquista.h"
+#include "Estoquista.h"
 
 Estoquista::Estoquista(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool informatica_basica):
     Funcionario(nome, codigo, salario, cpf, endereco, email, data_nascimento, senha), _informatica_basica(informatica_basica) {}
