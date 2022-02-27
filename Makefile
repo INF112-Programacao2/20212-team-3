@@ -1,37 +1,37 @@
 output: main.o Atendente.o Caixa.o Carrinho.o Cliente.o Estoque.o Estoquista.o Funcionario.o Gerente.o Produto.o Venda.o
 	g++ main.o Atendente.o Caixa.o Carrinho.o Cliente.o Estoque.o Estoquista.o Funcionario.o Gerente.o Produto.o Venda.o -o output
 
-main.o: main.cpp
+main.o: Arquivos.cpp/main.cpp
 	g++ -c Arquivos.cpp/main.cpp
 
-Atendente.o: Atendente.cpp Atendente.h
+Atendente.o: Arquivos.cpp/Atendente.cpp Arquivos.h/Atendente.h
 	g++ -c Arquivos.cpp/Atendente.cpp
 
-Caixa.o: Caixa.cpp Caixa.h
+Caixa.o: Arquivos.cpp/Caixa.cpp Arquivos.h/Caixa.h
 	g++ -c Arquivos.cpp/Caixa.cpp
 
-Carrinho.o: Carrinho.cpp Carrinho.h
+Carrinho.o: Arquivos.cpp/Carrinho.cpp Arquivos.h/Carrinho.h
 	g++ -c Arquivos.cpp/Carrinho.cpp
 	
-Cliente.o: Cliente.cpp Cliente.h
+Cliente.o: Arquivos.cpp/Cliente.cpp Arquivos.h/Cliente.h
 	g++ -c Arquivos.cpp/Cliente.cpp 
 
-Estoque.o: Estoque.cpp Estoque.h
+Estoque.o: Arquivos.cpp/Estoque.cpp Arquivos.h/Estoque.h
 	g++ -c Arquivos.cpp/Estoque.cpp
 	
-Estoquista.o: Estoquista.cpp Estoquista.h
+Estoquista.o: Arquivos.cpp/Estoquista.cpp Arquivos.h/Estoquista.h
 	g++ -c Arquivos.cpp/Estoquista.cpp
 
-Funcionario.o: Funcionario.cpp Funcionario.h
+Funcionario.o: Arquivos.cpp/Funcionario.cpp Arquivos.h/Funcionario.h
 	g++ -c Arquivos.cpp/Funcionario.cpp
 
-Gerente.o: Gerente.cpp Gerente.h
+Gerente.o: Arquivos.cpp/Gerente.cpp Arquivos.h/Gerente.h
 	g++ -c Arquivos.cpp/Gerente.cpp
 
-Produto.o: Produto.cpp  Produto.h
+Produto.o: Arquivos.cpp/Produto.cpp  Arquivos.h/Produto.h
 	g++ -c Arquivos.cpp/Produto.cpp
 
-Venda.o: Venda.cpp Venda.h
+Venda.o: Arquivos.cpp/Venda.cpp Arquivos.h/Venda.h
 	g++ -c Arquivos.cpp/Venda.cpp
 
 clean:
