@@ -48,10 +48,10 @@ void Produto::set_marca(std::string marca) {
 
 void Produto::exibir_dados() {
     std::cout << "------------------------------------------------\n";
-    std::cout << "Nome: " << Produto::get_nome() << std::endl;
-    std::cout << "Preco " << Produto::get_preco() << std::endl; 
-    std::cout << "Validade: " << Produto::get_validade() << std::endl;
-    std::cout << "Codigo: " << Produto::get_codigo() << std::endl;
-    std::cout << "Marca: " << Produto::get_marca() << std::endl;
+    std::cout << "Nome: " << this->get_nome() << std::endl;
+    std::cout << "Preco " << this->get_preco() << std::endl; 
+    std::cout << "Validade: " << this->get_validade() << std::endl;
+    std::cout << "Codigo: " << this->get_codigo() << std::endl;
+    std::cout << "Marca: " << this->get_marca() << std::endl;
     std::cout << "------------------------------------------------\n";
 }

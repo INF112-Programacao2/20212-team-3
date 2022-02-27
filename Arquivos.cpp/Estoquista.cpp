@@ -25,6 +25,6 @@ void Estoquista::exibir_dados() {
     std::cout << "E-mail: " << Funcionario::get_email() << std::endl;
     std::cout << "Data de Nascimento: " << Funcionario::get_data_nascimento() << std::endl;
     std::cout << "Senha: " << Funcionario::get_senha() << std::endl;
-    std::cout << "Certificado de informatica basica: " << Estoquista::get_informatica_basica() << std::endl;
+    std::cout << "Certificado de informatica basica: " << this->get_informatica_basica() << std::endl;
     std::cout << "------------------------------------------------\n";
 }

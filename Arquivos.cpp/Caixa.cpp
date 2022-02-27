@@ -25,6 +25,6 @@ void Caixa::exibir_dados() {
     std::cout << "E-mail: " << Funcionario::get_email() << std::endl;
     std::cout << "Data de Nascimento: " << Funcionario::get_data_nascimento() << std::endl;
     std::cout << "Senha: " << Funcionario::get_senha() << std::endl;
-    std::cout << "Certificado de conclusao do ensino medio: " << Caixa::get_ensino_medio_completo() << std::endl;
+    std::cout << "Certificado de conclusao do ensino medio: " << this->get_ensino_medio_completo() << std::endl;
     std::cout << "------------------------------------------------\n"; 
 }

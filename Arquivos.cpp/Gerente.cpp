@@ -25,6 +25,6 @@ void Gerente::exibir_dados() { //Avaliar polimorfismo/hierarquia - RFZ
     std::cout << "E-mail: " << Funcionario::get_email() << std::endl;
     std::cout << "Data de Nascimento: " << Funcionario::get_data_nascimento() << std::endl;
     std::cout << "Senha: " << Funcionario::get_senha() << std::endl;
-    std::cout << "Certificado de curso superior: " << Gerente::get_curso_superior() << std::endl;
+    std::cout << "Certificado de curso superior: " << this->get_curso_superior() << std::endl;
     std::cout << "------------------------------------------------\n";
 }

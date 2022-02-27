@@ -110,21 +110,21 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << "__________________________" << std::endl;
     std::cout << "CUPOM FISCAL" << std::endl;
     // std::cout << "Numero do Cupom: " << Venda::get_quantidade_vendas() << std::endl; //fazer no main, conforme sugerido walter.
-    std::cout << "Data: " << Venda::get_data() << std::endl;
+    std::cout << "Data: " << this->get_data() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Dados do cliente: " << std::endl;
-    std::cout << Venda::get_cliente_atendido() << std::endl;
+    std::cout << this->get_cliente_atendido() << std::endl;
     std::cout << "Dados do atendente: " << std::endl;
-    std::cout << Venda::get_atendente_consultado() << std::endl;
+    std::cout << this->get_atendente_consultado() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Produtos Comprados:" << std::endl;
     (*_carrinho).exibir_produtos();
     std::cout << "__________________________" << std::endl; 
     std::cout << "Valor a Pagar: " << (*_carrinho).get_preco_total() << std::endl; 
-    std::cout << "Forma de Pagamento: " << Venda::get_forma_pagamento() << std::endl;
-    std::cout << "Desconto: " << Venda::get_desconto() << std::endl; 
-    std::cout << "Valor Recebido: " << Venda::get_valor_recebido() << std::endl;
-    std::cout << "Troco: " << Venda::get_troco() << std::endl; //Analisar funcao que calcula troco, no main ou .cpp - RFZ
+    std::cout << "Forma de Pagamento: " << this->get_forma_pagamento() << std::endl;
+    std::cout << "Desconto: " << this->get_desconto() << std::endl; 
+    std::cout << "Valor Recebido: " << this->get_valor_recebido() << std::endl;
+    std::cout << "Troco: " << this->get_troco() << std::endl; //Analisar funcao que calcula troco, no main ou .cpp - RFZ
     std::cout << "__________________________" << std::endl; 
     std::cout << "Obrigado por comprar no nosso Supermercado!" << std::endl;
     std::cout << "Todos direitos reservados, NRW Supermarket - 2022" << std::endl;

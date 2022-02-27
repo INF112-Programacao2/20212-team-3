@@ -49,10 +49,10 @@ void Cliente::set_codigo(int codigo) {
 void Cliente::exibir_dados() {
     std::cout << "------------------------------------------------\n";
     std::cout << "Dados do Cliente:\n";
-    std::cout << "Nome: " << Cliente::get_nome() << std::endl;
-    std::cout << "CPF: " << Cliente::get_cpf() << std::endl;
-    std::cout << "Telefone: " << Cliente::get_telefone() << std::endl;
-    std::cout << "Endereco: " << Cliente::get_endereco() << std::endl;
-    std::cout << "Codigo: " << Cliente::get_codigo() << std::endl;
+    std::cout << "Nome: " << this->get_nome() << std::endl;
+    std::cout << "CPF: " << this->get_cpf() << std::endl;
+    std::cout << "Telefone: " << this->get_telefone() << std::endl;
+    std::cout << "Endereco: " << this->get_endereco() << std::endl;
+    std::cout << "Codigo: " << this->get_codigo() << std::endl;
     std::cout << "------------------------------------------------\n";
 }
