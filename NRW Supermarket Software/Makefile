@@ -22,7 +22,7 @@ Estoque.o: Estoque.cpp Estoque.h
 Estoquista.o: Estoquista.cpp Estoquista.h
 	g++ -c Estoquista.cpp
 
-Funcionario.o: Funcionario.cpp uncionario.h
+Funcionario.o: Funcionario.cpp Funcionario.h
 	g++ -c Funcionario.cpp
 
 Gerente.o: Gerente.cpp Gerente.h

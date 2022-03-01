@@ -9,13 +9,11 @@
 class Estoque {
 
 private:
-    std::vector<Produto> _produtos; //Revisar - RFZ
-
+    std::vector<Produto> _produtos; 
+    
 public:
-    Estoque(Produto produto);
-
-    void adicionar_produto(Produto produto, int quantidade); //Revisar - RFZ
-    void excluir_produto(Produto produto, int quantidade); //Revisar - RFZ
+    void adicionar_produto(Produto produto, int quantidade); 
+    void excluir_produto(Produto produto, int quantidade); 
     void exibir_estoque();
 
 };

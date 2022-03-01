@@ -4,22 +4,25 @@
 #include "Estoque.h"
 #include "Produto.h"
 
-Estoque::Estoque(Produto produto):
-    _produtos(produto) {};
-
-
 void Estoque::adicionar_produto(Produto produto, int quantidade) {
-       for(int i = 0;i < quantidade;i++) {
-           _produtos.push_back(produto);
-       }
+    int contador;
 
- }
+    for (contador = 0; contador < quantidade; contador++) {
+        _produtos.push_back(produto);
+    }
+}
 
- void Estoque::excluir_produto(Produto produto, int quantidade) {
-                                            // Pensar em tratamento de erro(quantidade > estoque)-----WB
-      for(int i = 0;i < quantidade;i++) {
-          _produtos.erase(produto);
-      }
+ void Estoque::excluir_produto(Produto produto, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
+                                           
+    int contador, contador2;
+
+    for (contador2 = 0; contador2 < quantidade; contador2++) {
+        for (contador = 0; contador < _produtos.size(); contador++) {
+            if (this->_produtos[contador].get_codigo() == produto.get_codigo()) { 
+                _produtos.erase(_produtos.begin() + (contador -1 ));
+            }
+        }
+    }
 
 }
 

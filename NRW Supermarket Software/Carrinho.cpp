@@ -37,7 +37,7 @@ void Carrinho::adicionar_produto(Produto produto, int quantidade) {
     calculo_preco_total();
 }
 
-void Carrinho::remover_produto(Produto produto, int quantidade) { 
+void Carrinho::remover_produto(Produto produto, int quantidade) {  //Tratamento de excessao - RFZ
 
     int contador, contador2;
 
