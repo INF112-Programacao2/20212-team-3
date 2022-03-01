@@ -25,7 +25,7 @@ std::vector<Atendente> atendentes;
 std::vector<Carrinho> carrinhos;
 std::vector<Venda> vendas;
 
-void verificar_login(int add_codigo, int add_senha) {}
+void verificar_login(int add_codigo, int add_senha, Funcionario &funcionario_login) {}
 
 int main(void) {
 
@@ -34,9 +34,9 @@ int main(void) {
     Produto *pr2 = new Produto("Arroz", 21.90, "04/23", 2 , "Rei Arthur");
     Produto *pr3 = new Produto("Feijao", 25.90, "05/22", 3 , "Camil");
 
-    estoque.adicionar_produto(pr1, 3);
-    estoque.adicionar_produto(pr2, 5);
-    estoque.adicionar_produto(pr3, 6);
+    //estoque.adicionar_produto(pr1, 3);
+    //estoque.adicionar_produto(pr2, 5);
+    //estoque.adicionar_produto(pr3, 6);
 
     // Inicializando objetos da classe Cliente
     Cliente *cl1 = new Cliente("Viviane Silva", "325678435-16", "31 99415-6278", "Av. PH Holfs, 174, Vicosa", 1);
@@ -79,7 +79,6 @@ int main(void) {
 
     int add_codigo;
     int add_senha;
-    int n;
 
     std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
     std::cout << "Digite seu codigo e senha: \n";
@@ -89,12 +88,14 @@ int main(void) {
 
     std::cin >> add_senha;
 
-    verificar_login(add_codigo, add_senha);
+    Funcionario *funcionario_login;
+    verificar_login(add_codigo, add_senha, &funcionario_login);
 }
 
-void verificar_login(int add_codigo, int add_senha) {
+void verificar_login(int add_codigo, int add_senha, Funcionario &funcionario_login) {
     for(int i=0; i < funcionarios.size(); i++) {
-        if(funcionarios[i].get_codigo() == add_codigo) {
+        if(funcionarios[i].get_senha() == add_senha) {
+            funcionario_login = funcionarios[i];
         }
     }
 }
