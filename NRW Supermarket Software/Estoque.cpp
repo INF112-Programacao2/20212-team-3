@@ -4,7 +4,7 @@
 #include "Estoque.h"
 #include "Produto.h"
 
-void Estoque::adicionar_produto(Produto produto, int quantidade) {
+void Estoque::adicionar_produto(Produto *produto, int quantidade) {
     int contador;
 
     for (contador = 0; contador < quantidade; contador++) {
@@ -12,7 +12,7 @@ void Estoque::adicionar_produto(Produto produto, int quantidade) {
     }
 }
 
- void Estoque::excluir_produto(Produto produto, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
+ void Estoque::excluir_produto(Produto *produto, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
                                            
     int contador, contador2;
 
