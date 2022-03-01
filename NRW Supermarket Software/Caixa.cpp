@@ -3,8 +3,8 @@
 
 #include "Caixa.h"
 
-Caixa::Caixa(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool ensino_medio_completo):
-    Funcionario(nome, codigo, salario, cpf, endereco, email, data_nascimento, senha), _ensino_medio_completo(ensino_medio_completo) {}
+Caixa::Caixa(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool ensino_medio_completo):
+    Funcionario(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha), _ensino_medio_completo(ensino_medio_completo) {}
 
 bool Caixa::get_ensino_medio_completo() {
     return this->_ensino_medio_completo;

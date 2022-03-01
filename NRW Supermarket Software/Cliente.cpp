@@ -3,8 +3,8 @@
 
 #include "Cliente.h"
 
-Cliente::Cliente(std::string nome, std::string cpf, std::string telefone, std::string endereco, int codigo):
-    _nome(nome), _cpf(cpf), _telefone(telefone), _endereco(endereco), _codigo(codigo) {}
+Cliente::Cliente(int codigo, std::string nome, std::string cpf, std::string telefone, std::string endereco):
+    _codigo(codigo), _nome(nome), _cpf(cpf), _telefone(telefone), _endereco(endereco) {}
 
 std::string Cliente::get_nome() {
     return this->_nome;

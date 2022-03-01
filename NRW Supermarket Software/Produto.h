@@ -14,7 +14,7 @@ private:
     std::string _marca;
 
 public:
-    Produto(std::string nome, double preco, std::string validade, int codigo, std::string marca);
+    Produto(int codigo, std::string nome, double preco, std::string validade, std::string marca);
 
     std::string get_nome();
     double get_preco();

@@ -4,8 +4,8 @@
 #include "Atendente.h"
 #include "Funcionario.h"
 
-Atendente::Atendente(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, double comissao):
-Funcionario(nome, codigo, salario, cpf, endereco, email, data_nascimento,senha), _comissao(comissao) {};
+Atendente::Atendente(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, double comissao):
+    Funcionario(codigo, nome, salario, cpf, endereco, email, data_nascimento,senha), _comissao(comissao) {};
 
 double Atendente::get_comissao(){
     return this->_comissao;

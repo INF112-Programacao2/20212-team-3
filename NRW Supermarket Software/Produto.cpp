@@ -3,8 +3,8 @@
 
 #include "Produto.h"
 
-Produto::Produto(std::string nome, double preco, std::string validade, int codigo, std::string marca):
-    _nome(nome), _preco(preco), _validade(validade), _codigo(codigo), _marca(marca) {}
+Produto::Produto(int codigo, std::string nome, double preco, std::string validade, std::string marca):
+    _codigo(codigo), _nome(nome), _preco(preco), _validade(validade), _marca(marca) {}
 
 std::string Produto::get_nome() {
     return this->_nome;

@@ -3,8 +3,8 @@
 
 #include "Estoquista.h"
 
-Estoquista::Estoquista(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool informatica_basica):
-    Funcionario(nome, codigo, salario, cpf, endereco, email, data_nascimento, senha), _informatica_basica(informatica_basica) {}
+Estoquista::Estoquista(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool informatica_basica):
+    Funcionario(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha), _informatica_basica(informatica_basica) {}
 
 bool Estoquista::get_informatica_basica() {
     return this->_informatica_basica;

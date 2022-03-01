@@ -17,7 +17,7 @@ protected:
   std::string _senha;
   
 public:
-  Funcionario(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha);
+  Funcionario(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha);
   
   std::string get_nome();
   int get_codigo();

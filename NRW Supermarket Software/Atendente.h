@@ -13,7 +13,7 @@ private:
     double _comissao;
 
 public:
-    Atendente(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, double comissao);
+    Atendente(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, double comissao);
 
     double get_comissao();
 

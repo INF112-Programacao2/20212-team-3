@@ -3,8 +3,8 @@
 
 #include "Funcionario.h"
 
-Funcionario::Funcionario(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha):
-    _nome(nome), _codigo(codigo), _salario(salario), _cpf(cpf), _endereco(endereco), _email(email), _data_nascimento(data_nascimento), _senha(senha) {}
+Funcionario::Funcionario(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha):
+    _codigo(codigo), _nome(nome), _salario(salario), _cpf(cpf), _endereco(endereco), _email(email), _data_nascimento(data_nascimento), _senha(senha) {}
 
 std::string Funcionario::get_nome() {
     return this->_nome;

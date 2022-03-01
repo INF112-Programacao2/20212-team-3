@@ -13,7 +13,7 @@ private:
     int _codigo;
 
 public:
-    Cliente(std::string nome, std::string cpf, std::string telefone, std::string endereco, int codigo);
+    Cliente(int codigo, std::string nome, std::string cpf, std::string telefone, std::string endereco);
 
     std::string get_nome();
     std::string get_cpf();

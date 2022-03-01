@@ -13,7 +13,7 @@ private:
     bool _ensino_medio_completo;
 
 public:
-    Caixa(std::string nome, int codigo, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool ensino_medio_completo);
+    Caixa(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool ensino_medio_completo);
 
     bool get_ensino_medio_completo();
 
