@@ -14,20 +14,20 @@
 #include "Venda.h"
 #include "Gerente.h"
 
+// BASE DE DADOS
+Estoque estoque;
+std::vector<Cliente> clientes;
+std::vector<Funcionario> funcionarios;
+std::vector<Gerente> gerentes;
+std::vector<Caixa> caixas;
+std::vector<Estoquista> estoquistas;
+std::vector<Atendente> atendentes;
+std::vector<Carrinho> carrinhos;
+std::vector<Venda> vendas;
+
 void verificar_login(int add_codigo, int add_senha) {}
 
 int main(void) {
-
-    // BASE DE DADOS
-    Estoque estoque;
-    std::vector<Cliente> clientes;
-    std::vector<Funcionario> funcionarios;
-    std::vector<Gerente> gerentes;
-    std::vector<Caixa> caixas;
-    std::vector<Estoquista> estoquistas;
-    std::vector<Atendente> atendentes;
-    std::vector<Carrinho> carrinhos;
-    std::vector<Venda> vendas;
 
     // Inicializando objetos da classe Produto
     Produto *pr1 = new Produto("Macarrao", 19.90, "09/22", 1, "Barilla");
