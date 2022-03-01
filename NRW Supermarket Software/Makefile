@@ -11,7 +11,7 @@ Caixa.o: Caixa.cpp Caixa.h
 	g++ -c Caixa.cpp
 
 Carrinho.o: Carrinho.cpp Carrinho.h
-	g++ -c Carrinho.cpp
+	g++ -c Carrinho.cpp 
 	
 Cliente.o: Cliente.cpp Cliente.h
 	g++ -c Cliente.cpp 

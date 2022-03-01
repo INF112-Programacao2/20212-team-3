@@ -1,13 +1,18 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 
 #include "Carrinho.h"
 
-Carrinho::Carrinho(int codigo, Produto produto):
-    _codigo(codigo), _produtos(produto) {}
+unsigned int codigo_suporte = 1;
 
-int Carrinho::get_codigo() {
+Carrinho::Carrinho() {
+    this->_codigo = codigo_suporte;
+    codigo_suporte++;
+}
+
+unsigned int Carrinho::get_codigo() {
     return this->_codigo;
 }
 
@@ -15,7 +20,7 @@ double Carrinho::get_preco_total() {
     return this->_preco_total;
 }
 
-void Carrinho::set_codigo(int codigo) { //Codigos nao deveriam ser constantes/staticos? - RFZ
+void Carrinho::set_codigo(unsigned int codigo) { //Codigos nao deveriam ser constantes/staticos? - RFZ
     this->_codigo = codigo;
 }
 
@@ -29,14 +34,17 @@ void Carrinho::adicionar_produto(Produto produto, int quantidade) {
     for (contador = 0; contador < quantidade; contador++) {
         _produtos.push_back(produto);
     }
-    Carrinho::calculo_preco_total();
+    calculo_preco_total();
 }
 
-void Carrinho::remover_produto(Produto produto, int quantidade) { //Pensar 
+void Carrinho::remover_produto(Produto produto, int quantidade) { 
+
     int contador;
 
-    for (contador = 0; contador < quantidade;contador++) {
-        _produtos.erase(produto); //Verificar logica - RFZ
+    for (contador = 0; contador < _produtos.size(); contador++) {
+        if (this->_produtos[contador].get_codigo() == produto.get_codigo()) { 
+            _produtos.erase(_produtos.begin() + (contador - 1 ));
+        }
     }    
 }
 
@@ -47,11 +55,12 @@ void Carrinho::exibir_produtos() {
         std::cout << "Produto: " << _produtos[contador].get_nome() << " - " << "Preco: " << _produtos[contador].get_preco() << std::endl; //Verificar logica - RFZ
     }
     std::cout << "------------------------------------------------\n";
-    std::cout << Carrinho::get_preco_total() << std::endl;
+    std::cout << get_preco_total() << std::endl;
 }
 
 void Carrinho::calculo_preco_total() {
     int contador;
     for (contador = 0; contador < _produtos.size(); contador++) {
-        _preco_total += _produtos[contador].get_preco();
-}
+        this->_preco_total += _produtos[contador].get_preco();
+    }
+}   
