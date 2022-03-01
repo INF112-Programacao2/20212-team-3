@@ -25,7 +25,7 @@ std::vector<Atendente> atendentes;
 std::vector<Carrinho> carrinhos;
 std::vector<Venda> vendas;
 
-void verificar_login(int add_codigo, int add_senha, Funcionario &funcionario_login) {}
+void verificar_login(int add_codigo, int add_senha, Funcionario *funcionario_login) {}
 
 int main(void) {
 
@@ -78,7 +78,8 @@ int main(void) {
     // Inicio do Software
 
     int add_codigo;
-    int add_senha;
+    std::string add_senha;
+    Funcionario *funcionario_login;
 
     std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
     std::cout << "Digite seu codigo e senha: \n";
@@ -88,14 +89,15 @@ int main(void) {
 
     std::cin >> add_senha;
 
-    Funcionario *funcionario_login;
-    verificar_login(add_codigo, add_senha, &funcionario_login);
+    verificar_login(add_codigo, add_senha, funcionario_login);
+    
 }
 
-void verificar_login(int add_codigo, int add_senha, Funcionario &funcionario_login) {
-    for(int i=0; i < funcionarios.size(); i++) {
-        if(funcionarios[i].get_senha() == add_senha) {
-            funcionario_login = funcionarios[i];
+void verificar_login(int add_codigo, std::string add_senha, Funcionario *funcionario_login) {
+    for (int i=0; i < funcionarios.size(); i++) {
+        if (funcionarios[i].get_senha() == add_senha) {
+            funcionario_login = &funcionarios[i];
+            break;
         }
     }
 }
