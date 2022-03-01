@@ -79,6 +79,7 @@ int main(void) {
 
     int add_codigo;
     int add_senha;
+    int n;
 
     std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
     std::cout << "Digite seu codigo e senha: \n";
@@ -92,9 +93,8 @@ int main(void) {
 }
 
 void verificar_login(int add_codigo, int add_senha) {
-    for(int i=0; i < caixas.size(); i++) {
-        if(caixas[i].get_codigo() == add_codigo) {
-
+    for(int i=0; i < funcionarios.size(); i++) {
+        if(funcionarios[i].get_codigo() == add_codigo) {
         }
     }
 }
