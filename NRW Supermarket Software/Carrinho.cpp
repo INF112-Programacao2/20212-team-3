@@ -39,13 +39,15 @@ void Carrinho::adicionar_produto(Produto produto, int quantidade) {
 
 void Carrinho::remover_produto(Produto produto, int quantidade) { 
 
-    int contador;
+    int contador, contador2;
 
-    for (contador = 0; contador < _produtos.size(); contador++) {
-        if (this->_produtos[contador].get_codigo() == produto.get_codigo()) { 
-            _produtos.erase(_produtos.begin() + (contador - 1 ));
+    for (contador2 = 0; contador2 < quantidade; contador2++) {
+        for (contador = 0; contador < _produtos.size(); contador++) {
+            if (this->_produtos[contador].get_codigo() == produto.get_codigo()) { 
+                _produtos.erase(_produtos.begin() + (contador -1 ));
+            }
         }
-    }    
+    }
 }
 
 void Carrinho::exibir_produtos() {
