@@ -64,6 +64,10 @@
         "utility": "cpp",
         "vector": "cpp",
         "map": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "memory_resource": "cpp",
+        "fstream": "cpp"
     }
 }

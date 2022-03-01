@@ -26,6 +26,7 @@ std::vector<Carrinho> carrinhos;
 std::vector<Venda> vendas;
 
 void verificar_login(int add_codigo, int add_senha, Funcionario *funcionario_login) {}
+void tela_inicial(Funcionario *funcionario_login) {}
 
 int main(void) {
 
@@ -90,7 +91,10 @@ int main(void) {
     std::cin >> add_senha;
 
     verificar_login(add_codigo, add_senha, funcionario_login);
-    
+
+    std::cout << "Bem Vindo(a), " << funcionario_login->get_nome();
+
+    tela_inicial(funcionario_login);
 }
 
 void verificar_login(int add_codigo, std::string add_senha, Funcionario *funcionario_login) {
@@ -100,4 +104,37 @@ void verificar_login(int add_codigo, std::string add_senha, Funcionario *funcion
             break;
         }
     }
+}
+
+void tela_inicial(Funcionario *funcionario_login) {
+    int opcao_escolhida;
+    std::cout << "----------Tela Inicial----------\n";
+    do {
+        if (funcionario_login->get_codigo() == 1) {        // Gerente
+            std::cout << "[1] - Administrar Funcionario(a) \n";
+            std::cout << "[2] - Adiministrar Estoque \n";
+            std::cout << "[3] - Adiministrar Clientes \n";
+            std::cout << "[4] - Adiministrar Vendas \n";
+            std::cout << "[0] - Sair \n";
+        }
+        else if (funcionario_login->get_codigo() == 2) {        // Caixa
+            std::cout << "[3] - Adiministrar Clientes \n";
+            std::cout << "[4] - Adiministrar Vendas \n";
+            std::cout << "[0] - Sair \n";
+        }
+        else if (funcionario_login->get_codigo() == 3) {        // Estoquista
+            std::cout << "[2] - Adiministrar Estoque \n";
+            std::cout << "[0] - Sair \n";
+        }
+        else if (funcionario_login->get_codigo() == 4) {        // Atendente
+            std::cout << "[5] - Consultar Estoque \n";
+            std::cout << "[6] - Consultar Comissao \n";
+            std::cout << "[0] - Sair \n";
+        }
+        // tratamento de execao
+        std::cin >> opcao_escolhida;
+
+        
+
+    } while (opcao_escolhida != 0);
 }
