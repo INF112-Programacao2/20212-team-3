@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <cstdlib>
 
 #include "Atendente.h"
 #include "Caixa.h"
@@ -26,9 +27,11 @@ std::vector<Carrinho> carrinhos;
 std::vector<Venda> vendas;
 
 /* TELAS */
+void tela_iniciar_software();
 void tela_login(int *add_codigo, std::string *add_senha);
 void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login);
 void tela_inicial(Funcionario *funcionario_login);
+void tela_encerrar_software();
 
 int main(void) {
 
@@ -98,25 +101,31 @@ int main(void) {
 
     while (true) {
 
-        std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
-        std::cout << "[1] - Sim \n";
-        std::cout << "[2] - Nao\n";
-        std::cin >> verificar_acessar_sistema;
-        
-        if (verificar_acessar_sistema == 2) {
-            break;
-        }
+        tela_iniciar_software();
 
         tela_login(&add_codigo, &add_senha);
 
         encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
-
-        std::cout << "Bem Vindo(a), " << funcionario_login->get_nome() << std::endl;
         
         tela_inicial(funcionario_login);
 
-    } 
+        tela_encerrar_software();
+    }
 
+}
+
+void tela_iniciar_software() {
+
+    int verificar_acessar_sistema;
+    std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
+    std::cout << "[1] - Sim \n";
+    std::cout << "[2] - Nao\n";
+    std::cin >> verificar_acessar_sistema;
+
+    if (verificar_acessar_sistema == 2) {
+        tela_encerrar_software();
+        exit(0); //Cancela todo programa
+    }
 }
 
 void tela_login(int *add_codigo, std::string *add_senha) {
@@ -140,6 +149,7 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
     for (int i=0; i < funcionarios.size(); i++) {
         if (funcionarios[i]->get_senha() == *add_senha) {
             *funcionario_login = funcionarios[i];
+            std::cout << "Bem Vindo(a), " << (*funcionario_login)->get_nome() << std::endl;
             break;
         }
     }
@@ -156,6 +166,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[3] - Adiministrar Clientes \n";
             std::cout << "[4] - Adiministrar Vendas \n";
             std::cout << "[0] - Sair \n";
+            std::cout << "-------------------------------------------\n";
 
             std::cin >> opcao_escolhida;   // tratamento de excecao
 
@@ -167,6 +178,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[3] - Exibir Dados \n";
                 std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
+                std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;  // tratamento de excecao
 
@@ -203,6 +215,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[3] - Exibir Estoque \n";
                 std::cout << "[4] - Procurar Produto \n";
                 std::cout << "[0] - Voltar \n";
+                std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
@@ -238,6 +251,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[3] - Exibir Dados \n";
                 std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
+                std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
@@ -272,6 +286,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
                 std::cout << "[0] - Voltar \n";
+                std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
@@ -305,6 +320,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[1] - Adiministrar Clientes \n";
             std::cout << "[2] - Adiministrar Vendas \n";
             std::cout << "[0] - Sair \n";
+            std::cout << "-------------------------------------------\n";
 
             std::cin >> opcao_escolhida;
 
@@ -316,6 +332,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[3] - Exibir Dados \n";
                 std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
+                std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
@@ -350,6 +367,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
                 std::cout << "[0] - Voltar \n";
+                std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
@@ -383,6 +401,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "---------- Tela Inicial Estoquista ----------\n";        
             std::cout << "[1] - Adiministrar Estoque \n";
             std::cout << "[0] - Sair \n";
+            std::cout << "-------------------------------------------\n";
 
             std::cin >> opcao_escolhida;
 
@@ -429,6 +448,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[1] - Exibir Estoque \n";
             std::cout << "[2] - Procurar Produto \n";
             std::cout << "[0] - Sair \n";
+            std::cout << "-------------------------------------------\n";
 
             std::cin >> opcao_escolhida;
 
@@ -448,4 +468,10 @@ void tela_inicial(Funcionario *funcionario_login) {
 
     } while (opcao_escolhida != 0);
     
+}
+
+void tela_encerrar_software() {
+    std::cout << "==================\n";
+    std::cout << "Obrigado por utilizar nossso Software, volte sempre!\n";
+    std::cout << "==================\n";
 }
