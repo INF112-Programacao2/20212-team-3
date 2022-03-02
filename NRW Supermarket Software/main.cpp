@@ -91,24 +91,32 @@ int main(void) {
     funcionarios.push_back(&at2);
 
     // Inicio do Software
-    int add_codigo, x;
+    int add_codigo;
+    int verificar_acessar_sistema;
     std::string add_senha;
     Funcionario *funcionario_login;
 
-    std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
-    std::cout << "[-1] -  Encerrar Software \n";
-    std::cout << "Digite qualquer numero para entrar \n";
-    std::cin >> x;
+    while (true) {
 
-    while(x != -1) {
-    tela_login(&add_codigo, &add_senha);
+        std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
+        std::cout << "[1] - Sim \n";
+        std::cout << "[2] - Nao\n";
+        std::cin >> verificar_acessar_sistema;
+        
+        if (verificar_acessar_sistema == 2) {
+            break;
+        }
 
-    encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
+        tela_login(&add_codigo, &add_senha);
 
-    std::cout << "Bem Vindo(a), " << funcionario_login->get_nome() << std::endl;
-    
-    tela_inicial(funcionario_login);
-    }
+        encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
+
+        std::cout << "Bem Vindo(a), " << funcionario_login->get_nome() << std::endl;
+        
+        tela_inicial(funcionario_login);
+
+    } 
+
 }
 
 void tela_login(int *add_codigo, std::string *add_senha) {
