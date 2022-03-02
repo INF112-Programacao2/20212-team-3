@@ -17,7 +17,7 @@
 /* BASE DE DADOS */
 Estoque estoque;
 std::vector<Cliente> clientes;
-std::vector<Funcionario> funcionarios;
+std::vector<Funcionario*> funcionarios;
 std::vector<Gerente> gerentes;
 std::vector<Caixa> caixas;
 std::vector<Estoquista> estoquistas;
@@ -27,7 +27,7 @@ std::vector<Venda> vendas;
 
 /* TELAS */
 void tela_login(int *add_codigo, std::string *add_senha);
-void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario *funcionario_login);
+void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login);
 void tela_inicial(Funcionario *funcionario_login);
 
 int main(void) {
@@ -52,10 +52,17 @@ int main(void) {
 
     // Codigos dos gerentes = 1, dos caixas = 2, dos estoquistas = 3, dos atendentes = 4
     // Inicializando os objetos das subclasses de Funcionario
+    
+    // Jeito 1: Nao consegui encontrar solucao para o funcionarios.push_back(*gr1), por isso esta comentado. - RFZ
     Gerente *gr1 = new Gerente(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
-
     gerentes.push_back(*gr1);
     // funcionarios.push_back(*gr1);
+
+    //Jeito 2: Solucao para o jeito 1 - RFZ
+    Gerente gr2(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
+    funcionarios.push_back(&gr2);
+
+    std::cout << funcionarios[0]->get_nome() << std::endl;
 
     Caixa *cx1 = new Caixa(2, "Ana Clara", 3500, "165378930-72", "Av. Brasil, 12, Vicosa", "clara.lispector@gmail.com", "08/04/2000", "2ana", true);
     Caixa *cx2 = new Caixa(2, "Toli Ramos", 2000, "124528547-01", "Av. PH Rolfs, 56, Vicosa", "toli.ramos@yahoo.com", "20/06/1996", "2toli", false);
@@ -79,15 +86,15 @@ int main(void) {
     // funcionarios.push_back(*at2);
 
     // Inicio do Software
-    int *add_codigo;
-    std::string *add_senha;
+    int add_codigo;
+    std::string add_senha;
     Funcionario *funcionario_login;
 
-    tela_login(add_codigo, add_senha);
+    tela_login(&add_codigo, &add_senha);
 
-    encontrar_funcionario_logado(add_codigo, add_senha, funcionario_login);
+    encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
 
-    std::cout << "Bem Vindo(a), " << funcionario_login->get_nome();
+    std::cout << "Bem Vindo(a), " << funcionario_login->get_nome() << std::endl;
     
     tela_inicial(funcionario_login);
 }
@@ -104,15 +111,15 @@ void tela_login(int *add_codigo, std::string *add_senha) {
     std::cin >> codigo;
     std::cin >> senha;
 
-    add_codigo = &codigo;
-    add_senha = &senha;
+    *add_codigo = codigo;
+    *add_senha = senha;
 
 }
 
-void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario *funcionario_login) {
+void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login) {
     for (int i=0; i < funcionarios.size(); i++) {
-        if (funcionarios[i].get_senha() == *add_senha) {
-            funcionario_login = &funcionarios[i];
+        if (funcionarios[i]->get_senha() == *add_senha) {
+            *funcionario_login = funcionarios[i];
             break;
         }
     }
