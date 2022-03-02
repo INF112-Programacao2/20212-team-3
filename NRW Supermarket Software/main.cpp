@@ -135,6 +135,7 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
 
 void tela_inicial(Funcionario *funcionario_login) {
     int opcao_escolhida;
+    int opcao_escolhida2;
     do {
         if (funcionario_login->get_codigo() == 1) {        // Gerente
             std::cout << "---------- Tela Inicial Gerente ----------\n";
@@ -143,6 +144,27 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[3] - Adiministrar Clientes \n";
             std::cout << "[4] - Adiministrar Vendas \n";
             std::cout << "[0] - Sair \n";
+
+            std::cin >> opcao_escolhida;   // tratamento de excecao
+
+            switch (opcao_escolhida)
+            {
+            case 1:
+
+                std::cout << "---------- Administrar Funcionario(a) ----------\n";
+                std::cout << "[1] - Cadastrar Funcionario(a) \n";
+                std::cout << "[2] - Excluir Funcionario(a) \n";
+                std::cout << "[3] - Exibir Dados \n";
+                std::cout << "[4] - Atualizar Dados \n";
+                std::cout << "[0] - Voltar \n";
+
+                std::cin >> opcao_escolhida2;
+
+                break;
+            
+            default:
+                break;
+            }
         }
         else if (funcionario_login->get_codigo() == 2) {        // Caixa
             std::cout << "---------- Tela Inicial Caixa ----------\n";        
@@ -161,8 +183,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[6] - Consultar Comissao \n";
             std::cout << "[0] - Sair \n";
         }
-        // tratamento de execao
-        std::cin >> opcao_escolhida;
+
     } while (opcao_escolhida != 0);
     
 }
