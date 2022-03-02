@@ -36,6 +36,16 @@ int main(void) {
     Produto *pr1 = new Produto(1, "Macarrao", 19.90, "09/22", "Barilla");
     Produto *pr2 = new Produto(2, "Arroz", 21.90, "04/23", "Rei Arthur");
     Produto *pr3 = new Produto(3, "Feijao", 25.90, "05/22", "Camil");
+    Produto *pr4 = new Produto(4, "Sabao em Po", 11.00, "07/22", "Omo");
+    Produto *pr5 = new Produto(5, "Oleo", 10.00, "10/22", "Soia");
+    Produto *pr6 = new Produto(6, "Sabonete", 3.00, "05/22", "Lux");
+    Produto *pr7 = new Produto(7, "File de Peito de Frango", 17.00, "12/22", "Uniaves");
+    Produto *pr8 = new Produto(8, "Biscoito Recheado", 5.00, "11/22", "Oreo");
+    Produto *pr9 = new Produto(9, "Pasta de Dente", 4.00, "10/22", "Colgate");
+    Produto *pr10 = new Produto(10, "Cup Noodles", 10.00, "07/23", "Nissin");
+    Produto *pr11 = new Produto(11, "Miojo", 2.00, "10/23", "Nissin");
+    Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
+    Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
     //estoque.adicionar_produto(pr1, 3);
     //estoque.adicionar_produto(pr2, 5);
