@@ -62,8 +62,6 @@ int main(void) {
     Gerente gr2(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
     funcionarios.push_back(&gr2);
 
-    std::cout << funcionarios[0]->get_nome() << std::endl;
-
     Caixa *cx1 = new Caixa(2, "Ana Clara", 3500, "165378930-72", "Av. Brasil, 12, Vicosa", "clara.lispector@gmail.com", "08/04/2000", "2ana", true);
     Caixa *cx2 = new Caixa(2, "Toli Ramos", 2000, "124528547-01", "Av. PH Rolfs, 56, Vicosa", "toli.ramos@yahoo.com", "20/06/1996", "2toli", false);
 
