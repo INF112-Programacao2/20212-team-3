@@ -149,7 +149,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
             switch (opcao_escolhida) {
             case 1:
-
                 std::cout << "---------- Administrar Funcionario(a) ----------\n";
                 std::cout << "[1] - Cadastrar Funcionario(a) \n";
                 std::cout << "[2] - Excluir Funcionario(a) \n";
@@ -161,7 +160,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 switch (opcao_escolhida2) {
                 case 1:
-                    
                     std::cout << "---------- Cadastrar Funcionario(a) ----------\n";  // tratamento de excecao
                     break;
 
@@ -184,8 +182,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
 
-            case 2:
+                break;
 
+            case 2:
                 std::cout << "---------- Administrar Estoque ----------\n";
                 std::cout << "[1] - Adicionar Produto \n";
                 std::cout << "[2] - Excluir Produto \n";
@@ -197,7 +196,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 switch (opcao_escolhida2) {
                 case 1:
-                    
                     std::cout << "---------- Adicionar Produto ----------\n";
                     break;
                 
@@ -219,9 +217,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                 default:
                     break;
                 }
+                break;                
 
             case 3:
-
                 std::cout << "---------- Administrar Clientes ----------\n";
                 std::cout << "[1] - Cadastrar Cliente \n";
                 std::cout << "[2] - Excluir Cliente \n";
@@ -233,7 +231,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 switch (opcao_escolhida2) {
                 case 1:
-                    
                     std::cout << "---------- Cadastrar Cliente ----------\n";
                     break;
                 
@@ -255,9 +252,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                 default:
                     break;
                 }
+                break;                
 
             case 4:
-
                 std::cout << "---------- Administrar Vendas ----------\n";
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
@@ -268,7 +265,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 switch (opcao_escolhida2) {
                 case 1:
-                    
                     std::cout << "---------- Cadastrar Venda ----------\n";
                     break;
                 
@@ -286,6 +282,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 default:
                     break;
                 }
+                break;                
             
             default:
                 break;
@@ -301,7 +298,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
             switch (opcao_escolhida) {
             case 1:
-
                 std::cout << "---------- Administrar Clientes ----------\n";
                 std::cout << "[1] - Cadastrar Cliente \n";
                 std::cout << "[2] - Excluir Cliente \n";
@@ -313,7 +309,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 switch (opcao_escolhida2) {
                 case 1:
-                    
                     std::cout << "---------- Cadastrar Cliente ----------\n";
                     break;
                 
@@ -335,9 +330,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                 default:
                     break;
                 }
+                break;
             
             case 2:
-
                 std::cout << "---------- Administrar Vendas ----------\n";
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
@@ -366,6 +361,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 default:
                     break;
                 }
+                break;                
             
             default:
                 break;
@@ -390,7 +386,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 switch (opcao_escolhida2) {
                 case 1:
-                    
                     std::cout << "---------- Adicionar Produto ----------\n";
                     break;
                 
@@ -413,9 +408,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
             }
-
-            else
+            else {
                 break;
+            }
         }
         else if (funcionario_login->get_codigo() == 4) {        // Atendente
             std::cout << "---------- Tela Inicial Atendente ----------\n";        
@@ -425,8 +420,7 @@ void tela_inicial(Funcionario *funcionario_login) {
 
             std::cin >> opcao_escolhida;
 
-            switch (opcao_escolhida)
-            {
+            switch (opcao_escolhida) {
             case 1:
                 std::cout << "---------- Exibir Estoque ----------\n";
                 break;
