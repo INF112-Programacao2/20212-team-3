@@ -26,9 +26,9 @@ std::vector<Carrinho> carrinhos;
 std::vector<Venda> vendas;
 
 /* TELAS */
-void tela_login(int *add_codigo, std::string *add_senha) {}
-void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario *funcionario_login) {}
-void tela_inicial(Funcionario *funcionario_login) {}
+void tela_login(int *add_codigo, std::string *add_senha);
+void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario *funcionario_login);
+void tela_inicial(Funcionario *funcionario_login);
 
 int main(void) {
 
@@ -55,28 +55,28 @@ int main(void) {
     Gerente *gr1 = new Gerente(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
 
     gerentes.push_back(*gr1);
-    funcionarios.push_back(*gr1);
+    // funcionarios.push_back(*gr1);
 
     Caixa *cx1 = new Caixa(2, "Ana Clara", 3500, "165378930-72", "Av. Brasil, 12, Vicosa", "clara.lispector@gmail.com", "08/04/2000", "2ana", true);
     Caixa *cx2 = new Caixa(2, "Toli Ramos", 2000, "124528547-01", "Av. PH Rolfs, 56, Vicosa", "toli.ramos@yahoo.com", "20/06/1996", "2toli", false);
 
     caixas.push_back(*cx1);
     caixas.push_back(*cx2);
-    funcionarios.push_back(*cx1);
-    funcionarios.push_back(*cx2);
+    // funcionarios.push_back(*cx1);
+    // funcionarios.push_back(*cx2);
 
     Estoquista *es1 = new Estoquista(3, "Flavinho Pneu", 5000, "646233490-80", "Av. Santa Rita, 101, Vicosa", "flavio.pneu@yahoo.com", "01/01/1991", "3flavio", true);
 
     estoquistas.push_back(*es1);
-    funcionarios.push_back(*es1);
+    // funcionarios.push_back(*es1);
 
     Atendente *at1 = new Atendente(4, "Pedro Alves", 1200, "342765498-06", "Av. Santo Antonio, 234, Vicosa", "pedro.alves@hotmail.com", "29/02/1992", "3pedro", 20);
     Atendente *at2 = new Atendente(4, "Maria Catarina", 1350, "062506530-15", "Av. Papa Joao, 322, Vicosa", "maria.catarina@gmail.com", "29/02/1992", "3maria", 20);
 
     atendentes.push_back(*at1);
     atendentes.push_back(*at2);
-    funcionarios.push_back(*at1);
-    funcionarios.push_back(*at2);
+    // funcionarios.push_back(*at1);
+    // funcionarios.push_back(*at2);
 
     // Inicio do Software
     int *add_codigo;
@@ -86,6 +86,8 @@ int main(void) {
     tela_login(add_codigo, add_senha);
 
     encontrar_funcionario_logado(add_codigo, add_senha, funcionario_login);
+
+    std::cout << "Bem Vindo(a), " << funcionario_login->get_nome();
     
     tela_inicial(funcionario_login);
 }
@@ -111,7 +113,6 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
     for (int i=0; i < funcionarios.size(); i++) {
         if (funcionarios[i].get_senha() == *add_senha) {
             funcionario_login = &funcionarios[i];
-            std::cout << "Bem Vindo(a), " << funcionario_login->get_nome();
             break;
         }
     }
