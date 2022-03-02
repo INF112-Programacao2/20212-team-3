@@ -26,7 +26,8 @@ std::vector<Carrinho> carrinhos;
 std::vector<Venda> vendas;
 
 /* TELAS */
-void encontrar_funcionado_logado(int add_codigo, int add_senha, Funcionario *funcionario_login) {}
+void tela_login(int *add_codigo, std::string *add_senha) {}
+void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario *funcionario_login) {}
 void tela_inicial(Funcionario *funcionario_login) {}
 
 int main(void) {
@@ -78,28 +79,39 @@ int main(void) {
     funcionarios.push_back(*at2);
 
     // Inicio do Software
-    int add_codigo;
-    std::string add_senha;
+    int *add_codigo;
+    std::string *add_senha;
     Funcionario *funcionario_login;
+
+    tela_login(add_codigo, add_senha);
+
+    encontrar_funcionario_logado(add_codigo, add_senha, funcionario_login);
+    
+    tela_inicial(funcionario_login);
+}
+
+void tela_login(int *add_codigo, std::string *add_senha) {
+
+    int codigo;
+    std::string senha;
 
     std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
     std::cout << "Digite seu codigo e senha: \n";
 
     // Tratamento de execao - Nt
-    std::cin >> add_codigo;
-    std::cin >> add_senha;
+    std::cin >> codigo;
+    std::cin >> senha;
 
-    encontrar_funcionado_logado(add_codigo, add_senha, funcionario_login);
+    add_codigo = &codigo;
+    add_senha = &senha;
 
-    std::cout << "Bem Vindo(a), " << funcionario_login->get_nome();
-
-    tela_inicial(funcionario_login);
 }
 
-void encontrar_funcionado_logado(int add_codigo, std::string add_senha, Funcionario *funcionario_login) {
+void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario *funcionario_login) {
     for (int i=0; i < funcionarios.size(); i++) {
-        if (funcionarios[i].get_senha() == add_senha) {
+        if (funcionarios[i].get_senha() == *add_senha) {
             funcionario_login = &funcionarios[i];
+            std::cout << "Bem Vindo(a), " << funcionario_login->get_nome();
             break;
         }
     }
