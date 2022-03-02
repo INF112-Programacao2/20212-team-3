@@ -147,8 +147,7 @@ void tela_inicial(Funcionario *funcionario_login) {
 
             std::cin >> opcao_escolhida;   // tratamento de excecao
 
-            switch (opcao_escolhida)
-            {
+            switch (opcao_escolhida) {
             case 1:
 
                 std::cout << "---------- Administrar Funcionario(a) ----------\n";
@@ -158,9 +157,135 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
 
+                std::cin >> opcao_escolhida2;  // tratamento de excecao
+
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Cadastrar Funcionario(a) ----------\n";  // tratamento de excecao
+                    break;
+
+                case 2:
+                    std::cout << "---------- Excluir Funcionario(a) ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Dados ----------\n";
+                    break;
+
+                case 4:
+                    std::cout << "---------- Atualizar Dados ----------\n";
+                    break;
+
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
+
+            case 2:
+
+                std::cout << "---------- Administrar Estoque ----------\n";
+                std::cout << "[1] - Adicionar Produto \n";
+                std::cout << "[2] - Excluir Produto \n";
+                std::cout << "[3] - Exibir Estoque \n";
+                std::cout << "[4] - Procurar Produto \n";
+                std::cout << "[0] - Voltar \n";
+
                 std::cin >> opcao_escolhida2;
 
-                break;
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Adicionar Produto ----------\n";
+                    break;
+                
+                case 2:
+                    std::cout << "---------- Excluir Produto ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Estoque ----------\n";
+                    break;
+                
+                case 4:
+                    std::cout << "---------- Procurar Produto ----------\n";
+                    break;
+                
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
+
+            case 3:
+
+                std::cout << "---------- Administrar Clientes ----------\n";
+                std::cout << "[1] - Cadastrar Cliente \n";
+                std::cout << "[2] - Excluir Cliente \n";
+                std::cout << "[3] - Exibir Dados \n";
+                std::cout << "[4] - Atualizar Dados \n";
+                std::cout << "[0] - Voltar \n";
+
+                std::cin >> opcao_escolhida2;
+
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Cadastrar Cliente ----------\n";
+                    break;
+                
+                case 2:
+                    std::cout << "---------- Excluir Cliente ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Dados ----------\n";
+                    break;
+                
+                case 4:
+                    std::cout << "---------- Atualizar Dados ----------\n";
+                    break;
+                
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
+
+            case 4:
+
+                std::cout << "---------- Administrar Vendas ----------\n";
+                std::cout << "[1] - Cadastrar Venda \n";
+                std::cout << "[2] - Excluir Venda \n";
+                std::cout << "[3] - Exibir Vendas \n";
+                std::cout << "[0] - Voltar \n";
+
+                std::cin >> opcao_escolhida2;
+
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Cadastrar Venda ----------\n";
+                    break;
+                
+                case 2:
+                    std::cout << "---------- Excluir Venda ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Vendas ----------\n";
+                    break;
+                
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
             
             default:
                 break;
@@ -168,20 +293,151 @@ void tela_inicial(Funcionario *funcionario_login) {
         }
         else if (funcionario_login->get_codigo() == 2) {        // Caixa
             std::cout << "---------- Tela Inicial Caixa ----------\n";        
-            std::cout << "[3] - Adiministrar Clientes \n";
-            std::cout << "[4] - Adiministrar Vendas \n";
+            std::cout << "[1] - Adiministrar Clientes \n";
+            std::cout << "[2] - Adiministrar Vendas \n";
             std::cout << "[0] - Sair \n";
+
+            std::cin >> opcao_escolhida;
+
+            switch (opcao_escolhida) {
+            case 1:
+
+                std::cout << "---------- Administrar Clientes ----------\n";
+                std::cout << "[1] - Cadastrar Cliente \n";
+                std::cout << "[2] - Excluir Cliente \n";
+                std::cout << "[3] - Exibir Dados \n";
+                std::cout << "[4] - Atualizar Dados \n";
+                std::cout << "[0] - Voltar \n";
+
+                std::cin >> opcao_escolhida2;
+
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Cadastrar Cliente ----------\n";
+                    break;
+                
+                case 2:
+                    std::cout << "---------- Excluir Cliente ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Dados ----------\n";
+                    break;
+                
+                case 4:
+                    std::cout << "---------- Atualizar Dados ----------\n";
+                    break;
+                
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
+            
+            case 2:
+
+                std::cout << "---------- Administrar Vendas ----------\n";
+                std::cout << "[1] - Cadastrar Venda \n";
+                std::cout << "[2] - Excluir Venda \n";
+                std::cout << "[3] - Exibir Vendas \n";
+                std::cout << "[0] - Voltar \n";
+
+                std::cin >> opcao_escolhida2;
+
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Cadastrar Venda ----------\n";
+                    break;
+                
+                case 2:
+                    std::cout << "---------- Excluir Venda ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Vendas ----------\n";
+                    break;
+                
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
+            
+            default:
+                break;
+            }
         }
         else if (funcionario_login->get_codigo() == 3) {        // Estoquista
             std::cout << "---------- Tela Inicial Estoquista ----------\n";        
-            std::cout << "[2] - Adiministrar Estoque \n";
+            std::cout << "[1] - Adiministrar Estoque \n";
             std::cout << "[0] - Sair \n";
+
+            std::cin >> opcao_escolhida;
+
+            if (opcao_escolhida == 1) {
+                std::cout << "---------- Administrar Estoque ----------\n";
+                std::cout << "[1] - Adicionar Produto \n";
+                std::cout << "[2] - Excluir Produto \n";
+                std::cout << "[3] - Exibir Estoque \n";
+                std::cout << "[4] - Procurar Produto \n";
+                std::cout << "[0] - Voltar \n";
+
+                std::cin >> opcao_escolhida2;
+
+                switch (opcao_escolhida2) {
+                case 1:
+                    
+                    std::cout << "---------- Adicionar Produto ----------\n";
+                    break;
+                
+                case 2:
+                    std::cout << "---------- Excluir Produto ----------\n";
+                    break;
+
+                case 3:
+                    std::cout << "---------- Exibir Estoque ----------\n";
+                    break;
+                
+                case 4:
+                    std::cout << "---------- Procurar Produto ----------\n";
+                    break;
+                
+                case 0:
+                    break;
+                
+                default:
+                    break;
+                }
+            }
+
+            else
+                break;
         }
         else if (funcionario_login->get_codigo() == 4) {        // Atendente
             std::cout << "---------- Tela Inicial Atendente ----------\n";        
-            std::cout << "[5] - Consultar Estoque \n";
-            std::cout << "[6] - Consultar Comissao \n";
+            std::cout << "[1] - Exibir Estoque \n";
+            std::cout << "[2] - Procurar Produto \n";
             std::cout << "[0] - Sair \n";
+
+            std::cin >> opcao_escolhida;
+
+            switch (opcao_escolhida)
+            {
+            case 1:
+                std::cout << "---------- Exibir Estoque ----------\n";
+                break;
+            
+            case 2:
+                std::cout << "---------- Procurar Produto ----------\n";
+                break;
+            
+            default:
+                break;
+            }
         }
 
     } while (opcao_escolhida != 0);
