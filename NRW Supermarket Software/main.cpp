@@ -135,9 +135,9 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
 
 void tela_inicial(Funcionario *funcionario_login) {
     int opcao_escolhida;
-    std::cout << "----------Tela Inicial----------\n";
     do {
         if (funcionario_login->get_codigo() == 1) {        // Gerente
+            std::cout << "---------- Tela Inicial Gerente ----------\n";
             std::cout << "[1] - Administrar Funcionario(a) \n";
             std::cout << "[2] - Adiministrar Estoque \n";
             std::cout << "[3] - Adiministrar Clientes \n";
@@ -145,23 +145,24 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[0] - Sair \n";
         }
         else if (funcionario_login->get_codigo() == 2) {        // Caixa
+            std::cout << "---------- Tela Inicial Caixa ----------\n";        
             std::cout << "[3] - Adiministrar Clientes \n";
             std::cout << "[4] - Adiministrar Vendas \n";
             std::cout << "[0] - Sair \n";
         }
         else if (funcionario_login->get_codigo() == 3) {        // Estoquista
+            std::cout << "---------- Tela Inicial Estoquista ----------\n";        
             std::cout << "[2] - Adiministrar Estoque \n";
             std::cout << "[0] - Sair \n";
         }
         else if (funcionario_login->get_codigo() == 4) {        // Atendente
+            std::cout << "---------- Tela Inicial Atendente ----------\n";        
             std::cout << "[5] - Consultar Estoque \n";
             std::cout << "[6] - Consultar Comissao \n";
             std::cout << "[0] - Sair \n";
         }
         // tratamento de execao
         std::cin >> opcao_escolhida;
-
-        
-
     } while (opcao_escolhida != 0);
+    
 }
