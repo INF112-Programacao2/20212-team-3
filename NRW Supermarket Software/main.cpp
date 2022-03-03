@@ -194,7 +194,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Cadastrar Funcionario(a) ----------\n";  // tratamento de excecao
                     try {
                         int codigo;
-                        std::string nome, cpf, endereco, email, data_nascimento, senha, numero;
+                        std::string nome, cpf, endereco, email, data_nascimento, senha, num1;
                         double salario, informacao_extra_comissao;
                         int informacao_extra;
                         bool informacao_extra_construtor;
@@ -232,10 +232,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                                 informacao_extra_construtor = false;
                             }                                   
                             std::cout << "Digite gr+numero: (ex: gr2) \n";
-                            std::cin >> numero;
-                            Gerente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
-                            gerentes.push_back(&numero);
-                            funcionarios.push_back(&numero);
+                            std::cin >> num1;
+                            Gerente num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
+                            gerentes.push_back(&num1);
+                            funcionarios.push_back(&num1);
                         }
                         else if (codigo == 2) {
                             std::cout << "Possui ensino medio completo? (true/false) \n";
@@ -249,10 +249,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                                 informacao_extra_construtor = false;
                             }                  
                             std::cout << "Digite cx+numero: (ex: cx2) \n";
-                            std::cin >> numero;
-                            Caixa numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
-                            caixas.push_back(&numero);
-                            funcionarios.push_back(&numero);                        
+                            std::cin >> num1;
+                            Caixa num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
+                            caixas.push_back(&num1);
+                            funcionarios.push_back(&num1);                        
                         }          
                         else if (codigo == 3) {
                             std::cout << "Possui certificado de informatica basica? (true/false) \n";
@@ -266,19 +266,19 @@ void tela_inicial(Funcionario *funcionario_login) {
                                 informacao_extra_construtor = false;
                             }                 
                             std::cout << "Digite es+numero: (ex: es2)";
-                            std::cin >> numero;
-                            Estoquista numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
-                            estoquistas.push_back(&numero);
-                            funcionarios.push_back(&numero);                        
+                            std::cin >> num1;
+                            Estoquista num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
+                            estoquistas.push_back(&num1);
+                            funcionarios.push_back(&num1);                        
                         }     
                         else if (codigo == 4) {
                             std::cout << "Qual a comissao? \n";
                             std::cin >> informacao_extra_comissao;
                             std::cout << "Digite at+numero: (ex: at2) \n";
-                            std::cin >> numero;
-                            Atendente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
-                            atendentes.push_back(&numero);
-                            funcionarios.push_back(&numero);                        
+                            std::cin >> num1;
+                            Atendente num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
+                            atendentes.push_back(&num1);
+                            funcionarios.push_back(&num1);                        
                         }
                         else {
                             throw std::invalid_argument("Erro: Nao foi possivel cadastrar esse funcionario! O codigo deve ser somente 1,2,3 ou 4. \n");
@@ -289,28 +289,70 @@ void tela_inicial(Funcionario *funcionario_login) {
                     }                                                                      
                     break;
                 }
-                case 2: { //Verificar - RFZ
+                case 2: {
                     int codigo, contador;
                     std::string senha;
                     int contador2;
 
-                    std::cout << "---------- Excluir Funcionario(a) ----------\n";
-                    std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
-                    std::cin >> codigo;
-                    std::cout << "Digite a senha do funcionario que deseja excluir: \n";
-                    std::cin >> senha;
+                    try {
+                        std::cout << "---------- Excluir Funcionario(a) ----------\n";
+                        std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a senha do funcionario que deseja excluir: \n";
+                        std::cin >> senha;
 
-                    for (contador = 0; contador < funcionarios.size(); contador++) {
-                        if (funcionarios[contador]->get_senha() == senha) {
-                            funcionarios.erase(funcionarios.begin() + contador);
-                            std::cout << "Funcionario deleteado com sucesso! \n";
-                            break;
+                        for (contador = 0; contador < funcionarios.size(); contador++) {
+                            if (funcionarios[contador]->get_senha() == senha) {
+                                funcionarios.erase(funcionarios.begin() + contador);
+                                std::cout << "Funcionario deleteado com sucesso! \n";
+                                break;
+                            }
                         }
+
+                        if (codigo == 1) {
+                            for (contador = 0; contador < gerentes.size(); contador++) {
+                                if (gerentes[contador]->get_senha() ==  senha) {
+                                    gerentes.erase(gerentes.begin() + contador);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (codigo == 2) {
+                            for (contador = 0; contador < caixas.size(); contador++) {
+                                if (caixas[contador]->get_senha() ==  senha) {
+                                    caixas.erase(caixas.begin() + contador);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (codigo == 3) {
+                            for (contador = 0; contador < estoquistas.size(); contador++) {
+                                if (estoquistas[contador]->get_senha() ==  senha) {
+                                    estoquistas.erase(estoquistas.begin() + contador);
+                                    break;
+                                }
+                            }
+                        }
+                        else if (codigo == 4) {
+                            for (contador = 0; contador < atendentes.size(); contador++) {
+                                if (atendentes[contador]->get_senha() ==  senha) {
+                                    atendentes.erase(atendentes.begin() + contador);
+                                    break;
+                                }
+                            }
+                        }
+                        else {
+                            throw std::invalid_argument("Erro: Nao foi possivel excluir esse funcionario! O codigo deve ser somente 1,2,3 ou 4. \n");
+                        }
+
                     }
+                    catch (std::invalid_argument &error) {
+                        std::cerr << error.what();
+                    }                    
                     break;
                 }
 
-                case 3: { //Verificar - RFZ
+                case 3: {
 
                     std::cout << "---------- Exibir Dados ----------\n";
 
@@ -457,12 +499,46 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
                 
-                case 2:
+                case 2: {
                     std::cout << "---------- Excluir Cliente ----------\n";
+
+                    try {
+                        int codigo, contador;
+                        std::string senha;
+                        int contador2;
+
+                        std::cout << "Digite o codigo do cliente que deseja exluir: \n";
+                        std::cin >> codigo;
+
+                        for (int i=0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() != codigo) {
+                                throw std::invalid_argument("Codigo invalido! Nao existe um cliente com esse codigo. \n");
+                            }
+                        }
+
+                        for (contador = 0; contador < clientes.size(); contador++) {
+                            if (clientes[contador].get_codigo() == codigo) {
+                                clientes.erase(clientes.begin() + contador);
+                                std::cout << "Cliente deleteado com sucesso! \n";
+                                break;
+                            }
+                        }
+                    }
+                    catch(std::invalid_argument &error) {
+                        std::cerr << error.what();
+                    }
+
                     break;
+                }
 
                 case 3:
                     std::cout << "---------- Exibir Dados ----------\n";
+
+                    for (int contador = 0; contador < clientes.size(); contador++) {
+                            clientes[contador].exibir_dados();
+                            std::cout << std::endl;
+                    }
+
                     break;
                 
                 case 0:
@@ -523,27 +599,77 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Cliente \n";
                 std::cout << "[2] - Excluir Cliente \n";
                 std::cout << "[3] - Exibir Dados \n";
-                std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
                 switch (opcao_escolhida2) {
-                case 1:
+                case 1: {
                     std::cout << "---------- Cadastrar Cliente ----------\n";
-                    break;
-                
-                case 2:
-                    std::cout << "---------- Excluir Cliente ----------\n";
-                    break;
 
+                    try {
+                        int codigo2;
+                        std::string nome2, cpf2, telefone, endereco2, _num2;
+
+                        std::cout << "Digite o codigo: \n";
+                        std::cin >> codigo2;
+                        std::cout << "Digite o nome: \n";
+                        std::cin >> nome2;
+                        std::cout << "Digite o CPF: \n";
+                        std::cin >> cpf2;
+                        std::cout << "Digite o telefone: \n";
+                        std::cin >> telefone;
+                        std::cout << "Digite o endereco: \n";
+                        std::cin >> endereco2;
+                        std::cout << "Digite cl+numero: (ex: cl4) \n";
+                        std::cin >> _num2;
+
+                        for (int i=0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == codigo2) {
+                                throw std::invalid_argument("Codigo invalido! Ja esta sendo utilizado por outro cliente. \n");
+                            }
+                        }
+
+                        Cliente *num2 = new Cliente(codigo2, nome2, cpf2, telefone, endereco2);
+                        clientes.push_back(*num2);
+
+                    } 
+                    catch(std::invalid_argument &error) {
+                        std::cerr << error.what();
+                    }
+
+                    break;
+                }
+                
+                case 2: {
+                    std::cout << "---------- Excluir Cliente ----------\n";
+
+                    int codigo, contador;
+                    std::string senha;
+                    int contador2;
+
+                    std::cout << "Digite o codigo do cliente que deseja exluir: \n";
+                    std::cin >> codigo;
+
+                    for (contador = 0; contador < clientes.size(); contador++) {
+                        if (clientes[contador].get_codigo() == codigo) {
+                            clientes.erase(clientes.begin() + contador);
+                            std::cout << "Cliente deleteado com sucesso! \n";
+                            break;
+                        }
+                    }
+
+                    break;
+                }
                 case 3:
                     std::cout << "---------- Exibir Dados ----------\n";
-                    break;
-                
-                case 4:
-                    std::cout << "---------- Atualizar Dados ----------\n";
+
+                    for (int contador = 0; contador < clientes.size(); contador++) {
+                            clientes[contador].exibir_dados();
+                            std::cout << std::endl;
+                    }
+
                     break;
                 
                 case 0:
@@ -552,6 +678,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 default:
                     break;
                 }
+
                 break;
             
             case 2:
