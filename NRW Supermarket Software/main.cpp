@@ -109,8 +109,6 @@ int main(void) {
         
         tela_inicial(funcionario_login);
 
-        tela_encerrar_software();
-
     }
 
 }
