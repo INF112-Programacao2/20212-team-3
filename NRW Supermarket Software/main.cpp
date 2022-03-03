@@ -425,7 +425,7 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                     try {
                         int codigo2;
-                        std::string nome2, cpf2, telefone, endereco2, numero2;
+                        std::string nome2, cpf2, telefone, endereco2, _num2;
 
                         std::cout << "Digite o codigo: \n";
                         std::cin >> codigo2;
@@ -437,8 +437,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cin >> telefone;
                         std::cout << "Digite o endereco: \n";
                         std::cin >> endereco2;
-                        std::cout << "Digite cl+numero: (ex: cl2) \n";
-                        std::cin >> numero2;
+                        std::cout << "Digite cl+numero: (ex: cl4) \n";
+                        std::cin >> _num2;
 
                         for (int i=0; i < clientes.size(); i++) {
                             if (clientes[i].get_codigo() == codigo2) {
@@ -446,7 +446,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        Cliente numero2(codigo2, nome2, cpf2, telefone, endereco2);
+                        Cliente *num2 = new Cliente(codigo2, nome2, cpf2, telefone, endereco2);
+                        clientes.push_back(*num2);
 
                     } 
                     catch(std::invalid_argument &error) {

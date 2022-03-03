@@ -35,4 +35,4 @@ Venda.o: Venda.cpp Venda.h
 	g++ -c Venda.cpp
 
 clean:
-	rm *.o output
+	rm *.o *.exe output
