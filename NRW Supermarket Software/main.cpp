@@ -183,7 +183,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Funcionario(a) \n";
                 std::cout << "[2] - Excluir Funcionario(a) \n";
                 std::cout << "[3] - Exibir Dados \n";
-                std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -312,27 +311,15 @@ void tela_inicial(Funcionario *funcionario_login) {
                 }
 
                 case 3: { //Verificar - RFZ
-                    int codigo, contador;
-                    std::string senha;
 
                     std::cout << "---------- Exibir Dados ----------\n";
-                    std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
-                    std::cin >> codigo;
-                    std::cout << "Digite a senha do funcionario que deseja excluir: \n";
-                    std::cin >> senha;
 
-                    for (contador = 0; contador < funcionarios.size(); contador++) {
-                        if (funcionarios[contador]->get_senha() == senha) {
+                    for (int contador = 0; contador < funcionarios.size(); contador++) {
                             funcionarios[contador]->exibir_dados();
-                            break;
-                        }
+                            std::cout << std::endl;
                     }
                     break;
                 }
-
-                case 4:
-                    std::cout << "---------- Atualizar Dados ----------\n";
-                    break;
 
                 case 0:
                     break;
@@ -427,16 +414,47 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Cliente \n";
                 std::cout << "[2] - Excluir Cliente \n";
                 std::cout << "[3] - Exibir Dados \n";
-                std::cout << "[4] - Atualizar Dados \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
                 switch (opcao_escolhida2) {
-                case 1:
+                case 1: {
                     std::cout << "---------- Cadastrar Cliente ----------\n";
+
+                    try {
+                        int codigo2;
+                        std::string nome2, cpf2, telefone, endereco2, numero2;
+
+                        std::cout << "Digite o codigo: \n";
+                        std::cin >> codigo2;
+                        std::cout << "Digite o nome: \n";
+                        std::cin >> nome2;
+                        std::cout << "Digite o CPF: \n";
+                        std::cin >> cpf2;
+                        std::cout << "Digite o telefone: \n";
+                        std::cin >> telefone;
+                        std::cout << "Digite o endereco: \n";
+                        std::cin >> endereco2;
+                        std::cout << "Digite cl+numero: (ex: cl2) \n";
+                        std::cin >> numero2;
+
+                        for (int i=0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == codigo2) {
+                                throw std::invalid_argument("Codigo invalido! Ja esta sendo utilizado por outro cliente. \n");
+                            }
+                        }
+
+                        Cliente numero2(codigo2, nome2, cpf2, telefone, endereco2);
+
+                    } 
+                    catch(std::invalid_argument &error) {
+                        std::cerr << error.what();
+                    }
+
                     break;
+                }
                 
                 case 2:
                     std::cout << "---------- Excluir Cliente ----------\n";
@@ -444,10 +462,6 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 case 3:
                     std::cout << "---------- Exibir Dados ----------\n";
-                    break;
-                
-                case 4:
-                    std::cout << "---------- Atualizar Dados ----------\n";
                     break;
                 
                 case 0:
