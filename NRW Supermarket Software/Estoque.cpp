@@ -4,7 +4,7 @@
 #include "Estoque.h"
 #include "Produto.h"
 
-void Estoque::adicionar_produto(Produto produto, int quantidade) {
+void Estoque::adicionar_produto(Produto &produto, int quantidade) {
     int contador;
 
     for (contador = 0; contador < quantidade; contador++) {
@@ -40,10 +40,3 @@ void Estoque::adicionar_produto(Produto produto, int quantidade) {
 //         }
 //     return false;
 //  }
-
-
-// void Estoque::adicionar_produto_(Produto &produto,int quantidade){
-//      for(int i = 0;i < _produtos.size();i++){
-//          _produtos.push_back(produto);
-//      }
-// }

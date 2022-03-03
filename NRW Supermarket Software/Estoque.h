@@ -12,10 +12,10 @@ private:
     std::vector<Produto> _produtos; 
     
 public:
-    void adicionar_produto(Produto produto, int quantidade); 
+    void adicionar_produto(Produto &produto, int quantidade); 
     void excluir_produto(Produto produto, int quantidade); 
     void exibir_estoque();
-    // void adicionar_produto_(Produto &produto,int quantidade);
+   
     // bool procurar_produto(int codigo);
 
 };

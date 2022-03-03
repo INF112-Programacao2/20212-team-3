@@ -51,9 +51,9 @@ int main(void) {
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
-    //estoque.adicionar_produto(pr1, 3); //olhar Estoque.h e cpp,a funçao adicionar_produto_();
-    //estoque.adicionar_produto(pr2, 5);
-    //estoque.adicionar_produto(pr3, 6);
+    //estoque.adicionar_produto(&pr1, 3); 
+    //estoque.adicionar_produto(&pr2, 5);
+    //estoque.adicionar_produto(&pr3, 6);
 
     // Inicializando objetos da classe Cliente
     Cliente *cl1 = new Cliente(1, "Viviane Silva", "325678435-16", "31 99415-6278", "Av. PH Holfs, 174, Vicosa");
@@ -618,7 +618,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         
                         Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
                         
-                        estoque.adicionar_produto(&pr,quantidade); //Seria melhor passar no Estoque.h para passar por &,ja que é um ponteiro;
+                        estoque.adicionar_produto(&pr,quantidade); 
                     */
                     break;
                 
