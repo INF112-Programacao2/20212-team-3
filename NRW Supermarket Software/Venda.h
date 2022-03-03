@@ -16,7 +16,7 @@ private:
     std::string _data;
     Cliente *_cliente_atendido; //Revisar - RFZ
     Atendente *_atendente_consultado; //Revisar - RFZ
-    int _quantidade_vendas = 1;
+    static int _quantidade_vendas;
     double _desconto;
     double _valor_final;
     double _valor_recebido;
