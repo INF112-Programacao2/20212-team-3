@@ -51,9 +51,9 @@ int main(void) {
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
-    //estoque.adicionar_produto(&pr1, 3); 
-    //estoque.adicionar_produto(&pr2, 5);
-    //estoque.adicionar_produto(&pr3, 6);
+    estoque.adicionar_produto(pr1, 3); 
+    estoque.adicionar_produto(pr2, 5);
+    estoque.adicionar_produto(pr3, 6);
 
     // Inicializando objetos da classe Cliente
     Cliente *cl1 = new Cliente(1, "Viviane Silva", "325678435-16", "31 99415-6278", "Av. PH Holfs, 174, Vicosa");
@@ -560,9 +560,18 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cin >> opcao_escolhida2;
 
                 switch (opcao_escolhida2) {
-                case 1:
+                case 1: {
                     std::cout << "---------- Cadastrar Venda ----------\n";
+
+                    int forma_pagamento;
+                    double valor_recebido;
+                    std::string data;
+                    Cliente *cliente_atendido;
+                    Atendente *atendente_consultado;
+                    Carrinho *carrinho;
+
                     break;
+                }
                 
                 case 2:
                     std::cout << "---------- Excluir Venda ----------\n";
@@ -570,6 +579,11 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 case 3:
                     std::cout << "---------- Exibir Vendas ----------\n";
+                    
+                    for (int i=0; i < vendas.size(); i++) {
+                        vendas[i].exibir_vendas();
+                    }
+
                     break;
                 
                 case 0:
@@ -703,6 +717,11 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 case 3:
                     std::cout << "---------- Exibir Vendas ----------\n";
+
+                    for (int i=0; i < vendas.size(); i++) {
+                        vendas[i].exibir_vendas();
+                    }
+
                     break;
                 
                 case 0:
