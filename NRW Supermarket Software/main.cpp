@@ -290,13 +290,47 @@ void tela_inicial(Funcionario *funcionario_login) {
                     }                                                                      
                     break;
                 }
-                case 2:
-                    std::cout << "---------- Excluir Funcionario(a) ----------\n";
-                    break;
+                case 2: {
+                    int codigo, contador;
+                    std::string senha;
 
-                case 3:
-                    std::cout << "---------- Exibir Dados ----------\n";
+                    std::cout << "---------- Excluir Funcionario(a) ----------\n";
+                    std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
+                    std::cin >> codigo;
+                    std::cout << "Digite a senha do funcionario que deseja excluir: \n";
+                    std::cout << senha;
+
+                    for (contador - 0; contador < funcionarios.size(); contador++) {
+                        if (funcionarios[contador]->get_senha() == senha) {
+                            funcionarios.erase(funcionarios.begin() + (contador - 1));
+                            delete funcionarios[contador];
+                            std::cout << "Funcionario deleteado com sucesso! \n";
+                            break;
+                        }
+                    }
                     break;
+                }
+
+                case 3: {
+                    int codigo, contador;
+                    std::string senha;
+
+                    std::cout << "---------- Exibir Dados ----------\n";
+                    std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
+                    std::cin >> codigo;
+                    std::cout << "Digite a senha do funcionario que deseja excluir: \n";
+                    std::cout << senha;
+
+                    for (contador - 0; contador < funcionarios.size(); contador++) {
+                        if (funcionarios[contador]->get_senha() == senha) {
+                            funcionarios.erase(funcionarios.begin() + (contador - 1));
+                            delete funcionarios[contador];
+                            std::cout << "Funcionario deleteado com sucesso! \n";
+                            break;
+                        }
+                    }
+                    break;
+                }
 
                 case 4:
                     std::cout << "---------- Atualizar Dados ----------\n";
