@@ -284,7 +284,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             funcionarios.push_back(&numero);                        
                         }
                         else {
-                            throw std::invalid_argument("Valor invalido! O codigo deve ser somente 1,2,3 ou 4 \n");
+                            throw std::invalid_argument("Erro: Nao foi possivel cadastrar esse funcionario! O codigo deve ser somente 1,2,3 ou 4. \n");
                         }
                     }
                     catch (std::invalid_argument &error) {
