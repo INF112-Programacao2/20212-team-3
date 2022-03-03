@@ -51,7 +51,7 @@ int main(void) {
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
-    //estoque.adicionar_produto(pr1, 3); //Seria melhor passar por &;
+    //estoque.adicionar_produto(pr1, 3); //olhar Estoque.h e cpp,a funçao adicionar_produto_();
     //estoque.adicionar_produto(pr2, 5);
     //estoque.adicionar_produto(pr3, 6);
 
