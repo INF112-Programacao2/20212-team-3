@@ -199,7 +199,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                         int codigo;
                         std::string nome, cpf, endereco, email, data_nascimento, senha, numero;
                         double salario, informacao_extra_comissao;
-                        bool informacao_extra;
+                        int informacao_extra;
+                        bool informacao_extra_construtor;
 
                         std::cout << "Digite o codigo: \n";
                         std::cout << "[1] - Gerente \n";
@@ -222,38 +223,61 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o senha: \n";
                         std::cin >> senha;
 
-
                         if (codigo == 1) {
-                            std::cout << "Possui curso superior? (true/false) \n";
+                            std::cout << "Possui curso superior? \n";
+                            std::cout << "[1] - Sim \n";
+                            std::cout << "[2] - Nao \n";                        
                             std::cin >> informacao_extra;
-                            std::cout << "Digite gr+numero: (ex: gr2)";
+                            if (informacao_extra == 1) {
+                                informacao_extra_construtor = true;
+                            }                        
+                            else {
+                                informacao_extra_construtor = false;
+                            }                                   
+                            std::cout << "Digite gr+numero: (ex: gr2) \n";
                             std::cin >> numero;
-                            Gerente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra);
+                            Gerente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             gerentes.push_back(&numero);
                             funcionarios.push_back(&numero);
                         }
                         else if (codigo == 2) {
                             std::cout << "Possui ensino medio completo? (true/false) \n";
+                            std::cout << "[1] - Sim \n";
+                            std::cout << "[2] - Nao \n";                        
                             std::cin >> informacao_extra;
-                            std::cout << "Digite cx+numero: (ex: cx2)";
+                            if (informacao_extra == 1) {
+                                informacao_extra_construtor = true;
+                            }                        
+                            else {
+                                informacao_extra_construtor = false;
+                            }                  
+                            std::cout << "Digite cx+numero: (ex: cx2) \n";
                             std::cin >> numero;
-                            Caixa numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra);
+                            Caixa numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             caixas.push_back(&numero);
                             funcionarios.push_back(&numero);                        
                         }          
                         else if (codigo == 3) {
                             std::cout << "Possui certificado de informatica basica? (true/false) \n";
+                            std::cout << "[1] - Sim \n";
+                            std::cout << "[2] - Nao \n";                        
                             std::cin >> informacao_extra;
+                            if (informacao_extra == 1) {
+                                informacao_extra_construtor = true;
+                            }                        
+                            else {
+                                informacao_extra_construtor = false;
+                            }                 
                             std::cout << "Digite es+numero: (ex: es2)";
                             std::cin >> numero;
-                            Estoquista numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra);
+                            Estoquista numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             estoquistas.push_back(&numero);
                             funcionarios.push_back(&numero);                        
                         }     
                         else if (codigo == 4) {
                             std::cout << "Qual a comissao? \n";
                             std::cin >> informacao_extra_comissao;
-                            std::cout << "Digite at+numero: (ex: at2)";
+                            std::cout << "Digite at+numero: (ex: at2) \n";
                             std::cin >> numero;
                             Atendente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
                             atendentes.push_back(&numero);
