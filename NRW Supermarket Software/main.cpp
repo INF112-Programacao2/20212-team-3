@@ -86,8 +86,8 @@ int main(void) {
     estoquistas.push_back(&es1);
     funcionarios.push_back(&es1);
 
-    Atendente at1(4, "Pedro Alves", 1200, "342765498-06", "Av. Santo Antonio, 234, Vicosa", "pedro.alves@hotmail.com", "29/02/1992", "3pedro", 20);
-    Atendente at2(4, "Maria Catarina", 1350, "062506530-15", "Av. Papa Joao, 322, Vicosa", "maria.catarina@gmail.com", "29/02/1992", "3maria", 20);
+    Atendente at1(4, "Pedro Alves", 1200, "342765498-06", "Av. Santo Antonio, 234, Vicosa", "pedro.alves@hotmail.com", "29/02/1992", "4pedro", 20);
+    Atendente at2(4, "Maria Catarina", 1350, "062506530-15", "Av. Papa Joao, 322, Vicosa", "maria.catarina@gmail.com", "29/02/1992", "4maria", 20);
 
     atendentes.push_back(&at1);
     atendentes.push_back(&at2);
@@ -290,20 +290,20 @@ void tela_inicial(Funcionario *funcionario_login) {
                     }                                                                      
                     break;
                 }
-                case 2: {
+                case 2: { //Verificar - RFZ
                     int codigo, contador;
                     std::string senha;
+                    int contador2;
 
                     std::cout << "---------- Excluir Funcionario(a) ----------\n";
                     std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
                     std::cin >> codigo;
                     std::cout << "Digite a senha do funcionario que deseja excluir: \n";
-                    std::cout << senha;
+                    std::cin >> senha;
 
-                    for (contador - 0; contador < funcionarios.size(); contador++) {
+                    for (contador = 0; contador < funcionarios.size(); contador++) {
                         if (funcionarios[contador]->get_senha() == senha) {
-                            funcionarios.erase(funcionarios.begin() + (contador - 1));
-                            delete funcionarios[contador];
+                            funcionarios.erase(funcionarios.begin() + contador);
                             std::cout << "Funcionario deleteado com sucesso! \n";
                             break;
                         }
@@ -311,7 +311,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
 
-                case 3: {
+                case 3: { //Verificar - RFZ
                     int codigo, contador;
                     std::string senha;
 
@@ -319,13 +319,11 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
                     std::cin >> codigo;
                     std::cout << "Digite a senha do funcionario que deseja excluir: \n";
-                    std::cout << senha;
+                    std::cin >> senha;
 
-                    for (contador - 0; contador < funcionarios.size(); contador++) {
+                    for (contador = 0; contador < funcionarios.size(); contador++) {
                         if (funcionarios[contador]->get_senha() == senha) {
-                            funcionarios.erase(funcionarios.begin() + (contador - 1));
-                            delete funcionarios[contador];
-                            std::cout << "Funcionario deleteado com sucesso! \n";
+                            funcionarios[contador]->exibir_dados();
                             break;
                         }
                     }
