@@ -3,6 +3,7 @@
 #include <map>
 #include <string>
 #include <cstdlib>
+#include <exception>
 
 #include "Atendente.h"
 #include "Caixa.h"
@@ -95,7 +96,6 @@ int main(void) {
 
     // Inicio do Software
     int add_codigo;
-    int verificar_acessar_sistema;
     std::string add_senha;
     Funcionario *funcionario_login;
 
@@ -110,6 +110,7 @@ int main(void) {
         tela_inicial(funcionario_login);
 
         tela_encerrar_software();
+
     }
 
 }
@@ -117,6 +118,7 @@ int main(void) {
 void tela_iniciar_software() {
 
     int verificar_acessar_sistema;
+
     std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
     std::cout << "[1] - Sim \n";
     std::cout << "[2] - Nao\n";
@@ -126,6 +128,12 @@ void tela_iniciar_software() {
         tela_encerrar_software();
         exit(0); //Cancela todo programa
     }
+}
+
+void tela_encerrar_software() {
+    std::cout << "==================\n";
+    std::cout << "Obrigado por utilizar nossso Software, volte sempre!\n";
+    std::cout << "==================\n";
 }
 
 void tela_login(int *add_codigo, std::string *add_senha) {
@@ -158,6 +166,7 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
 void tela_inicial(Funcionario *funcionario_login) {
     int opcao_escolhida;
     int opcao_escolhida2;
+
     do {
         if (funcionario_login->get_codigo() == 1) {        // Gerente
             std::cout << "---------- Tela Inicial Gerente ----------\n";
@@ -183,10 +192,82 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cin >> opcao_escolhida2;  // tratamento de excecao
 
                 switch (opcao_escolhida2) {
-                case 1:
+                case 1: {
+                    
                     std::cout << "---------- Cadastrar Funcionario(a) ----------\n";  // tratamento de excecao
-                    break;
+                    try {
+                        int codigo;
+                        std::string nome, cpf, endereco, email, data_nascimento, senha, numero;
+                        double salario, informacao_extra_comissao;
+                        bool informacao_extra;
 
+                        std::cout << "Digite o codigo: \n";
+                        std::cout << "[1] - Gerente \n";
+                        std::cout << "[2] - Caixa \n";
+                        std::cout << "[3] - Estoquista \n";
+                        std::cout << "[4] - Atendente \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite o nome: \n";
+                        std::cin >> nome;
+                        std::cout << "Digite o salario: \n";
+                        std::cin >> salario; 
+                        std::cout << "Digite o CPF: \n";
+                        std::cin >> cpf;                                       
+                        std::cout << "Digite o endereco: \n";
+                        std::cin >> endereco;                    
+                        std::cout << "Digite o e-mail: \n";
+                        std::cin >> email;                    
+                        std::cout << "Digite a data de nascimento: \n";
+                        std::cin >> data_nascimento;      
+                        std::cout << "Digite o senha: \n";
+                        std::cin >> senha;
+
+
+                        if (codigo == 1) {
+                            std::cout << "Possui curso superior? (true/false) \n";
+                            std::cin >> informacao_extra;
+                            std::cout << "Digite gr+numero: (ex: gr2)";
+                            std::cin >> numero;
+                            Gerente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra);
+                            gerentes.push_back(&numero);
+                            funcionarios.push_back(&numero);
+                        }
+                        else if (codigo == 2) {
+                            std::cout << "Possui ensino medio completo? (true/false) \n";
+                            std::cin >> informacao_extra;
+                            std::cout << "Digite cx+numero: (ex: cx2)";
+                            std::cin >> numero;
+                            Caixa numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra);
+                            caixas.push_back(&numero);
+                            funcionarios.push_back(&numero);                        
+                        }          
+                        else if (codigo == 3) {
+                            std::cout << "Possui certificado de informatica basica? (true/false) \n";
+                            std::cin >> informacao_extra;
+                            std::cout << "Digite es+numero: (ex: es2)";
+                            std::cin >> numero;
+                            Estoquista numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra);
+                            estoquistas.push_back(&numero);
+                            funcionarios.push_back(&numero);                        
+                        }     
+                        else if (codigo == 4) {
+                            std::cout << "Qual a comissao? \n";
+                            std::cin >> informacao_extra_comissao;
+                            std::cout << "Digite at+numero: (ex: at2)";
+                            std::cin >> numero;
+                            Atendente numero(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
+                            atendentes.push_back(&numero);
+                            funcionarios.push_back(&numero);                        
+                        }
+                        else {
+                            throw std::invalid_argument("Valor invalido! O codigo deve ser somente 1,2,3 ou 4 \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cerr << error.what();
+                    }                                                                      
+                    break;
+                }
                 case 2:
                     std::cout << "---------- Excluir Funcionario(a) ----------\n";
                     break;
@@ -468,10 +549,4 @@ void tela_inicial(Funcionario *funcionario_login) {
 
     } while (opcao_escolhida != 0);
     
-}
-
-void tela_encerrar_software() {
-    std::cout << "==================\n";
-    std::cout << "Obrigado por utilizar nossso Software, volte sempre!\n";
-    std::cout << "==================\n";
 }
