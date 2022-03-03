@@ -31,3 +31,12 @@ void Estoque::adicionar_produto(Produto produto, int quantidade) {
         _produtos[i].exibir_dados(); 
     }
  }
+
+//  bool Estoque::procurar_produto(int codigo){
+//         for(int i = 0;i < _produtos.size();i++){
+//             if(_produtos[i].get_codigo() == codigo){
+//                 return true;
+//             }
+//         }
+//     return false;
+//  }

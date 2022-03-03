@@ -51,7 +51,7 @@ int main(void) {
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
-    //estoque.adicionar_produto(pr1, 3);
+    //estoque.adicionar_produto(pr1, 3); //Seria melhor passar por &;
     //estoque.adicionar_produto(pr2, 5);
     //estoque.adicionar_produto(pr3, 6);
 
@@ -319,24 +319,67 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[4] - Procurar Produto \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
-
+                  
                 std::cin >> opcao_escolhida2;
-
+                // int quantidade = 0;
                 switch (opcao_escolhida2) {
                 case 1:
-                    std::cout << "---------- Adicionar Produto ----------\n";
+                    std::cout << "---------- Adicionar Produto ----------\n"; //tratamento de erro associado a digitaçao errada de dados;
+                     /* int __codigo;
+                        std::string __nome,__validade,__marca;
+                        double __preco;
+                        
+                        
+                        std::cout << "Digite o codigo do produto: " << std::endl;
+                        std::cin >> __codigo;
+                        std::cout << "Digite o nome do produto: " << std::endl;
+                        std::cin >> __nome;
+                        std::cout << "Digite o preco do produto: " << std::endl;  
+                        std::cin >> __preco;
+                        std::cout << "Digite a marca do produto: " << std::endl;
+                        std::cin >> __marca;
+                        std::cout << "Digite a validade do produto: " << std::endl;
+                        std::cin >> __validade;
+                        std::cout << "Digite a quantidade: " << std::endl;
+                        std::cin >> quantidade;
+                        
+                        Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
+                        
+                        estoque.adicionar_produto(&pr,quantidade); //Seria melhor passar no Estoque.h para passar por &,ja que é um ponteiro;
+                    */
                     break;
                 
                 case 2:
-                    std::cout << "---------- Excluir Produto ----------\n";
+                    std::cout << "---------- Excluir Produto ----------\n"; //pensando a respeito disso ainda
+                    /*
+                     std::cin >> pr;
+                     std::cin >> quantidade;
+                     estoque.excluir_produto(&pr,quantidade);
+                    */
                     break;
 
                 case 3:
                     std::cout << "---------- Exibir Estoque ----------\n";
+                    estoque.exibir_estoque();
                     break;
                 
                 case 4:
-                    std::cout << "---------- Procurar Produto ----------\n";
+                    std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
+                    //bool existir;
+                    //int _codigo1;
+                    /*criar funçao booleana no estoque.h,que retorne true se tem o produto no estoque or false;
+                    //Talvez seria melhor passar por codigo do produto;
+                    //qualquer coisa poderia criar uma funçao para retornar a quantidade em vez do bool;  
+                     std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
+                     std::cin >> _codigo1;
+                     existir = estoque.procurar_produto(_codigo1)
+                     if(existir){
+                        std::cout << "Produto existente no estoque" << std::endl;
+                     }
+                     else{
+                         std:: cout << "Produto nao existente no estoque" << std::endl;
+                     }
+                    */
                     break;
                 
                 case 0:
@@ -517,18 +560,46 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[0] - Voltar \n";
 
                 std::cin >> opcao_escolhida2;
-
+                 //int quantidade1 = 0;
                 switch (opcao_escolhida2) {
                 case 1:
                     std::cout << "---------- Adicionar Produto ----------\n";
+                    /* int __codigo;
+                        std::string __nome,__validade,__marca;
+                        double __preco;
+                        
+                        
+                        std::cout << "Digite o codigo do produto: " << std::endl;
+                        std::cin >> __codigo;
+                        std::cout << "Digite o nome do produto: " << std::endl;
+                        std::cin >> __nome;
+                        std::cout << "Digite o preco do produto: " << std::endl;  
+                        std::cin >> __preco;
+                        std::cout << "Digite a marca do produto: " << std::endl;
+                        std::cin >> __marca;
+                        std::cout << "Digite a validade do produto: " << std::endl;
+                        std::cin >> __validade;
+                        std::cout << "Digite a quantidade: " << std::endl;
+                        std::cin >> quantidade;
+                        
+                        Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
+                        
+                        estoque.adicionar_produto(&pr,quantidade); //Seria melhor passar no Estoque.h para passar por &,ja que é um ponteiro;
+                    */
                     break;
                 
                 case 2:
                     std::cout << "---------- Excluir Produto ----------\n";
+                     /*
+                     std::cin >> pr1;
+                     std::cin >> quantidade1;
+                     estoque.excluir_produto(&pr1,quantidade1);
+                    */
                     break;
 
                 case 3:
                     std::cout << "---------- Exibir Estoque ----------\n";
+                    estoque.exibir_estoque();
                     break;
                 
                 case 4:
@@ -558,6 +629,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             switch (opcao_escolhida) {
             case 1:
                 std::cout << "---------- Exibir Estoque ----------\n";
+                estoque.exibir_estoque();
                 break;
             
             case 2:
