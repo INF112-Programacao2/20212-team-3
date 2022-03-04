@@ -152,6 +152,13 @@ void tela_iniciar_software() {
     std::cout << "[2] - Nao\n";
     std::cin >> verificar_acessar_sistema;
 
+    while (verificar_acessar_sistema != 1 && verificar_acessar_sistema != 2) {
+        std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
+        std::cout << "[1] - Sim \n";
+        std::cout << "[2] - Nao\n";
+        std::cin >> verificar_acessar_sistema;
+    }
+
     if (verificar_acessar_sistema == 2) {
         tela_encerrar_software();
         exit(0); //Cancela todo programa
@@ -184,7 +191,19 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
     for (int i=0; i < funcionarios.size(); i++) {
         if (funcionarios[i]->get_senha() == *add_senha) {
             *funcionario_login = funcionarios[i];
-            std::cout << "Bem Vindo(a), " << (*funcionario_login)->get_nome() << std::endl;
+
+            std::cout << "Bem Vindo(a), ";
+
+            if (*add_codigo == 1)
+                std::cout << "Gerente ";
+            else if (*add_codigo == 2)
+                std::cout << "Caixa ";
+            else if (*add_codigo == 3)
+                std::cout << "Estoquista ";
+            else
+                std::cout << "Atendente ";
+
+            std::cout << (*funcionario_login)->get_nome() << std::endl;
             break;
         }
     }
@@ -204,7 +223,7 @@ void tela_inicial(Funcionario *funcionario_login) {
             std::cout << "[0] - Sair \n";
             std::cout << "-------------------------------------------\n";
 
-            std::cin >> opcao_escolhida;   // tratamento de excecao
+            std::cin >> opcao_escolhida;
 
             switch (opcao_escolhida) {
             case 1:
@@ -215,12 +234,12 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
-                std::cin >> opcao_escolhida2;  // tratamento de excecao
+                std::cin >> opcao_escolhida2; 
 
                 switch (opcao_escolhida2) {
                 case 1: {
                     
-                    std::cout << "---------- Cadastrar Funcionario(a) ----------\n";  // tratamento de excecao
+                    std::cout << "---------- Cadastrar Funcionario(a) ----------\n";
                     try {
                         int codigo;
                         std::string nome, cpf, endereco, email, data_nascimento, senha, num1;
@@ -412,31 +431,42 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "-------------------------------------------\n";
                   
                 std::cin >> opcao_escolhida2;
-                 int quantidade1 = 0;
+                int quantidade1 = 0;
+
                 switch (opcao_escolhida2) {
                 case 1: {
                     std::cout << "---------- Adicionar Produto ----------\n";
-                      int __codigo;
-                        std::string __nome,__validade,__marca;
-                        double __preco;
-                        
-                        
+
+                    try {
+                        int codigo;
+                        std::string nome, validade, marca;
+                        double preco;
+                            
+                            
                         std::cout << "Digite o codigo do produto: " << std::endl;
-                        std::cin >> __codigo;
+                        std::cin >> codigo;
                         std::cout << "Digite o nome do produto: " << std::endl;
-                        std::cin >> __nome;
+                        std::cin >> nome;
                         std::cout << "Digite o preco do produto: " << std::endl;  
-                        std::cin >> __preco;
+                        std::cin >> preco;
                         std::cout << "Digite a validade do produto: " << std::endl;
-                        std::cin >> __validade;
+                        std::cin >> validade;
                         std::cout << "Digite a marca do produto: " << std::endl;
-                        std::cin >> __marca;
+                        std::cin >> marca;
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
-                        
-                        Produto *pr = new Produto(__codigo,__nome,__preco,__validade,__marca);
-                        
-                        estoque.adicionar_produto(pr,quantidade1); 
+
+                        if (codigo != 1 || codigo != 2 || codigo != 3 || codigo != 4) {
+                            throw std::invalid_argument("Erro: Codigo invalido! O codigo tem que 1,2,3 ou 4.");
+                        }
+                            
+                        Produto *pr = new Produto(codigo, nome, preco, validade, marca);
+                            
+                        estoque.adicionar_produto(pr,quantidade1);
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
                 }
                     break;
                 
