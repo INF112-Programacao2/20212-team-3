@@ -386,6 +386,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
 
@@ -461,6 +462,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
                 break;                
@@ -559,6 +561,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
                 break;                
@@ -684,11 +687,13 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
                 break;                
             
             default:
+                std::cout << "Opcao invalida! \n";
                 break;
             }
         }
@@ -784,6 +789,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
 
@@ -908,11 +914,13 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
                 break;                
             
             default:
+                std::cout << "Opcao invalida! \n";
                 break;
             }
         }
@@ -993,6 +1001,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 default:
+                    std::cout << "Opcao invalida! \n";
                     break;
                 }
             }
@@ -1028,6 +1037,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 break;
             
             default:
+                std::cout << "Opcao invalida! \n";
                 break;
             }
         }
