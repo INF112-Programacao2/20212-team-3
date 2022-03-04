@@ -10,13 +10,14 @@ class Estoque {
 
 private:
     std::vector<Produto> _produtos; 
+    std::vector<int> _quantidade;
     
 public:
-    void adicionar_produto(Produto *produto, int quantidade); 
-    void excluir_produto(Produto produto, int quantidade); 
+    void adicionar_produto(Produto *produto, int _quantidade); 
+    void excluir_produto(int codigo, int _quantidade); 
     void exibir_estoque();
    
-    // bool procurar_produto(int codigo);
+    bool procurar_produto(int codigo);
 
 };
 

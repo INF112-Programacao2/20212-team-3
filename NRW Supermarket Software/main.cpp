@@ -410,13 +410,15 @@ void tela_inicial(Funcionario *funcionario_login) {
                 }
                     break;
                 
-                case 2:
+                case 2:{
                     std::cout << "---------- Excluir Produto ----------\n"; //pensando a respeito disso ainda
-                    /*
-                     std::cin >> pr;
+                    int _codigo,quantidade;
+                    std::cout << "Digite o codigo e a quantidade do produto que deseja excluir" << std::endl;
+                     std::cin >> _codigo;
                      std::cin >> quantidade;
-                     estoque.excluir_produto(&pr,quantidade);
-                    */
+                     estoque.excluir_produto(_codigo,quantidade);
+
+                }
                     break;
 
                 case 3:
@@ -424,23 +426,16 @@ void tela_inicial(Funcionario *funcionario_login) {
                     estoque.exibir_estoque();
                     break;
                 
-                case 4:
+                case 4:{
                     std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
-                    //bool existir;
-                    //int _codigo1;
-                    /*criar funçao booleana no estoque.h,que retorne true se tem o produto no estoque or false;
-                    //Talvez seria melhor passar por codigo do produto;
-                    //qualquer coisa poderia criar uma funçao para retornar a quantidade em vez do bool;  
-                     std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
-                     std::cin >> _codigo1;
-                     existir = estoque.procurar_produto(_codigo1)
-                     if(existir){
-                        std::cout << "Produto existente no estoque" << std::endl;
+                    int _codigo1; 
+                    std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
+                    std::cin >> _codigo1;
+                    bool existir = estoque.procurar_produto(_codigo1);
+                     if(!(existir)){
+                        std::cout << "Produto inexistente no estoque" << std::endl;
                      }
-                     else{
-                         std:: cout << "Produto nao existente no estoque" << std::endl;
-                     }
-                    */
+                }
                     break;
                 
                 case 0:
@@ -782,13 +777,14 @@ void tela_inicial(Funcionario *funcionario_login) {
                 }
                     break;
                 
-                case 2:
-                    std::cout << "---------- Excluir Produto ----------\n";
-                     /*
-                     std::cin >> pr1;
-                     std::cin >> quantidade1;
-                     estoque.excluir_produto(&pr1,quantidade1);
-                    */
+                case 2:{
+                    std::cout << "---------- Excluir Produto ----------\n"; 
+                    int _codigo,quantidade;
+                    std::cout << "Digite o codigo e a quantidade do produto que deseja excluir" << std::endl;
+                     std::cin >> _codigo;
+                     std::cin >> quantidade;
+                     estoque.excluir_produto(_codigo,quantidade);
+                }
                     break;
 
                 case 3:
@@ -796,8 +792,16 @@ void tela_inicial(Funcionario *funcionario_login) {
                     estoque.exibir_estoque();
                     break;
                 
-                case 4:
-                    std::cout << "---------- Procurar Produto ----------\n";
+                case 4:{
+                    std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
+                    int _codigo1; 
+                    std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
+                    std::cin >> _codigo1;
+                    bool existir = estoque.procurar_produto(_codigo1);
+                       if(!(existir)){
+                          std::cout << "Produto inexistente no estoque" << std::endl;
+                     }
+                }
                     break;
                 
                 case 0:
@@ -826,8 +830,16 @@ void tela_inicial(Funcionario *funcionario_login) {
                 estoque.exibir_estoque();
                 break;
             
-            case 2:
-                std::cout << "---------- Procurar Produto ----------\n";
+            case 2:{
+                std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
+                int _codigo1; 
+                std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
+                std::cin >> _codigo1;
+                bool existir = estoque.procurar_produto(_codigo1);
+                    if(!(existir)){
+                        std::cout << "Produto inexistente no estoque" << std::endl;
+                    }
+                } 
                 break;
             
             default:

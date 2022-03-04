@@ -5,20 +5,17 @@
 #include "Produto.h"
 
 void Estoque::adicionar_produto(Produto *produto, int quantidade) {
-    int contador;
-
-    for (contador = 0; contador < quantidade; contador++) {
-        _produtos.push_back(*produto);
-    }
+       _produtos.push_back(*produto);
+       _quantidade.push_back(quantidade);
 }
 
- void Estoque::excluir_produto(Produto produto, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
+ void Estoque::excluir_produto(int codigo, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
                                            
     int contador, contador2;
 
     for (contador2 = 0; contador2 < quantidade; contador2++) {
         for (contador = 0; contador < _produtos.size(); contador++) {
-            if (this->_produtos[contador].get_codigo() == produto.get_codigo()) { 
+            if (this->_produtos[contador].get_codigo() == codigo) { 
                 _produtos.erase(_produtos.begin() + contador);
             }
         }
@@ -29,14 +26,19 @@ void Estoque::adicionar_produto(Produto *produto, int quantidade) {
  void Estoque::exibir_estoque() {
     for (int i = 0 ; i < _produtos.size(); i++) {
         _produtos[i].exibir_dados();
+        std::cout << std::endl;
+        _quantidade[i];
     }
  }
 
-//  bool Estoque::procurar_produto(int codigo){
-//         for(int i = 0;i < _produtos.size();i++){
-//             if(_produtos[i].get_codigo() == codigo){
-//                 return true;
-//             }
-//         }
-//     return false;
-//  }
+ bool Estoque::procurar_produto(int codigo) {
+         for(int i = 0;i < _produtos.size();i++) {
+             if(_produtos[i].get_codigo() == codigo) {
+                 _produtos[i].exibir_dados(); 
+                 std::cout << std::endl;
+                 _quantidade[i];
+                 return true;
+             }
+         }
+         return false;
+     }
