@@ -549,6 +549,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
+                std::cout << "[4] - Imprimir Nota Fiscal \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -568,10 +569,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "Digite o codigo da venda: \n";
                     std::cin >> codigo;
                     std::cout << "Digite a forma de pagamento: \n";
-                    std::cout << "[1] - Cartao de Credito (a vista)";
-                    std::cout << "[2] - Dinheiro (a vista)";
+                    std::cout << "[1] - Cartao de Credito (a vista) \n";
+                    std::cout << "[2] - Dinheiro (a vista) \n";
                     std::cin >> forma_pagamento;
-                    std::cout <<  "Digite o valor recebido: "; //Pensar em troco
+                    std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
                     std::cin >> valor_recebido;
                     std::cout << "Digite a data: \n";
                     std::cin >> data;
@@ -581,10 +582,11 @@ void tela_inicial(Funcionario *funcionario_login) {
                     for (int i = 0; i < clientes.size(); i++) {
                         if (clientes[i].get_codigo() == cliente_atendido_codigo) {
                             cliente_atendido = &clientes[i];
+                            break;
                         }
                     }
 
-                    cliente_atendido->exibir_dados();
+                    // cliente_atendido->exibir_dados();
 
                     std::cout << "Digite a senha do atendente consultado: \n";
                     std::cin >> atendente_consultado_senha;   
@@ -592,10 +594,11 @@ void tela_inicial(Funcionario *funcionario_login) {
                     for (int i = 0; i < atendentes.size(); i++) {
                         if (atendentes[i]->get_senha() == atendente_consultado_senha) {
                             atendente_consultado = atendentes[i];
+                            break;
                         }
                     }                
 
-                    atendente_consultado->exibir_dados();    
+                    // atendente_consultado->exibir_dados();    
 
                     std::cout << "Digite o codigo do carrinho: \n";
                     std::cin >> carrinho_codigo;   
@@ -603,6 +606,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     for (int i = 0; i < carrinhos.size(); i++) {
                         if (carrinhos[i].get_codigo() == carrinho_codigo) {
                             carrinho = &carrinhos[i];
+                            break;
                         }
                     }                         
 
@@ -612,17 +616,50 @@ void tela_inicial(Funcionario *funcionario_login) {
                     Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
                     vendas.push_back(*numero_venda_construtor);
 
+                    numero_venda_construtor->calcula_troco();
+                    
                     break;
                 }
                 
                 case 2:
                     std::cout << "---------- Excluir Venda ----------\n";
+                    
+                    int codigo;
+
+                    std::cout << "Digite o codigo da venda: \n";
+                    std::cin >> codigo;
+
+                    for (int i = 0; i < vendas.size(); i++) {
+                        if (vendas[i].get_codigo() == codigo) {
+                            vendas.erase(vendas.begin() + i);
+                            break;
+                        }
+                    }                    
+
                     break;
 
-                case 3:
-                    std::cout << "---------- Exibir Vendas ----------\n";
-                        vendas[vendas.size()-1].exibir_vendas(); //Adequando a funcao RFZ
+                case 3: {
+                    std::cout << "---------- Exibir Vendas ----------\n"; //Qual o proposito ? - RFZ
+                    vendas[vendas.size()-1].exibir_vendas(); //Adequando a funcao RFZ
                     break;
+                }
+
+                case 4: {
+                    std::cout << "---------- Imprimir Nota Fiscal ----------\n";
+                    
+                    int codigo;
+
+                    std::cout << "Digite o codigo da venda: \n";
+                    std::cin >> codigo;
+
+                    for (int i = 0; i < vendas.size(); i++) {
+                        if (vendas[i].get_codigo() == codigo) {
+                            vendas[i].imprimir_nota_fiscal();
+                            break;
+                        }
+                    }
+                    break;
+                }
                 
                 case 0:
                     break;
@@ -738,28 +775,114 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
+                std::cout << "[4] - Imprimir Nota Fiscal \n";                
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
                 std::cin >> opcao_escolhida2;
 
                 switch (opcao_escolhida2) {
-                case 1:
-                    
+                case 1: {
                     std::cout << "---------- Cadastrar Venda ----------\n";
-                    break;
-                
-                case 2:
-                    std::cout << "---------- Excluir Venda ----------\n";
-                    break;
 
-                case 3:
-                    std::cout << "---------- Exibir Vendas ----------\n";
+                    int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
+                    double valor_recebido;
+                    std::string data, atendente_consultado_senha, numero_venda;
+                    Cliente *cliente_atendido;
+                    Atendente *atendente_consultado;
+                    Carrinho *carrinho;
 
-                    for (int i=0; i < vendas.size(); i++) {
-                        vendas[i].exibir_vendas();
+                    std::cout << "Digite o codigo da venda: \n";
+                    std::cin >> codigo;
+                    std::cout << "Digite a forma de pagamento: \n";
+                    std::cout << "[1] - Cartao de Credito (a vista) \n";
+                    std::cout << "[2] - Dinheiro (a vista) \n";
+                    std::cin >> forma_pagamento;
+                    std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
+                    std::cin >> valor_recebido;
+                    std::cout << "Digite a data: \n";
+                    std::cin >> data;
+                    std::cout << "Digite o codigo do cliente atendido: \n";
+                    std::cin >> cliente_atendido_codigo;
+
+                    for (int i = 0; i < clientes.size(); i++) {
+                        if (clientes[i].get_codigo() == cliente_atendido_codigo) {
+                            cliente_atendido = &clientes[i];
+                            break;
+                        }
                     }
 
+                    // cliente_atendido->exibir_dados();
+
+                    std::cout << "Digite a senha do atendente consultado: \n";
+                    std::cin >> atendente_consultado_senha;   
+
+                    for (int i = 0; i < atendentes.size(); i++) {
+                        if (atendentes[i]->get_senha() == atendente_consultado_senha) {
+                            atendente_consultado = atendentes[i];
+                            break;
+                        }
+                    }                
+
+                    // atendente_consultado->exibir_dados();    
+
+                    std::cout << "Digite o codigo do carrinho: \n";
+                    std::cin >> carrinho_codigo;   
+
+                    for (int i = 0; i < carrinhos.size(); i++) {
+                        if (carrinhos[i].get_codigo() == carrinho_codigo) {
+                            carrinho = &carrinhos[i];
+                            break;
+                        }
+                    }                         
+
+                    std::cout << "Digite o vn+numero (ex: vn3): \n";
+                    std::cin >> numero_venda;
+
+                    Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
+                    vendas.push_back(*numero_venda_construtor);
+
+                    numero_venda_construtor->calcula_troco();                    
+                    break;
+                }
+                
+                case 2: {
+                    std::cout << "---------- Excluir Venda ----------\n";
+
+                    int codigo;
+
+                    std::cout << "Digite o codigo da venda: \n";
+                    std::cin >> codigo;
+
+                    for (int i = 0; i < vendas.size(); i++) {
+                        if (vendas[i].get_codigo() == codigo) {
+                            vendas.erase(vendas.begin() + i);
+                            break;
+                        }
+                    }    
+                    break;
+                }
+
+                case 3: {
+                    std::cout << "---------- Exibir Vendas ----------\n"; //Qual o proposito ? - RFZ
+                    vendas[vendas.size()-1].exibir_vendas(); //Adequando a funcao RFZ
+                    break;
+                }
+
+                case 4:
+                    std::cout << "---------- Imprimir Nota Fiscal ----------\n";
+                    
+                    int codigo;
+
+                    std::cout << "Digite o codigo da venda: \n";
+                    std::cin >> codigo;
+
+                    for (int i = 0; i < vendas.size(); i++) {
+                        if (vendas[i].get_codigo() == codigo) {
+                            vendas[i].imprimir_nota_fiscal();
+                            break;
+                        }
+                    }                
                     break;
                 
                 case 0:

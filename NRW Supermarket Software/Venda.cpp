@@ -46,9 +46,6 @@ double Venda::get_desconto() {
     return this->_desconto;
 }
 
-double Venda::get_valor_final() {
-    return this->_valor_final;
-}
 
 double Venda::get_valor_recebido() {
     return this->_valor_recebido;
@@ -64,6 +61,10 @@ Carrinho* Venda::get_carrinho() { //Revisar - RFZ
 
 double Venda::get_receita() {
     return this->_receita;
+}
+
+double Venda::get_valor_total_pagar() { //Pega o preco total do carrinho e aplica o desconto
+    return Venda::get_carrinho()->get_preco_total() * this->get_desconto();
 }
 
 void Venda::set_codigo(int codigo) {
@@ -94,10 +95,6 @@ void Venda::set_desconto(double desconto) {
     this->_desconto = desconto;
 }
 
-void Venda::set_valor_final(double valor_final) {
-    this->_valor_final = valor_final;
-}
-
 void Venda::set_valor_recebido(double valor_recebido) {
     this->_valor_recebido = valor_recebido;
 }
@@ -114,23 +111,27 @@ void Venda::set_receita(double receita) {
     this->_receita = receita;
 }    
 
+void Venda::set_valor_total_pagar(double valor_total_pagar) {
+    this->_valor_total_pagar = valor_total_pagar;
+}    
+
 void Venda::imprimir_nota_fiscal() { 
     std::cout << std::endl;
     std::cout << "NRW Supermarket" << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "CUPOM FISCAL" << std::endl;
-    // std::cout << "Numero do Cupom: " << Venda::get_quantidade_vendas() << std::endl; //fazer no main, conforme sugerido walter.
+    std::cout << "Codigo: " << this->get_codigo() << std::endl;
     std::cout << "Data: " << this->get_data() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Dados do cliente: " << std::endl;
-    std::cout << this->get_cliente_atendido() << std::endl;
+    std::cout << this->get_cliente_atendido()->get_nome() << std::endl;
     std::cout << "Dados do atendente: " << std::endl;
-    std::cout << this->get_atendente_consultado() << std::endl;
+    std::cout << this->get_atendente_consultado()->get_nome() << std::endl;
     std::cout << "__________________________" << std::endl;
     std::cout << "Produtos Comprados:" << std::endl;
     (*_carrinho).exibir_produtos();
     std::cout << "__________________________" << std::endl; 
-    std::cout << "Valor a Pagar: " << (*_carrinho).get_preco_total() << std::endl; 
+    std::cout << "Valor a Pagar: " << this->get_valor_total_pagar() << std::endl; 
     std::cout << "Forma de Pagamento: " << this->get_forma_pagamento() << std::endl;
     std::cout << "Desconto: " << this->get_desconto() << std::endl; 
     std::cout << "Valor Recebido: " << this->get_valor_recebido() << std::endl;
@@ -141,7 +142,26 @@ void Venda::imprimir_nota_fiscal() {
     
 }
 
-void Venda::exibir_vendas() {
+void Venda::calcula_troco() { //RFZ
+
+    double suporte_valor_total = this->get_valor_total_pagar();
+    double suporte_valor_recebido = this->get_valor_recebido();
+
+    suporte_valor_total -= suporte_valor_recebido;
+
+    while (suporte_valor_total > 0) {
+        std::cout << "O dinheiro recebido ainda nao e suficiente para pagar o valor total, ainda e necessario pagar R$ " <<  suporte_valor_total << std::endl;
+        std::cout << "Insira o restante do dinheiro: \n";
+        std::cin >> suporte_valor_recebido;
+        suporte_valor_total -= suporte_valor_recebido;
+    }
+
+    this->set_troco(abs(suporte_valor_total));
+    std::cout << "O valor do troco é: R$ " << this->get_troco() << std::endl;
+    this->set_valor_recebido(this->get_valor_total_pagar());
+}
+
+void Venda::exibir_vendas() { //Analisar existencia dessa funcao
     std::cout << "Quantidade de Vendas: " << Venda::get_quantidade_vendas() << std::endl;
     std::cout << "Receita total: " << Venda::get_receita() << std::endl;
 }
