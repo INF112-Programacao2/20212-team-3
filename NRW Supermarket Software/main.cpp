@@ -372,7 +372,7 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 break;
 
-            case 2:
+            case 2:{
                 std::cout << "---------- Administrar Estoque ----------\n";
                 std::cout << "[1] - Adicionar Produto \n";
                 std::cout << "[2] - Excluir Produto \n";
@@ -382,7 +382,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "-------------------------------------------\n";
                   
                 std::cin >> opcao_escolhida2;
-                 int quantidade = 0;
+                 int quantidade1 = 0;
                 switch (opcao_escolhida2) {
                 case 1: {
                     std::cout << "---------- Adicionar Produto ----------\n"; //tratamento de erro associado a digitaçao errada de dados;
@@ -402,11 +402,11 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite a validade do produto: " << std::endl;
                         std::cin >> __validade;
                         std::cout << "Digite a quantidade: " << std::endl;
-                        std::cin >> quantidade;
+                        std::cin >> quantidade1;
                         
                         Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
                         
-                        estoque.adicionar_produto(pr,quantidade); //Seria melhor passar no Estoque.h para passar por &,ja que é um ponteiro;
+                        estoque.adicionar_produto(pr,quantidade1); //Seria melhor passar no Estoque.h para passar por &,ja que é um ponteiro;
                 }
                     break;
                 
@@ -450,7 +450,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
                 break;                
-
+            }
             case 3:
                 std::cout << "---------- Administrar Clientes ----------\n";
                 std::cout << "[1] - Cadastrar Cliente \n";
@@ -753,11 +753,11 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[0] - Voltar \n";
 
                 std::cin >> opcao_escolhida2;
-                 //int quantidade1 = 0;
+                 int quantidade1 = 0;
                 switch (opcao_escolhida2) {
-                case 1:
+                case 1:{
                     std::cout << "---------- Adicionar Produto ----------\n";
-                    /* int __codigo;
+                     int __codigo;
                         std::string __nome,__validade,__marca;
                         double __preco;
                         
@@ -773,12 +773,13 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite a validade do produto: " << std::endl;
                         std::cin >> __validade;
                         std::cout << "Digite a quantidade: " << std::endl;
-                        std::cin >> quantidade;
+                        std::cin >> quantidade1;
                         
                         Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
                         
-                        estoque.adicionar_produto(&pr,quantidade); 
-                    */
+                        estoque.adicionar_produto(pr,quantidade1); 
+                    
+                }
                     break;
                 
                 case 2:
