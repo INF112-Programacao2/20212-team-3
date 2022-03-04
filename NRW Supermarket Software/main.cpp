@@ -558,12 +558,59 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 1: {
                     std::cout << "---------- Cadastrar Venda ----------\n";
 
-                    int forma_pagamento;
+                    int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
                     double valor_recebido;
-                    std::string data;
+                    std::string data, atendente_consultado_senha, numero_venda;
                     Cliente *cliente_atendido;
                     Atendente *atendente_consultado;
                     Carrinho *carrinho;
+
+                    std::cout << "Digite o codigo da venda: \n";
+                    std::cin >> codigo;
+                    std::cout << "Digite a forma de pagamento: \n";
+                    std::cout << "[1] - Cartao de Credito (a vista)";
+                    std::cout << "[2] - Dinheiro (a vista)";
+                    std::cin >> forma_pagamento;
+                    std::cout <<  "Digite o valor recebido: "; //Pensar em troco
+                    std::cin >> valor_recebido;
+                    std::cout << "Digite a data: \n";
+                    std::cin >> data;
+                    std::cout << "Digite o codigo do cliente atendido: \n";
+                    std::cin >> cliente_atendido_codigo;
+
+                    for (int i = 0; i < clientes.size(); i++) {
+                        if (clientes[i].get_codigo() == cliente_atendido_codigo) {
+                            cliente_atendido = &clientes[i];
+                        }
+                    }
+
+                    cliente_atendido->exibir_dados();
+
+                    std::cout << "Digite a senha do atendente consultado: \n";
+                    std::cin >> atendente_consultado_senha;   
+
+                    for (int i = 0; i < atendentes.size(); i++) {
+                        if (atendentes[i]->get_senha() == atendente_consultado_senha) {
+                            atendente_consultado = atendentes[i];
+                        }
+                    }                
+
+                    atendente_consultado->exibir_dados();    
+
+                    std::cout << "Digite o codigo do carrinho: \n";
+                    std::cin >> carrinho_codigo;   
+
+                    for (int i = 0; i < carrinhos.size(); i++) {
+                        if (carrinhos[i].get_codigo() == carrinho_codigo) {
+                            carrinho = &carrinhos[i];
+                        }
+                    }                         
+
+                    std::cout << "Digite o vn+numero (ex: vn3): \n";
+                    std::cin >> numero_venda;
+
+                    Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
+                    vendas.push_back(*numero_venda_construtor);
 
                     break;
                 }
@@ -574,11 +621,7 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                 case 3:
                     std::cout << "---------- Exibir Vendas ----------\n";
-                    
-                    for (int i=0; i < vendas.size(); i++) {
-                        vendas[i].exibir_vendas();
-                    }
-
+                        vendas[vendas.size()-1].exibir_vendas(); //Adequando a funcao RFZ
                     break;
                 
                 case 0:

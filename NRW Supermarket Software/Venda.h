@@ -12,6 +12,7 @@
 class Venda {
 
 private:
+    int _codigo;
     int _forma_pagamento;
     std::string _data;
     Cliente *_cliente_atendido; //Revisar - RFZ
@@ -23,10 +24,12 @@ private:
     double _troco;
     Carrinho *_carrinho; //Revisar - RFZ
     double _receita;
+    double _valor_total_pagar;
 
 public:
-    Venda(int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
+    Venda(int codigo, int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
 
+    int get_codigo();
     int get_forma_pagamento();
     std::string get_data();
     Cliente *get_cliente_atendido(); //Revisar - RFZ
@@ -39,6 +42,7 @@ public:
     Carrinho *get_carrinho(); //Revisar - RFZ
     double get_receita();
 
+    void set_codigo(int codigo);
     void set_forma_pagamento(int forma_pagamento);
     void set_data(std::string data);
     void set_cliente_atendido(Cliente *cliente_atendido); //Revisar - RFZ
