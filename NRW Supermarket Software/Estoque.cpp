@@ -11,15 +11,19 @@ void Estoque::adicionar_produto(Produto *produto, int quantidade) {
 
  void Estoque::excluir_produto(int codigo, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
                                            
-    int contador, contador2;
-
-    for (contador2 = 0; contador2 < quantidade; contador2++) {
+    int contador;
+    
         for (contador = 0; contador < _produtos.size(); contador++) {
-            if (this->_produtos[contador].get_codigo() == codigo) { 
+            if (this->_produtos[contador].get_codigo() == codigo) {
+                if(_quantidade[contador] - quantidade > 0 ){
+                    _quantidade[contador] -= quantidade;
+                } 
+                else if (_quantidade[contador] - quantidade == 0){
                 _produtos.erase(_produtos.begin() + contador);
+                }
             }
         }
-    }
+    
 
 }
 
