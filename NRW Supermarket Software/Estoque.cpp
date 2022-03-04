@@ -15,12 +15,12 @@ void Estoque::adicionar_produto(Produto *produto, int quantidade) {
     
         for (contador = 0; contador < _produtos.size(); contador++) {
             if (this->_produtos[contador].get_codigo() == codigo) {
-                if(_quantidade[contador] - quantidade > 0 ){
+                if (_quantidade[contador] - quantidade == 0){
+                   _produtos.erase(_produtos.begin() + contador);
+                }
+                else if(_quantidade[contador] - quantidade > 0 ){
                     _quantidade[contador] -= quantidade;
                 } 
-                else if (_quantidade[contador] - quantidade == 0){
-                _produtos.erase(_produtos.begin() + contador);
-                }
             }
         }
     

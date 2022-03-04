@@ -51,9 +51,19 @@ int main(void) {
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
-    estoque.adicionar_produto(pr1, 3); 
-    estoque.adicionar_produto(pr2, 5);
-    estoque.adicionar_produto(pr3, 6);
+    estoque.adicionar_produto(pr1,3); 
+    estoque.adicionar_produto(pr2,5);
+    estoque.adicionar_produto(pr3,6);
+    estoque.adicionar_produto(pr4,10);
+    estoque.adicionar_produto(pr5,2); 
+    estoque.adicionar_produto(pr6,20);
+    estoque.adicionar_produto(pr7,40);
+    estoque.adicionar_produto(pr8,10);
+    estoque.adicionar_produto(pr9,30); 
+    estoque.adicionar_produto(pr10,25);
+    estoque.adicionar_produto(pr11,35);
+    estoque.adicionar_produto(pr12,46);
+    estoque.adicionar_produto(pr13,22);
 
     // Inicializando objetos da classe Cliente
     Cliente *cl1 = new Cliente(1, "Viviane Silva", "325678435-16", "31 99415-6278", "Av. PH Holfs, 174, Vicosa");
@@ -405,7 +415,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                  int quantidade1 = 0;
                 switch (opcao_escolhida2) {
                 case 1: {
-                    std::cout << "---------- Adicionar Produto ----------\n"; //tratamento de erro associado a digitaçao errada de dados;
+                    std::cout << "---------- Adicionar Produto ----------\n";
                       int __codigo;
                         std::string __nome,__validade,__marca;
                         double __preco;
@@ -417,16 +427,16 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cin >> __nome;
                         std::cout << "Digite o preco do produto: " << std::endl;  
                         std::cin >> __preco;
-                        std::cout << "Digite a marca do produto: " << std::endl;
-                        std::cin >> __marca;
                         std::cout << "Digite a validade do produto: " << std::endl;
                         std::cin >> __validade;
+                        std::cout << "Digite a marca do produto: " << std::endl;
+                        std::cin >> __marca;
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
                         
-                        Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
+                        Produto *pr = new Produto(__codigo,__nome,__preco,__validade,__marca);
                         
-                        estoque.adicionar_produto(pr,quantidade1); //Seria melhor passar no Estoque.h para passar por &,ja que é um ponteiro;
+                        estoque.adicionar_produto(pr,quantidade1); 
                 }
                     break;
                 
@@ -945,7 +955,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 switch (opcao_escolhida2) {
                 case 1:{
                     std::cout << "---------- Adicionar Produto ----------\n";
-                     int __codigo;
+                    int __codigo;
                         std::string __nome,__validade,__marca;
                         double __preco;
                         
@@ -956,16 +966,16 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cin >> __nome;
                         std::cout << "Digite o preco do produto: " << std::endl;  
                         std::cin >> __preco;
-                        std::cout << "Digite a marca do produto: " << std::endl;
-                        std::cin >> __marca;
                         std::cout << "Digite a validade do produto: " << std::endl;
                         std::cin >> __validade;
+                        std::cout << "Digite a marca do produto: " << std::endl;
+                        std::cin >> __marca;
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
                         
-                        Produto *pr = new Produto(__codigo,__nome,__preco,__marca,__validade);
+                        Produto *pr = new Produto(__codigo,__nome,__preco,__validade,__marca);
                         
-                        estoque.adicionar_produto(pr,quantidade1); 
+                        estoque.adicionar_produto(pr,quantidade1);
                     
                 }
                     break;
