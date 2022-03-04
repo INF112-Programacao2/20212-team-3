@@ -94,6 +94,26 @@ int main(void) {
     funcionarios.push_back(&at1);
     funcionarios.push_back(&at2);
 
+    // Carrinho *cr1 = new Carrinho();
+    // carrinhos.push_back(*cr1);
+    // cr1->adicionar_produto(pr1,1);
+    // cr1->adicionar_produto(pr2,3);
+
+    // Carrinho *cr2 = new Carrinho();
+    // carrinhos.push_back(*cr2);
+    // cr2->adicionar_produto(pr1,1);
+    // cr2->adicionar_produto(pr2,3);
+
+    // Carrinho *cr3 = new Carrinho();
+    // carrinhos.push_back(*cr3);
+    // cr2->adicionar_produto(pr1,1);
+    // cr2->adicionar_produto(pr2,3);    
+
+    // for (int i = 0; i < carrinhos.size(); i++) {
+    //     std::cout << carrinhos[i].get_codigo() << std::endl;
+    //     carrinhos[i].exibir_produtos();
+    // }
+
     // Inicio do Software
     int add_codigo;
     std::string add_senha;
@@ -140,10 +160,9 @@ void tela_login(int *add_codigo, std::string *add_senha) {
     std::string senha;
 
     std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
-    std::cout << "Digite seu codigo e senha: \n";
-
-    // Tratamento de execao - Nt
+    std::cout << "Digite seu codigo: \n";
     std::cin >> codigo;
+    std::cout << "Digite sua senha: \n";
     std::cin >> senha;
 
     *add_codigo = codigo;
