@@ -24,8 +24,8 @@ std::vector<Gerente*> gerentes;
 std::vector<Caixa*> caixas;
 std::vector<Estoquista*> estoquistas;
 std::vector<Atendente*> atendentes;
-std::vector<Carrinho> carrinhos;
-std::vector<Venda> vendas;
+std::vector<Carrinho*> carrinhos;
+std::vector<Venda*> vendas;
 
 /* TELAS */
 void tela_iniciar_software();
@@ -104,25 +104,26 @@ int main(void) {
     funcionarios.push_back(&at1);
     funcionarios.push_back(&at2);
 
-    // Carrinho *cr1 = new Carrinho();
-    // carrinhos.push_back(*cr1);
-    // cr1->adicionar_produto(pr1,1);
-    // cr1->adicionar_produto(pr2,3);
+    Carrinho *cr1 = new Carrinho();
+    carrinhos.push_back(cr1);
+    cr1->adicionar_produto(pr1,1);
+    cr1->adicionar_produto(pr2,3);
 
-    // Carrinho *cr2 = new Carrinho();
-    // carrinhos.push_back(*cr2);
-    // cr2->adicionar_produto(pr1,1);
-    // cr2->adicionar_produto(pr2,3);
+    Carrinho *cr2 = new Carrinho();
+    carrinhos.push_back(cr2);
+    cr2->adicionar_produto(pr1,1);
+    cr2->adicionar_produto(pr2,3);
 
-    // Carrinho *cr3 = new Carrinho();
-    // carrinhos.push_back(*cr3);
-    // cr2->adicionar_produto(pr1,1);
-    // cr2->adicionar_produto(pr2,3);    
+    Carrinho *cr3 = new Carrinho();
+    carrinhos.push_back(cr3);
+    cr3->adicionar_produto(pr1,1);
+    cr3->adicionar_produto(pr2,3);
+       
 
-    // for (int i = 0; i < carrinhos.size(); i++) {
-    //     std::cout << carrinhos[i].get_codigo() << std::endl;
-    //     carrinhos[i].exibir_produtos();
-    // }
+    Carrinho *cr4 = new Carrinho();
+    carrinhos.push_back(cr4);
+    cr4->adicionar_produto(pr1,1);
+    cr4->adicionar_produto(pr2,3);   
 
     // Inicio do Software
     int add_codigo;
@@ -666,8 +667,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> carrinho_codigo;   
 
                     for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i].get_codigo() == carrinho_codigo) {
-                            carrinho = &carrinhos[i];
+                        if (carrinhos[i]->get_codigo() == carrinho_codigo) {
+                            carrinho = carrinhos[i];
                             break;
                         }
                     }                         
@@ -676,7 +677,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> numero_venda;
 
                     Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
-                    vendas.push_back(*numero_venda_construtor);
+                    vendas.push_back(numero_venda_construtor);
 
                     numero_venda_construtor->calcula_troco();
                     
@@ -692,7 +693,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> codigo;
 
                     for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i].get_codigo() == codigo) {
+                        if (vendas[i]->get_codigo() == codigo) {
                             vendas.erase(vendas.begin() + i);
                             break;
                         }
@@ -701,8 +702,22 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
 
                 case 3: {
-                    std::cout << "---------- Exibir Vendas ----------\n"; //Qual o proposito ? - RFZ
-                    vendas[vendas.size()-1].exibir_vendas(); //Adequando a funcao RFZ
+                    std::cout << "---------- Exibir Vendas ----------\n";
+                    
+                    double receita_total = 0;
+                    int quantidade_vendas = 0;
+
+                    for (int i = 0; i < vendas.size(); i++) {
+                        std::cout << "Codigo da Venda: " << vendas[i]->get_codigo() << std::endl;
+                        std::cout << "Receita da Venda: R$" << vendas[i]->get_valor_total_pagar() << std::endl;   
+                        std::cout << "---------------- \n";              
+                        receita_total += vendas[i]->get_valor_total_pagar();       
+                        quantidade_vendas++;
+                    }
+
+                    std::cout << "Quantidade total de vendas: " << quantidade_vendas << std::endl;
+                    std::cout << "Receita total das vendas: R$" << receita_total << std::endl;
+
                     break;
                 }
 
@@ -715,8 +730,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> codigo;
 
                     for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i].get_codigo() == codigo) {
-                            vendas[i].imprimir_nota_fiscal();
+                        if (vendas[i]->get_codigo() == codigo) {
+                            vendas[i]->imprimir_nota_fiscal();
                             break;
                         }
                     }
@@ -895,8 +910,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> carrinho_codigo;   
 
                     for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i].get_codigo() == carrinho_codigo) {
-                            carrinho = &carrinhos[i];
+                        if (carrinhos[i]->get_codigo() == carrinho_codigo) {
+                            carrinho = carrinhos[i];
                             break;
                         }
                     }                         
@@ -905,7 +920,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> numero_venda;
 
                     Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
-                    vendas.push_back(*numero_venda_construtor);
+                    vendas.push_back(numero_venda_construtor);
 
                     numero_venda_construtor->calcula_troco();                    
                     break;
@@ -920,7 +935,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> codigo;
 
                     for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i].get_codigo() == codigo) {
+                        if (vendas[i]->get_codigo() == codigo) {
                             vendas.erase(vendas.begin() + i);
                             break;
                         }
@@ -929,8 +944,22 @@ void tela_inicial(Funcionario *funcionario_login) {
                 }
 
                 case 3: {
-                    std::cout << "---------- Exibir Vendas ----------\n"; //Qual o proposito ? - RFZ
-                    vendas[vendas.size()-1].exibir_vendas(); //Adequando a funcao RFZ
+                    std::cout << "---------- Exibir Vendas ----------\n"; 
+
+                    double receita_total = 0;
+                    int quantidade_vendas = 0;
+
+                    for (int i = 0; i < vendas.size(); i++) {
+                        std::cout << "Codigo da Venda: " << vendas[i]->get_codigo() << std::endl;
+                        std::cout << "Receita da Venda: R$" << vendas[i]->get_valor_total_pagar() << std::endl;   
+                        std::cout << "---------------- \n";              
+                        receita_total += vendas[i]->get_valor_total_pagar();       
+                        quantidade_vendas++;
+                    }
+
+                    std::cout << "Quantidade total de vendas: " << quantidade_vendas << std::endl;
+                    std::cout << "Receita total das vendas: R$" << receita_total << std::endl;
+
                     break;
                 }
 
@@ -943,8 +972,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cin >> codigo;
 
                     for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i].get_codigo() == codigo) {
-                            vendas[i].imprimir_nota_fiscal();
+                        if (vendas[i]->get_codigo() == codigo) {
+                            vendas[i]->imprimir_nota_fiscal();
                             break;
                         }
                     }                

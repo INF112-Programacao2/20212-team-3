@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <map>
 
 #include "Carrinho.h"
+#include "Produto.h"
 
 unsigned int codigo_suporte = 1;
 
@@ -29,43 +29,45 @@ void Carrinho::set_preco_total(double preco_total) {
 }
 
 void Carrinho::adicionar_produto(Produto *produto, int quantidade) {
-    int contador, contador2;
 
-    for (contador2 = 0; contador2 < quantidade; contador2++) {
-        for (contador = 0; contador < _produtos.size(); contador++) {
-            _produtos.push_back(*produto);
-        }
+    for (int i = 0; i < quantidade; i++) {
+        this->_produtos.push_back(*produto);
     }
     calculo_preco_total();
+
 }
 
 void Carrinho::remover_produto(Produto *produto, int quantidade) {  //Tratamento de excessao - RFZ
 
-    int contador, contador2;
-
-    for (contador2 = 0; contador2 < quantidade; contador2++) {
-        for (contador = 0; contador < _produtos.size(); contador++) {
-            if (this->_produtos[contador].get_codigo() == produto->get_codigo()) { 
-                _produtos.erase(_produtos.begin() + (contador -1 ));
+    for (int i = 0; i < quantidade; i++) {
+        for (int j = 0; j < _produtos.size(); j++) {
+            if (this->_produtos[j].get_codigo() == produto->get_codigo()) { 
+                _produtos.erase(_produtos.begin() + (j));
+                break;
             }
         }
     }
+
 }
 
 void Carrinho::exibir_produtos() {
-    int contador;
 
-    for (contador = 0; contador < _produtos.size(); contador++) {
-        std::cout << "Produto: " << _produtos[contador].get_nome() << " - " << "Preco: " << _produtos[contador].get_preco() << std::endl; //Verificar logica - RFZ
+    for (int i = 0; i < this->_produtos.size(); i++) {
+        std::cout << "Nome: " << this->_produtos[i].get_nome() << " - Preco: R$ " << this->_produtos[i].get_preco() << std::endl; 
     }
-    std::cout << get_preco_total() << std::endl;
 
-    std::cout << "---------------------------- \n";
 }
 
 void Carrinho::calculo_preco_total() {
-    int contador;
-    for (contador = 0; contador < _produtos.size(); contador++) {
-        this->_preco_total += _produtos[contador].get_preco();
+
+    double preco_total_suporte;
+
+    this->set_preco_total(0);
+
+    for (int i = 0; i < this->_produtos.size(); i++) {
+        preco_total_suporte += this->_produtos[i].get_preco();
     }
+    
+    this->set_preco_total(preco_total_suporte);
+
 }   
