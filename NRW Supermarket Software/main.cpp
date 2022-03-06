@@ -177,11 +177,39 @@ void tela_login(int *add_codigo, std::string *add_senha) {
     int codigo;
     std::string senha;
 
-    std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
-    std::cout << "Digite seu codigo: \n";
-    std::cin >> codigo;
-    std::cout << "Digite sua senha: \n";
-    std::cin >> senha;
+    while (true) {
+        try {
+            bool existe_funcionario = false;
+
+            std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
+
+            for (int i=0; i < funcionarios.size(); i++) {
+                std::cout << "Codigo: " << funcionarios[i]->get_codigo() << "  -----  Senha: " << funcionarios[i]->get_senha() << std::endl;
+            }
+
+            std::cout << "Digite seu codigo: \n";
+            std::cin >> codigo;
+            std::cout << "Digite sua senha: \n";
+            std::cin >> senha;
+
+            for (int i=0; i < funcionarios.size(); i++) {
+                if (funcionarios[i]->get_codigo() == codigo && funcionarios[i]->get_senha() ==  senha) {
+                    existe_funcionario = true;
+                    break;
+                }
+            }
+
+            if (existe_funcionario = false) {
+                throw std::invalid_argument("Erro: Nao existe um funcionario com esse codigo e senha. \n");
+            }
+            else {
+                break;
+            }
+        }
+        catch (std::invalid_argument &error) {
+            std::cout << error.what();
+        }
+    }
 
     *add_codigo = codigo;
     *add_senha = senha;
@@ -339,19 +367,20 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
                 case 2: {
+                    std::cout << "---------- Excluir Funcionario(a) ----------\n";
+
                     int codigo, contador;
                     std::string senha;
                     int contador2;
 
                     try {
-                        std::cout << "---------- Excluir Funcionario(a) ----------\n";
                         std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
                         std::cin >> codigo;
                         std::cout << "Digite a senha do funcionario que deseja excluir: \n";
                         std::cin >> senha;
 
                         for (contador = 0; contador < funcionarios.size(); contador++) {
-                            if (funcionarios[contador]->get_senha() == senha) {
+                            if (funcionarios[contador]->get_senha() == senha && funcionarios[contador]->get_codigo() == codigo) {
                                 funcionarios.erase(funcionarios.begin() + contador);
                                 std::cout << "Funcionario deleteado com sucesso! \n";
                                 break;
@@ -405,9 +434,14 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                     std::cout << "---------- Exibir Dados ----------\n";
 
-                    for (int contador = 0; contador < funcionarios.size(); contador++) {
-                            funcionarios[contador]->exibir_dados();
-                            std::cout << std::endl;
+                    if (funcionarios.size() > 0) {
+                        for (int contador = 0; contador < funcionarios.size(); contador++) {
+                                funcionarios[contador]->exibir_dados();
+                                std::cout << std::endl;
+                        }
+                    }
+                    else {
+                        std::cout << "Nao existe funcionarios cadastrados. \n";
                     }
                     break;
                 }
@@ -457,8 +491,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
 
-                        if (codigo != 1 || codigo != 2 || codigo != 3 || codigo != 4) {
-                            throw std::invalid_argument("Erro: Codigo invalido! O codigo tem que 1,2,3 ou 4.");
+                        if (estoque.verificar_codigo(codigo)) {
+                            throw std::invalid_argument("Erro: Nao foi possivel adicionar esse produto. Esse codigo ja esta sendo utilizado! \n");
                         }
                             
                         Produto *pr = new Produto(codigo, nome, preco, validade, marca);
@@ -472,13 +506,25 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 case 2:{
-                    std::cout << "---------- Excluir Produto ----------\n"; //pensando a respeito disso ainda
-                    int _codigo,quantidade;
-                    std::cout << "Digite o codigo e a quantidade do produto que deseja excluir" << std::endl;
-                     std::cin >> _codigo;
-                     std::cin >> quantidade;
-                     estoque.excluir_produto(_codigo,quantidade);
+                    std::cout << "---------- Excluir Produto ----------\n"; //pensando a respeito disso 
 
+                    try {
+                        int codigo, quantidade;
+                        std::cout << "Digite o codigo: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a quantidade que deseja excluir: \n";
+                        std::cin >> quantidade;
+                        if (estoque.verificar_codigo(codigo) == false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel excluir esse produto. Nao existe nenhum produto com esse codigo. \n");
+                        }
+                        else {
+                            estoque.excluir_produto(codigo,quantidade);
+                            std::cout << "Produto excluido com sucesso! \n";
+                        }
+                    } 
+                    catch(std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
                 }
                     break;
 
@@ -487,12 +533,12 @@ void tela_inicial(Funcionario *funcionario_login) {
                     estoque.exibir_estoque();
                     break;
                 
-                case 4:{
-                    std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
-                    int _codigo1; 
+                case 4: {
+                    std::cout << "---------- Procurar Produto ----------\n"; //tratar erro associado a digitaçao errada de dados
+                    int codigo1; 
                     std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
-                    std::cin >> _codigo1;
-                    bool existir = estoque.procurar_produto(_codigo1);
+                    std::cin >> codigo1;
+                    bool existir = estoque.procurar_produto(codigo1);
                      if(!(existir)){
                         std::cout << "Produto inexistente no estoque" << std::endl;
                      }
@@ -563,14 +609,20 @@ void tela_inicial(Funcionario *funcionario_login) {
                         int codigo, contador;
                         std::string senha;
                         int contador2;
+                        bool existe = false;
 
                         std::cout << "Digite o codigo do cliente que deseja exluir: \n";
                         std::cin >> codigo;
 
                         for (int i=0; i < clientes.size(); i++) {
-                            if (clientes[i].get_codigo() != codigo) {
-                                throw std::invalid_argument("Codigo invalido! Nao existe um cliente com esse codigo. \n");
+                            if (clientes[i].get_codigo() == codigo) {
+                                existe = true;
+                                break;
                             }
+                        }
+
+                        if (existe == false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel deletar esse cliente. Nao existe nenhum cliente com esse codigo. \n");
                         }
 
                         for (contador = 0; contador < clientes.size(); contador++) {
@@ -588,15 +640,21 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
 
-                case 3:
+                case 3: {
                     std::cout << "---------- Exibir Dados ----------\n";
 
-                    for (int contador = 0; contador < clientes.size(); contador++) {
-                            clientes[contador].exibir_dados();
-                            std::cout << std::endl;
+                    if (clientes.size() > 0) {
+                        for (int contador = 0; contador < clientes.size(); contador++) {
+                                clientes[contador].exibir_dados();
+                                std::cout << std::endl;
+                        }
+                    }
+                    else {
+                        std::cout << "Nao existe clientes cadastrados. \n";
                     }
 
                     break;
+                }
                 
                 case 0:
                     break;
@@ -622,101 +680,152 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 1: {
                     std::cout << "---------- Cadastrar Venda ----------\n";
 
-                    int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
-                    double valor_recebido;
-                    std::string data, atendente_consultado_senha, numero_venda;
-                    Cliente *cliente_atendido;
-                    Atendente *atendente_consultado;
-                    Carrinho *carrinho;
+                    try {
+                        int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
+                        double valor_recebido;
+                        std::string data, atendente_consultado_senha, numero_venda;
+                        Cliente *cliente_atendido;
+                        Atendente *atendente_consultado;
+                        Carrinho *carrinho;
+                        bool existe_cliente = false, existe_atendente = false, existe_carrinho = false;
 
-                    std::cout << "Digite o codigo da venda: \n";
-                    std::cin >> codigo;
-                    std::cout << "Digite a forma de pagamento: \n";
-                    std::cout << "[1] - Cartao de Credito (a vista) \n";
-                    std::cout << "[2] - Dinheiro (a vista) \n";
-                    std::cin >> forma_pagamento;
-                    std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
-                    std::cin >> valor_recebido;
-                    std::cout << "Digite a data: \n";
-                    std::cin >> data;
-                    std::cout << "Digite o codigo do cliente atendido: \n";
-                    std::cin >> cliente_atendido_codigo;
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a forma de pagamento: \n";
+                        std::cout << "[1] - Cartao de Credito (a vista) \n";
+                        std::cout << "[2] - Dinheiro (a vista) \n";
+                        std::cin >> forma_pagamento;
+                        std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
+                        std::cin >> valor_recebido;
+                        std::cout << "Digite a data: \n";
+                        std::cin >> data;
+                        std::cout << "Digite o codigo do cliente atendido: \n";
+                        std::cin >> cliente_atendido_codigo;
 
-                    for (int i = 0; i < clientes.size(); i++) {
-                        if (clientes[i].get_codigo() == cliente_atendido_codigo) {
-                            cliente_atendido = &clientes[i];
-                            break;
+                        for (int i=0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                throw std::invalid_argument("Erro: Nao foi possivel cadastrar essa venda. Ja esta sendo utilizado esse codigo. \n");
+                            }
                         }
+
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == cliente_atendido_codigo) {
+                                existe_cliente = true;
+                                cliente_atendido = &clientes[i];
+                                break;
+                            }
+                        }
+
+                        if (existe_cliente = false) {
+                            throw std::invalid_argument("Erro: Nao existe nenhum cliente com esse codigo. \n");
+                        }
+
+                        // cliente_atendido->exibir_dados();
+
+                        std::cout << "Digite a senha do atendente consultado: \n";
+                        std::cin >> atendente_consultado_senha;   
+
+                        for (int i = 0; i < atendentes.size(); i++) {
+                            if (atendentes[i]->get_senha() == atendente_consultado_senha) {
+                                existe_atendente = true;
+                                atendente_consultado = atendentes[i];
+                                break;
+                            }
+                        }
+
+                        if (existe_atendente = false) {
+                            throw std::invalid_argument("Erro: Nao existe nenhum atendente com essa senha. \n");
+                        }                
+
+                        // atendente_consultado->exibir_dados();    
+
+                        std::cout << "Digite o codigo do carrinho: \n";
+                        std::cin >> carrinho_codigo;   
+
+                        for (int i = 0; i < carrinhos.size(); i++) {
+                            if (carrinhos[i]->get_codigo() == carrinho_codigo) {
+                                existe_carrinho = true;
+                                carrinho = carrinhos[i];
+                                break;
+                            }
+                        }
+
+                        if (existe_carrinho = false) {
+                            throw std::invalid_argument("Erro: Nao existe nenhum carrinho com esse codigo. \n");
+                        }                         
+
+                        std::cout << "Digite o vn+numero (ex: vn3): \n";
+                        std::cin >> numero_venda;
+
+                        Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
+                        vendas.push_back(numero_venda_construtor);
+
+                        numero_venda_construtor->calcula_troco();
+                    }
+                    catch(std::invalid_argument &error) {
+                        std::cout << error.what();
                     }
 
-                    // cliente_atendido->exibir_dados();
-
-                    std::cout << "Digite a senha do atendente consultado: \n";
-                    std::cin >> atendente_consultado_senha;   
-
-                    for (int i = 0; i < atendentes.size(); i++) {
-                        if (atendentes[i]->get_senha() == atendente_consultado_senha) {
-                            atendente_consultado = atendentes[i];
-                            break;
-                        }
-                    }                
-
-                    // atendente_consultado->exibir_dados();    
-
-                    std::cout << "Digite o codigo do carrinho: \n";
-                    std::cin >> carrinho_codigo;   
-
-                    for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i]->get_codigo() == carrinho_codigo) {
-                            carrinho = carrinhos[i];
-                            break;
-                        }
-                    }                         
-
-                    std::cout << "Digite o vn+numero (ex: vn3): \n";
-                    std::cin >> numero_venda;
-
-                    Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
-                    vendas.push_back(numero_venda_construtor);
-
-                    numero_venda_construtor->calcula_troco();
-                    
                     break;
                 }
                 
                 case 2:
                     std::cout << "---------- Excluir Venda ----------\n";
                     
-                    int codigo;
+                    try {
+                        int codigo;
+                        bool existe = false;
 
-                    std::cout << "Digite o codigo da venda: \n";
-                    std::cin >> codigo;
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
 
-                    for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i]->get_codigo() == codigo) {
-                            vendas.erase(vendas.begin() + i);
-                            break;
+                        for (int i=0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                existe = true;
+                                break;
+                            }
                         }
+
+                        if (existe == false){
+                            throw std::invalid_argument("Erro: Nao foi possivel excluir essa venda. Nao existe nenhuma venda com esse codigo. \n");
+                        }
+
+                        for (int i = 0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                vendas.erase(vendas.begin() + i);
+                                std::cout << "Venda excluida com sucesso! \n";
+                                break;
+                            }
+                        }
+                    }
+                    catch(std::invalid_argument &error) {
+                        std::cout << error.what();
                     }                    
 
                     break;
 
                 case 3: {
                     std::cout << "---------- Exibir Vendas ----------\n";
-                    
-                    double receita_total = 0;
-                    int quantidade_vendas = 0;
 
-                    for (int i = 0; i < vendas.size(); i++) {
-                        std::cout << "Codigo da Venda: " << vendas[i]->get_codigo() << std::endl;
-                        std::cout << "Receita da Venda: R$" << vendas[i]->get_valor_total_pagar() << std::endl;   
-                        std::cout << "---------------- \n";              
-                        receita_total += vendas[i]->get_valor_total_pagar();       
-                        quantidade_vendas++;
+                    if (vendas.size() > 0) {
+                        double receita_total = 0;
+                        int quantidade_vendas = 0;
+
+                        for (int i = 0; i < vendas.size(); i++) {
+                            std::cout << "Codigo da Venda: " << vendas[i]->get_codigo() << std::endl;
+                            std::cout << "Receita da Venda: R$" << vendas[i]->get_valor_total_pagar() << std::endl;   
+                            std::cout << "---------------- \n";              
+                            receita_total += vendas[i]->get_valor_total_pagar();       
+                            quantidade_vendas++;
+                        }
+
+                        std::cout << "Quantidade total de vendas: " << quantidade_vendas << std::endl;
+                        std::cout << "Receita total das vendas: R$" << receita_total << std::endl;
                     }
 
-                    std::cout << "Quantidade total de vendas: " << quantidade_vendas << std::endl;
-                    std::cout << "Receita total das vendas: R$" << receita_total << std::endl;
+                    else {
+                        std::cout << "Nao existe vendas cadastradas! \n";
+                    }
 
                     break;
                 }
@@ -724,17 +833,29 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 4: {
                     std::cout << "---------- Imprimir Nota Fiscal ----------\n";
                     
-                    int codigo;
+                    try {
+                        int codigo;
+                        bool existe_venda = false;
 
-                    std::cout << "Digite o codigo da venda: \n";
-                    std::cin >> codigo;
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
 
-                    for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i]->get_codigo() == codigo) {
-                            vendas[i]->imprimir_nota_fiscal();
-                            break;
+                        for (int i = 0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                existe_venda = true;
+                                vendas[i]->imprimir_nota_fiscal();
+                                break;
+                            }
+                        }
+
+                        if (existe_venda = false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal. Nao existe nehuma venda com esse codigo. \n");
                         }
                     }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
+
                     break;
                 }
                 
@@ -813,19 +934,30 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 2: {
                     std::cout << "---------- Excluir Cliente ----------\n";
 
-                    int codigo, contador;
-                    std::string senha;
-                    int contador2;
+                    try {
+                        int codigo, contador;
+                        std::string senha;
+                        int contador2;
+                        bool existe_cliente = false;
 
-                    std::cout << "Digite o codigo do cliente que deseja exluir: \n";
-                    std::cin >> codigo;
+                        std::cout << "Digite o codigo do cliente que deseja exluir: \n";
+                        std::cin >> codigo;
 
-                    for (contador = 0; contador < clientes.size(); contador++) {
-                        if (clientes[contador].get_codigo() == codigo) {
-                            clientes.erase(clientes.begin() + contador);
-                            std::cout << "Cliente deleteado com sucesso! \n";
-                            break;
+                        for (contador = 0; contador < clientes.size(); contador++) {
+                            if (clientes[contador].get_codigo() == codigo) {
+                                existe_cliente = true;
+                                clientes.erase(clientes.begin() + contador);
+                                std::cout << "Cliente deleteado com sucesso! \n";
+                                break;
+                            }
                         }
+
+                        if (existe_cliente = false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel excluir esse cliente. Nao existe nenhum cliente com esse codigo. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
                     }
 
                     break;
@@ -833,9 +965,15 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 3:
                     std::cout << "---------- Exibir Dados ----------\n";
 
-                    for (int contador = 0; contador < clientes.size(); contador++) {
-                            clientes[contador].exibir_dados();
-                            std::cout << std::endl;
+                    if (clientes.size() > 0) {
+                        for (int contador = 0; contador < clientes.size(); contador++) {
+                                clientes[contador].exibir_dados();
+                                std::cout << std::endl;
+                        }
+                    }
+
+                    else {
+                        std::cout << "Nao existe clientes cadastrados. \n";
                     }
 
                     break;
@@ -865,119 +1003,176 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 1: {
                     std::cout << "---------- Cadastrar Venda ----------\n";
 
-                    int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
-                    double valor_recebido;
-                    std::string data, atendente_consultado_senha, numero_venda;
-                    Cliente *cliente_atendido;
-                    Atendente *atendente_consultado;
-                    Carrinho *carrinho;
+                    try {
+                        int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
+                        double valor_recebido;
+                        std::string data, atendente_consultado_senha, numero_venda;
+                        Cliente *cliente_atendido;
+                        Atendente *atendente_consultado;
+                        Carrinho *carrinho;
+                        bool existe_cliente = false, existe_atendente = false, existe_carrinho = false;
 
-                    std::cout << "Digite o codigo da venda: \n";
-                    std::cin >> codigo;
-                    std::cout << "Digite a forma de pagamento: \n";
-                    std::cout << "[1] - Cartao de Credito (a vista) \n";
-                    std::cout << "[2] - Dinheiro (a vista) \n";
-                    std::cin >> forma_pagamento;
-                    std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
-                    std::cin >> valor_recebido;
-                    std::cout << "Digite a data: \n";
-                    std::cin >> data;
-                    std::cout << "Digite o codigo do cliente atendido: \n";
-                    std::cin >> cliente_atendido_codigo;
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a forma de pagamento: \n";
+                        std::cout << "[1] - Cartao de Credito (a vista) \n";
+                        std::cout << "[2] - Dinheiro (a vista) \n";
+                        std::cin >> forma_pagamento;
+                        std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
+                        std::cin >> valor_recebido;
+                        std::cout << "Digite a data: \n";
+                        std::cin >> data;
+                        std::cout << "Digite o codigo do cliente atendido: \n";
+                        std::cin >> cliente_atendido_codigo;
 
-                    for (int i = 0; i < clientes.size(); i++) {
-                        if (clientes[i].get_codigo() == cliente_atendido_codigo) {
-                            cliente_atendido = &clientes[i];
-                            break;
+                        for (int i=0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                throw std::invalid_argument("Erro: Nao foi possivel cadastrar essa venda. Ja esta sendo utilizado esse codigo. \n");
+                            }
                         }
+
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == cliente_atendido_codigo) {
+                                existe_cliente = true;
+                                cliente_atendido = &clientes[i];
+                                break;
+                            }
+                        }
+
+                        if (existe_cliente = false) {
+                            throw std::invalid_argument("Erro: Nao existe nenhum cliente com esse codigo. \n");
+                        }
+
+                        // cliente_atendido->exibir_dados();
+
+                        std::cout << "Digite a senha do atendente consultado: \n";
+                        std::cin >> atendente_consultado_senha;   
+
+                        for (int i = 0; i < atendentes.size(); i++) {
+                            if (atendentes[i]->get_senha() == atendente_consultado_senha) {
+                                existe_atendente = true;
+                                atendente_consultado = atendentes[i];
+                                break;
+                            }
+                        }
+
+                        if (existe_atendente = false) {
+                            throw std::invalid_argument("Erro: Nao existe nenhum atendente com essa senha. \n");
+                        }                
+
+                        // atendente_consultado->exibir_dados();    
+
+                        std::cout << "Digite o codigo do carrinho: \n";
+                        std::cin >> carrinho_codigo;   
+
+                        for (int i = 0; i < carrinhos.size(); i++) {
+                            if (carrinhos[i]->get_codigo() == carrinho_codigo) {
+                                existe_carrinho = true;
+                                carrinho = carrinhos[i];
+                                break;
+                            }
+                        }
+
+                        if (existe_carrinho = false) {
+                            throw std::invalid_argument("Erro: Nao existe nenhum carrinho com esse codigo. \n");
+                        }                         
+
+                        std::cout << "Digite o vn+numero (ex: vn3): \n";
+                        std::cin >> numero_venda;
+
+                        Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
+                        vendas.push_back(numero_venda_construtor);
+
+                        numero_venda_construtor->calcula_troco();
+                    }
+                    catch(std::invalid_argument &error) {
+                        std::cout << error.what();
                     }
 
-                    // cliente_atendido->exibir_dados();
-
-                    std::cout << "Digite a senha do atendente consultado: \n";
-                    std::cin >> atendente_consultado_senha;   
-
-                    for (int i = 0; i < atendentes.size(); i++) {
-                        if (atendentes[i]->get_senha() == atendente_consultado_senha) {
-                            atendente_consultado = atendentes[i];
-                            break;
-                        }
-                    }                
-
-                    // atendente_consultado->exibir_dados();    
-
-                    std::cout << "Digite o codigo do carrinho: \n";
-                    std::cin >> carrinho_codigo;   
-
-                    for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i]->get_codigo() == carrinho_codigo) {
-                            carrinho = carrinhos[i];
-                            break;
-                        }
-                    }                         
-
-                    std::cout << "Digite o vn+numero (ex: vn3): \n";
-                    std::cin >> numero_venda;
-
-                    Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
-                    vendas.push_back(numero_venda_construtor);
-
-                    numero_venda_construtor->calcula_troco();                    
                     break;
                 }
                 
                 case 2: {
                     std::cout << "---------- Excluir Venda ----------\n";
 
-                    int codigo;
+                    try {
+                        int codigo;
+                        bool existe_venda = false;
 
-                    std::cout << "Digite o codigo da venda: \n";
-                    std::cin >> codigo;
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
 
-                    for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i]->get_codigo() == codigo) {
-                            vendas.erase(vendas.begin() + i);
-                            break;
+                        for (int i = 0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                existe_venda = true;
+                                vendas.erase(vendas.begin() + i);
+                                break;
+                            }
                         }
-                    }    
+
+                        if (existe_venda = false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel excluir essa venda. Nao existe nenhuma venda com esse codigo. \n");
+                        } 
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }   
                     break;
                 }
 
                 case 3: {
                     std::cout << "---------- Exibir Vendas ----------\n"; 
 
-                    double receita_total = 0;
-                    int quantidade_vendas = 0;
+                    if (vendas.size() > 0) {
+                        double receita_total = 0;
+                        int quantidade_vendas = 0;
 
-                    for (int i = 0; i < vendas.size(); i++) {
-                        std::cout << "Codigo da Venda: " << vendas[i]->get_codigo() << std::endl;
-                        std::cout << "Receita da Venda: R$" << vendas[i]->get_valor_total_pagar() << std::endl;   
-                        std::cout << "---------------- \n";              
-                        receita_total += vendas[i]->get_valor_total_pagar();       
-                        quantidade_vendas++;
+                        for (int i = 0; i < vendas.size(); i++) {
+                            std::cout << "Codigo da Venda: " << vendas[i]->get_codigo() << std::endl;
+                            std::cout << "Receita da Venda: R$" << vendas[i]->get_valor_total_pagar() << std::endl;   
+                            std::cout << "---------------- \n";              
+                            receita_total += vendas[i]->get_valor_total_pagar();       
+                            quantidade_vendas++;
+                        }
+
+                        std::cout << "Quantidade total de vendas: " << quantidade_vendas << std::endl;
+                        std::cout << "Receita total das vendas: R$" << receita_total << std::endl;
                     }
 
-                    std::cout << "Quantidade total de vendas: " << quantidade_vendas << std::endl;
-                    std::cout << "Receita total das vendas: R$" << receita_total << std::endl;
+                    else {
+                        std::cout << "Nao existe vendas cadastradas. \n";
+                    }
 
                     break;
                 }
 
-                case 4:
+                case 4: {
                     std::cout << "---------- Imprimir Nota Fiscal ----------\n";
                     
-                    int codigo;
+                    try {
+                        int codigo;
+                        bool existe_venda = false;
 
-                    std::cout << "Digite o codigo da venda: \n";
-                    std::cin >> codigo;
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
 
-                    for (int i = 0; i < vendas.size(); i++) {
-                        if (vendas[i]->get_codigo() == codigo) {
-                            vendas[i]->imprimir_nota_fiscal();
-                            break;
+                        for (int i = 0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                existe_venda = true;
+                                vendas[i]->imprimir_nota_fiscal();
+                                break;
+                            }
                         }
-                    }                
+
+                        if (existe_venda = false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal. Nao existe nenhuma venda com esse codigo. \n");
+                        } 
+                    }
+                    catch (std::invalid_argument &error){
+                        std::cout << error.what();
+                    }               
                     break;
+                }
                 
                 case 0:
                     break;
@@ -1010,61 +1205,86 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[0] - Voltar \n";
 
                 std::cin >> opcao_escolhida2;
-                 int quantidade1 = 0;
+
+                int quantidade1 = 0;
+
                 switch (opcao_escolhida2) {
-                case 1:{
+                case 1: {
                     std::cout << "---------- Adicionar Produto ----------\n";
-                    int __codigo;
-                        std::string __nome,__validade,__marca;
-                        double __preco;
-                        
+
+                    try {
+                        int codigo;
+                        std::string nome, validade, marca;
+                        double preco;
                         
                         std::cout << "Digite o codigo do produto: " << std::endl;
-                        std::cin >> __codigo;
+                        std::cin >> codigo;
                         std::cout << "Digite o nome do produto: " << std::endl;
-                        std::cin >> __nome;
+                        std::cin >> nome;
                         std::cout << "Digite o preco do produto: " << std::endl;  
-                        std::cin >> __preco;
+                        std::cin >> preco;
                         std::cout << "Digite a validade do produto: " << std::endl;
-                        std::cin >> __validade;
+                        std::cin >> validade;
                         std::cout << "Digite a marca do produto: " << std::endl;
-                        std::cin >> __marca;
+                        std::cin >> marca;
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
+
+                        if (estoque.verificar_codigo(codigo)) {
+                            throw std::invalid_argument("Erro: Nao foi possivel adicionar esse produto. Esse codigo ja esta sendo utilizado. \n");
+                        }
                         
-                        Produto *pr = new Produto(__codigo,__nome,__preco,__validade,__marca);
+                        Produto *pr = new Produto(codigo, nome, preco, validade, marca);
                         
                         estoque.adicionar_produto(pr,quantidade1);
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
                     
-                }
                     break;
+                }
                 
-                case 2:{
-                    std::cout << "---------- Excluir Produto ----------\n"; 
-                    int _codigo,quantidade;
-                    std::cout << "Digite o codigo e a quantidade do produto que deseja excluir" << std::endl;
-                     std::cin >> _codigo;
-                     std::cin >> quantidade;
-                     estoque.excluir_produto(_codigo,quantidade);
-                }
+                case 2: {
+                    std::cout << "---------- Excluir Produto ----------\n";
+
+                    try {
+                        int codigo, quantidade;
+                        std::cout << "Digite o codigo: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a quantidade que deseja excluir: \n";
+                        std::cin >> quantidade;
+
+                        if (estoque.verificar_codigo(codigo) == false) {
+                            throw std::invalid_argument("Erro: Nao foi possivel excluir esse produto. Nao existe nenhum produto com esse codigo no estoque. \n");
+                        }
+
+                        estoque.excluir_produto(codigo, quantidade);
+                    }
+                    catch (std::invalid_argument &error){
+                        std::cerr << error.what(); 
+                    }
                     break;
+                }
 
                 case 3:
                     std::cout << "---------- Exibir Estoque ----------\n";
                     estoque.exibir_estoque();
                     break;
                 
-                case 4:{
+                case 4: {
                     std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
-                    int _codigo1; 
+
+                    int codigo1; 
                     std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
-                    std::cin >> _codigo1;
-                    bool existir = estoque.procurar_produto(_codigo1);
+                    std::cin >> codigo1;
+                    bool existir = estoque.procurar_produto(codigo1);
                        if(!(existir)){
                           std::cout << "Produto inexistente no estoque" << std::endl;
                      }
-                }
+
                     break;
+                }
                 
                 case 0:
                     break;
@@ -1093,8 +1313,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                 estoque.exibir_estoque();
                 break;
             
-            case 2:{
+            case 2: {
                 std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
+
                 int _codigo1; 
                 std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
                 std::cin >> _codigo1;
@@ -1102,8 +1323,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                     if(!(existir)){
                         std::cout << "Produto inexistente no estoque" << std::endl;
                     }
-                } 
+                 
                 break;
+            }
             
             default:
                 std::cout << "Opcao invalida! \n";

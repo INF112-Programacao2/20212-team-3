@@ -18,6 +18,7 @@ public:
     void exibir_estoque();
    
     bool procurar_produto(int codigo);
+    bool verificar_codigo(int codigo);
 
 };
 

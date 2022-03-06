@@ -9,7 +9,7 @@ void Estoque::adicionar_produto(Produto *produto, int quantidade) {
        _quantidade.push_back(quantidade);
 }
 
- void Estoque::excluir_produto(int codigo, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
+void Estoque::excluir_produto(int codigo, int quantidade) {  // Pensar em tratamento de erro(quantidade > estoque)-----WB
                                            
     int contador;
     
@@ -27,15 +27,15 @@ void Estoque::adicionar_produto(Produto *produto, int quantidade) {
 
 }
 
- void Estoque::exibir_estoque() {
+void Estoque::exibir_estoque() {
     for (int i = 0 ; i < _produtos.size(); i++) {
         _produtos[i].exibir_dados();
         std::cout << "quantidade: " <<  _quantidade[i] << std::endl;
     }
  }
 
- bool Estoque::procurar_produto(int codigo) {
-         for(int i = 0;i < _produtos.size();i++) {
+bool Estoque::procurar_produto(int codigo) {
+         for(int i = 0; i < _produtos.size(); i++) {
              if(_produtos[i].get_codigo() == codigo) {
                  _produtos[i].exibir_dados();
                  std::cout << "quantidade: " <<  _quantidade[i] << std::endl;
@@ -44,3 +44,12 @@ void Estoque::adicionar_produto(Produto *produto, int quantidade) {
          }
          return false;
      }
+
+bool Estoque::verificar_codigo(int codigo) {
+    for (int i=0; i < _produtos.size(); i++) {
+        if (_produtos[i].get_codigo() == codigo) {
+            return true;
+        }
+    }
+    return false;
+}
