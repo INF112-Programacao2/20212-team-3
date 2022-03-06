@@ -272,7 +272,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Cadastrar Funcionario(a) ----------\n";
                     try {
                         int codigo;
-                        std::string nome, cpf, endereco, email, data_nascimento, senha,num2;
+                        std::string nome, cpf, endereco, email, data_nascimento, senha;
                         double salario, informacao_extra_comissao;
                         int informacao_extra;
                         bool informacao_extra_construtor;
@@ -309,9 +309,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             else {
                                 informacao_extra_construtor = false;
                             }                                   
-                            // std::cout << "Digite gr+numero: (ex: gr2) \n";
-                            // std::cout << "Obs: Nao utilize espacos \n";
-                            // std::cin >> num1;
+
                             Gerente *num1 = new Gerente (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             gerentes.push_back(num1);
                             funcionarios.push_back(num1);
@@ -327,8 +325,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                             else {
                                 informacao_extra_construtor = false;
                             }                  
-                            std::cout << "Digite cx+numero: (ex: cx2) \n";
-                            std::cin >> num2;
                             Caixa *num2 = new Caixa (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             caixas.push_back(num2);
                             funcionarios.push_back (num2);                        
@@ -344,8 +340,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                             else {
                                 informacao_extra_construtor = false;
                             }                 
-                            std::cout << "Digite es+numero: (ex: es2)";
-                            std::cin >> num2;
                             Estoquista *num2 = new Estoquista (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             estoquistas.push_back(num2);
                             funcionarios.push_back(num2);                        
@@ -353,8 +347,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         else if (codigo == 4) {
                             std::cout << "Qual a comissao? \n";
                             std::cin >> informacao_extra_comissao;
-                            std::cout << "Digite at+numero: (ex: at2) \n";
-                            std::cin >> num2;
+
                             Atendente *num2 = new Atendente (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
                             atendentes.push_back(num2);
                             funcionarios.push_back(num2);                        
@@ -379,7 +372,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
                         std::cin >> codigo;
                         std::cout << "Digite a senha do funcionario que deseja excluir: \n";
-                        std::cin >> senha;
+                        std::getline(std::cin, senha);
 
                         for (contador = 0; contador < funcionarios.size(); contador++) {
                             if (funcionarios[contador]->get_senha() == senha && funcionarios[contador]->get_codigo() == codigo) {
@@ -460,7 +453,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo do funcionario: \n";
                         std::cin >> codigo;
                         std::cout << "Digite a senha do funcionario: \n";
-                        std::cin >> senha;
+                        std::getline(std::cin, senha);
 
                         for (int i = 0; i < funcionarios.size(); i++) {
                             if (funcionarios[i]->get_senha() == senha && funcionarios[i]->get_codigo() == codigo) {
@@ -515,13 +508,13 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo do produto: " << std::endl;
                         std::cin >> codigo;
                         std::cout << "Digite o nome do produto: " << std::endl;
-                        std::cin >> nome;
+                        std::getline(std::cin,nome);
                         std::cout << "Digite o preco do produto: " << std::endl;  
                         std::cin >> preco;
                         std::cout << "Digite a validade do produto: " << std::endl;
-                        std::cin >> validade;
+                        std::getline(std::cin, validade);
                         std::cout << "Digite a marca do produto: " << std::endl;
-                        std::cin >> marca;
+                        std::getline(std::cin, marca);
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
 
@@ -604,29 +597,27 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Cadastrar Cliente ----------\n";
 
                     try {
-                        int codigo2;
-                        std::string nome2, cpf2, telefone, endereco2, _num2;
+                        int codigo;
+                        std::string nome, cpf, telefone, endereco;
 
                         std::cout << "Digite o codigo: \n";
-                        std::cin >> codigo2;
+                        std::cin >> codigo;
                         std::cout << "Digite o nome: \n";
-                        std::cin >> nome2;
+                        std::getline(std::cin, nome);
                         std::cout << "Digite o CPF: \n";
-                        std::cin >> cpf2;
+                        std::getline(std::cin, cpf);
                         std::cout << "Digite o telefone: \n";
-                        std::cin >> telefone;
+                        std::getline(std::cin, telefone);
                         std::cout << "Digite o endereco: \n";
-                        std::cin >> endereco2;
-                        std::cout << "Digite cl+numero: (ex: cl4) \n";
-                        std::cin >> _num2;
+                        std::getline(std::cin, endereco);
 
                         for (int i=0; i < clientes.size(); i++) {
-                            if (clientes[i].get_codigo() == codigo2) {
+                            if (clientes[i].get_codigo() == codigo) {
                                 throw std::invalid_argument("Codigo invalido! Ja esta sendo utilizado por outro cliente. \n");
                             }
                         }
 
-                        Cliente *num2 = new Cliente(codigo2, nome2, cpf2, telefone, endereco2);
+                        Cliente *num2 = new Cliente(codigo, nome, cpf, telefone, endereco);
                         clientes.push_back(*num2);
 
                     } 
@@ -641,9 +632,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Excluir Cliente ----------\n";
 
                     try {
-                        int codigo, contador;
-                        std::string senha;
-                        int contador2;
+                        int codigo;
                         bool existe = false;
 
                         std::cout << "Digite o codigo do cliente que deseja exluir: \n";
@@ -660,9 +649,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                             throw std::invalid_argument("Erro: Nao foi possivel deletar esse cliente. Nao existe nenhum cliente com esse codigo. \n");
                         }
 
-                        for (contador = 0; contador < clientes.size(); contador++) {
-                            if (clientes[contador].get_codigo() == codigo) {
-                                clientes.erase(clientes.begin() + contador);
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == codigo) {
+                                clientes.erase(clientes.begin() + i);
                                 std::cout << "Cliente deleteado com sucesso! \n";
                                 break;
                             }
@@ -679,8 +668,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Exibir Dados ----------\n";
 
                     if (clientes.size() > 0) {
-                        for (int contador = 0; contador < clientes.size(); contador++) {
-                                clientes[contador].exibir_dados();
+                        for (int i = 0; i < clientes.size(); i++) {
+                                clientes[i].exibir_dados();
                                 std::cout << std::endl;
                         }
                     }
@@ -747,7 +736,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     try {
                         int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
                         double valor_recebido;
-                        std::string data, atendente_consultado_senha, numero_venda;
+                        std::string data, atendente_consultado_senha;
                         Cliente *cliente_atendido;
                         Atendente *atendente_consultado;
                         Carrinho *carrinho;
@@ -762,7 +751,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
                         std::cin >> valor_recebido;
                         std::cout << "Digite a data: \n";
-                        std::cin >> data;
+                        std::getline(std::cin, data);
                         std::cout << "Digite o codigo do cliente atendido: \n";
                         std::cin >> cliente_atendido_codigo;
 
@@ -784,8 +773,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                             throw std::invalid_argument("Erro: Nao existe nenhum cliente com esse codigo. \n");
                         }
 
-                        // cliente_atendido->exibir_dados();
-
                         std::cout << "Digite a senha do atendente consultado: \n";
                         std::cin >> atendente_consultado_senha;   
 
@@ -800,8 +787,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                         if (existe_atendente == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum atendente com essa senha. \n");
                         }                
-
-                        // atendente_consultado->exibir_dados();    
 
                         std::cout << "Digite o codigo do carrinho: \n";
                         std::cin >> carrinho_codigo;   
@@ -818,13 +803,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                             throw std::invalid_argument("Erro: Nao existe nenhum carrinho com esse codigo. \n");
                         }                         
 
-                        std::cout << "Digite o vn+numero (ex: vn3): \n";
-                        std::cin >> numero_venda;
+                        Venda *venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
+                        vendas.push_back(venda_construtor);
 
-                        Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
-                        vendas.push_back(numero_venda_construtor);
-
-                        numero_venda_construtor->calcula_troco();
+                        venda_construtor->calcula_troco();
                     }
                     catch(std::invalid_argument &error) {
                         std::cout << error.what();
@@ -963,29 +945,27 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Cadastrar Cliente ----------\n";
 
                     try {
-                        int codigo2;
-                        std::string nome2, cpf2, telefone, endereco2, _num2;
+                        int codigo;
+                        std::string nome, cpf, telefone, endereco;
 
                         std::cout << "Digite o codigo: \n";
-                        std::cin >> codigo2;
+                        std::cin >> codigo;
                         std::cout << "Digite o nome: \n";
-                        std::cin >> nome2;
+                        std::getline(std::cin, nome);
                         std::cout << "Digite o CPF: \n";
-                        std::cin >> cpf2;
+                        std::getline(std::cin, cpf);
                         std::cout << "Digite o telefone: \n";
-                        std::cin >> telefone;
+                        std::getline(std::cin, telefone);
                         std::cout << "Digite o endereco: \n";
-                        std::cin >> endereco2;
-                        std::cout << "Digite cl+numero: (ex: cl4) \n";
-                        std::cin >> _num2;
+                        std::getline(std::cin, endereco);
 
                         for (int i=0; i < clientes.size(); i++) {
-                            if (clientes[i].get_codigo() == codigo2) {
+                            if (clientes[i].get_codigo() == codigo) {
                                 throw std::invalid_argument("Codigo invalido! Ja esta sendo utilizado por outro cliente. \n");
                             }
                         }
 
-                        Cliente *num2 = new Cliente(codigo2, nome2, cpf2, telefone, endereco2);
+                        Cliente *num2 = new Cliente(codigo, nome, cpf, telefone, endereco);
                         clientes.push_back(*num2);
 
                     } 
@@ -1000,18 +980,16 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Excluir Cliente ----------\n";
 
                     try {
-                        int codigo, contador;
-                        std::string senha;
-                        int contador2;
+                        int codigo;
                         bool existe_cliente = false;
 
                         std::cout << "Digite o codigo do cliente que deseja exluir: \n";
                         std::cin >> codigo;
 
-                        for (contador = 0; contador < clientes.size(); contador++) {
-                            if (clientes[contador].get_codigo() == codigo) {
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == codigo) {
                                 existe_cliente = true;
-                                clientes.erase(clientes.begin() + contador);
+                                clientes.erase(clientes.begin() + i);
                                 std::cout << "Cliente deleteado com sucesso! \n";
                                 break;
                             }
@@ -1031,8 +1009,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Exibir Dados ----------\n";
 
                     if (clientes.size() > 0) {
-                        for (int contador = 0; contador < clientes.size(); contador++) {
-                                clientes[contador].exibir_dados();
+                        for (int i = 0; i < clientes.size(); i++) {
+                                clientes[i].exibir_dados();
                                 std::cout << std::endl;
                         }
                     }
@@ -1100,7 +1078,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     try {
                         int forma_pagamento, cliente_atendido_codigo, carrinho_codigo, codigo;
                         double valor_recebido;
-                        std::string data, atendente_consultado_senha, numero_venda;
+                        std::string data, atendente_consultado_senha;
                         Cliente *cliente_atendido;
                         Atendente *atendente_consultado;
                         Carrinho *carrinho;
@@ -1115,7 +1093,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
                         std::cin >> valor_recebido;
                         std::cout << "Digite a data: \n";
-                        std::cin >> data;
+                        std::getline(std::cin, data);
                         std::cout << "Digite o codigo do cliente atendido: \n";
                         std::cin >> cliente_atendido_codigo;
 
@@ -1137,8 +1115,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                             throw std::invalid_argument("Erro: Nao existe nenhum cliente com esse codigo. \n");
                         }
 
-                        // cliente_atendido->exibir_dados();
-
                         std::cout << "Digite a senha do atendente consultado: \n";
                         std::cin >> atendente_consultado_senha;   
 
@@ -1153,8 +1129,6 @@ void tela_inicial(Funcionario *funcionario_login) {
                         if (existe_atendente == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum atendente com essa senha. \n");
                         }                
-
-                        // atendente_consultado->exibir_dados();    
 
                         std::cout << "Digite o codigo do carrinho: \n";
                         std::cin >> carrinho_codigo;   
@@ -1171,13 +1145,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                             throw std::invalid_argument("Erro: Nao existe nenhum carrinho com esse codigo. \n");
                         }                         
 
-                        std::cout << "Digite o vn+numero (ex: vn3): \n";
-                        std::cin >> numero_venda;
+                        Venda *venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
+                        vendas.push_back(venda_construtor);
 
-                        Venda *numero_venda_construtor = new Venda(codigo, forma_pagamento, data, cliente_atendido, atendente_consultado, valor_recebido, carrinho);
-                        vendas.push_back(numero_venda_construtor);
-
-                        numero_venda_construtor->calcula_troco();
+                        venda_construtor->calcula_troco();
                     }
                     catch(std::invalid_argument &error) {
                         std::cout << error.what();
@@ -1314,13 +1285,13 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo do produto: " << std::endl;
                         std::cin >> codigo;
                         std::cout << "Digite o nome do produto: " << std::endl;
-                        std::cin >> nome;
+                        std::getline(std::cin, nome);
                         std::cout << "Digite o preco do produto: " << std::endl;  
                         std::cin >> preco;
                         std::cout << "Digite a validade do produto: " << std::endl;
-                        std::cin >> validade;
+                        std::getline(std::cin, validade);
                         std::cout << "Digite a marca do produto: " << std::endl;
-                        std::cin >> marca;
+                        std::getline(std::cin, marca);
                         std::cout << "Digite a quantidade: " << std::endl;
                         std::cin >> quantidade1;
 
@@ -1410,10 +1381,10 @@ void tela_inicial(Funcionario *funcionario_login) {
             case 2: {
                 std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
 
-                int _codigo1; 
+                int codigo; 
                 std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
-                std::cin >> _codigo1;
-                bool existir = estoque.procurar_produto(_codigo1);
+                std::cin >> codigo;
+                bool existir = estoque.procurar_produto(codigo);
                     if(!(existir)){
                         std::cout << "Produto inexistente no estoque" << std::endl;
                     }
