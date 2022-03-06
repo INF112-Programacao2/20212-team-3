@@ -199,7 +199,7 @@ void tela_login(int *add_codigo, std::string *add_senha) {
                 }
             }
 
-            if (existe_funcionario = false) {
+            if (existe_funcionario == false) {
                 throw std::invalid_argument("Erro: Nao existe um funcionario com esse codigo e senha. \n");
             }
             else {
@@ -284,19 +284,25 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "[4] - Atendente \n";
                         std::cin >> codigo;
                         std::cout << "Digite o nome: \n";
-                        std::cin >> nome;
+                        std::cin.ignore();
+                        std::getline(std::cin,nome);
                         std::cout << "Digite o salario: \n";
                         std::cin >> salario; 
                         std::cout << "Digite o CPF: \n";
-                        std::cin >> cpf;                                       
+                        std::cin.ignore();
+                        std::getline(std::cin,cpf);                                      
                         std::cout << "Digite o endereco: \n";
-                        std::cin >> endereco;                    
+                        std::cin.ignore();
+                        std::getline(std::cin,endereco);                    
                         std::cout << "Digite o e-mail: \n";
-                        std::cin >> email;                    
+                        std::cin.ignore();
+                        std::getline(std::cin,email);                    
                         std::cout << "Digite a data de nascimento: \n";
-                        std::cin >> data_nascimento;      
+                        std::cin.ignore();
+                        std::getline(std::cin,data_nascimento);    
                         std::cout << "Digite o senha: \n";
-                        std::cin >> senha;
+                        std::cin.ignore();
+                        std::getline(std::cin,senha);
 
                         if (codigo == 1) {
                             std::cout << "Possui curso superior? \n";
@@ -309,8 +315,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                             else {
                                 informacao_extra_construtor = false;
                             }                                   
-                            std::cout << "Digite gr+numero: (ex: gr2) \n";
-                            std::cin >> num1;
+                            // std::cout << "Digite gr+numero: (ex: gr2) \n";
+                            // std::cout << "Obs: Nao utilize espacos \n";
+                            // std::cin >> num1;
                             Gerente num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
                             gerentes.push_back(&num1);
                             funcionarios.push_back(&num1);
@@ -469,7 +476,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (funcionario_existe = false) {
+                        if (funcionario_existe == false) {
                             throw std::invalid_argument("Erro: Funcionario nao encontrado. Nao existe nenhum fucionario com esse codigo e senha. \n");
                         }
                     }
@@ -709,7 +716,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (cliente_existe = false) {
+                        if (cliente_existe == false) {
                             throw std::invalid_argument("Erro: Cliente nao encontrado. Nao existe nenhum cliente com esse codigo. \n");
                         }
                     }
@@ -779,7 +786,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_cliente = false) {
+                        if (existe_cliente == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum cliente com esse codigo. \n");
                         }
 
@@ -796,7 +803,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_atendente = false) {
+                        if (existe_atendente == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum atendente com essa senha. \n");
                         }                
 
@@ -813,7 +820,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_carrinho = false) {
+                        if (existe_carrinho == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum carrinho com esse codigo. \n");
                         }                         
 
@@ -911,7 +918,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_venda = false) {
+                        if (existe_venda == false) {
                             throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal dessa venda. Nao existe nehuma venda com esse codigo. \n");
                         }
                     }
@@ -1016,7 +1023,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_cliente = false) {
+                        if (existe_cliente == false) {
                             throw std::invalid_argument("Erro: Nao foi possivel excluir esse cliente. Nao existe nenhum cliente com esse codigo. \n");
                         }
                     }
@@ -1061,7 +1068,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (cliente_existe = false) {
+                        if (cliente_existe == false) {
                             throw std::invalid_argument("Erro: Cliente nao encontrado. Nao existe nenhum cliente com esse codigo. \n");
                         }
                     }
@@ -1132,7 +1139,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_cliente = false) {
+                        if (existe_cliente == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum cliente com esse codigo. \n");
                         }
 
@@ -1149,7 +1156,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_atendente = false) {
+                        if (existe_atendente == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum atendente com essa senha. \n");
                         }                
 
@@ -1166,7 +1173,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_carrinho = false) {
+                        if (existe_carrinho == false) {
                             throw std::invalid_argument("Erro: Nao existe nenhum carrinho com esse codigo. \n");
                         }                         
 
@@ -1203,7 +1210,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_venda = false) {
+                        if (existe_venda == false) {
                             throw std::invalid_argument("Erro: Nao foi possivel excluir essa venda. Nao existe nenhuma venda com esse codigo. \n");
                         } 
                     }
@@ -1257,7 +1264,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                             }
                         }
 
-                        if (existe_venda = false) {
+                        if (existe_venda == false) {
                             throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal dessa venda. Nao existe nenhuma venda com esse codigo. \n");
                         } 
                     }
