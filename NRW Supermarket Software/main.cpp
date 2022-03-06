@@ -272,7 +272,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "---------- Cadastrar Funcionario(a) ----------\n";
                     try {
                         int codigo;
-                        std::string nome, cpf, endereco, email, data_nascimento, senha, num1;
+                        std::string nome, cpf, endereco, email, data_nascimento, senha,num2;
                         double salario, informacao_extra_comissao;
                         int informacao_extra;
                         bool informacao_extra_construtor;
@@ -284,24 +284,18 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "[4] - Atendente \n";
                         std::cin >> codigo;
                         std::cout << "Digite o nome: \n";
-                        std::cin.ignore();
                         std::getline(std::cin,nome);
                         std::cout << "Digite o salario: \n";
                         std::cin >> salario; 
                         std::cout << "Digite o CPF: \n";
-                        std::cin.ignore();
                         std::getline(std::cin,cpf);                                      
                         std::cout << "Digite o endereco: \n";
-                        std::cin.ignore();
                         std::getline(std::cin,endereco);                    
                         std::cout << "Digite o e-mail: \n";
-                        std::cin.ignore();
                         std::getline(std::cin,email);                    
                         std::cout << "Digite a data de nascimento: \n";
-                        std::cin.ignore();
                         std::getline(std::cin,data_nascimento);    
                         std::cout << "Digite o senha: \n";
-                        std::cin.ignore();
                         std::getline(std::cin,senha);
 
                         if (codigo == 1) {
@@ -318,9 +312,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                             // std::cout << "Digite gr+numero: (ex: gr2) \n";
                             // std::cout << "Obs: Nao utilize espacos \n";
                             // std::cin >> num1;
-                            Gerente num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
-                            gerentes.push_back(&num1);
-                            funcionarios.push_back(&num1);
+                            Gerente *num1 = new Gerente (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
+                            gerentes.push_back(num1);
+                            funcionarios.push_back(num1);
                         }
                         else if (codigo == 2) {
                             std::cout << "Possui ensino medio completo? (true/false) \n";
@@ -334,10 +328,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                                 informacao_extra_construtor = false;
                             }                  
                             std::cout << "Digite cx+numero: (ex: cx2) \n";
-                            std::cin >> num1;
-                            Caixa num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
-                            caixas.push_back(&num1);
-                            funcionarios.push_back(&num1);                        
+                            std::cin >> num2;
+                            Caixa *num2 = new Caixa (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
+                            caixas.push_back(num2);
+                            funcionarios.push_back (num2);                        
                         }          
                         else if (codigo == 3) {
                             std::cout << "Possui certificado de informatica basica? (true/false) \n";
@@ -351,19 +345,19 @@ void tela_inicial(Funcionario *funcionario_login) {
                                 informacao_extra_construtor = false;
                             }                 
                             std::cout << "Digite es+numero: (ex: es2)";
-                            std::cin >> num1;
-                            Estoquista num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
-                            estoquistas.push_back(&num1);
-                            funcionarios.push_back(&num1);                        
+                            std::cin >> num2;
+                            Estoquista *num2 = new Estoquista (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_construtor);
+                            estoquistas.push_back(num2);
+                            funcionarios.push_back(num2);                        
                         }     
                         else if (codigo == 4) {
                             std::cout << "Qual a comissao? \n";
                             std::cin >> informacao_extra_comissao;
                             std::cout << "Digite at+numero: (ex: at2) \n";
-                            std::cin >> num1;
-                            Atendente num1(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
-                            atendentes.push_back(&num1);
-                            funcionarios.push_back(&num1);                        
+                            std::cin >> num2;
+                            Atendente *num2 = new Atendente (codigo, nome, salario, cpf, endereco, email, data_nascimento, senha, informacao_extra_comissao);
+                            atendentes.push_back(num2);
+                            funcionarios.push_back(num2);                        
                         }
                         else {
                             throw std::invalid_argument("Erro: Nao foi possivel cadastrar esse funcionario! O codigo deve ser somente 1,2,3 ou 4. \n");
