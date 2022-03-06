@@ -733,8 +733,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
-                std::cout << "[4] - Imprimir Nota Fiscal \n";
-                std::cout << "[5] -  Procurar Venda \n";
+                std::cout << "[4] - Procurar Venda \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -895,7 +894,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 }
 
                 case 4: {
-                    std::cout << "---------- Imprimir Nota Fiscal ----------\n";
+                    std::cout << "---------- Procurar Venda ----------\n";
                     
                     try {
                         int codigo;
@@ -913,42 +912,13 @@ void tela_inicial(Funcionario *funcionario_login) {
                         }
 
                         if (existe_venda = false) {
-                            throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal. Nao existe nehuma venda com esse codigo. \n");
+                            throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal dessa venda. Nao existe nehuma venda com esse codigo. \n");
                         }
                     }
                     catch (std::invalid_argument &error) {
                         std::cout << error.what();
                     }
 
-                    break;
-                }
-
-                case 5: {
-
-                    std::cout << "---------- Procurar Venda ----------\n";
-
-                    try {
-                        int codigo;
-                        bool venda_existe = false;
-
-                        std::cout << "Digite o codigo da venda: \n";
-                        std::cin >> codigo;
-
-                        for (int i = 0; i < vendas.size(); i++) {
-                            if (vendas[i]->get_codigo() == codigo) {
-                                venda_existe = true;
-                                vendas[i]->imprimir_nota_fiscal();
-                                break;
-                            }
-                        }
-
-                        if (venda_existe = false) {
-                            throw std::invalid_argument("Erro: Venda nao encontrado. Nao existe nenhum venda com esse codigo. \n");
-                        }
-                    }
-                    catch (std::invalid_argument &error) {
-                        std::cout << error.what();
-                    }
                     break;
                 }
                 
@@ -1116,8 +1086,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
-                std::cout << "[4] - Imprimir Nota Fiscal \n";  
-                std::cout << "[5] - Procurar Venda \n";              
+                std::cout << "[4] - Procurar Venda \n";             
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -1271,7 +1240,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 }
 
                 case 4: {
-                    std::cout << "---------- Imprimir Nota Fiscal ----------\n";
+                    std::cout << "---------- Procurar Venda  ----------\n";
                     
                     try {
                         int codigo;
@@ -1289,41 +1258,12 @@ void tela_inicial(Funcionario *funcionario_login) {
                         }
 
                         if (existe_venda = false) {
-                            throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal. Nao existe nenhuma venda com esse codigo. \n");
+                            throw std::invalid_argument("Erro: Nao foi possivel imprimir a nota fiscal dessa venda. Nao existe nenhuma venda com esse codigo. \n");
                         } 
                     }
                     catch (std::invalid_argument &error){
                         std::cout << error.what();
                     }               
-                    break;
-                }
-
-                case 5: {
-
-                    std::cout << "---------- Procurar Venda ----------\n";
-
-                    try {
-                        int codigo;
-                        bool venda_existe = false;
-
-                        std::cout << "Digite o codigo da venda: \n";
-                        std::cin >> codigo;
-
-                        for (int i = 0; i < vendas.size(); i++) {
-                            if (vendas[i]->get_codigo() == codigo) {
-                                venda_existe = true;
-                                vendas[i]->imprimir_nota_fiscal();
-                                break;
-                            }
-                        }
-
-                        if (venda_existe = false) {
-                            throw std::invalid_argument("Erro: Venda nao encontrado. Nao existe nenhum venda com esse codigo. \n");
-                        }
-                    }
-                    catch (std::invalid_argument &error) {
-                        std::cout << error.what();
-                    }
                     break;
                 }
                 
