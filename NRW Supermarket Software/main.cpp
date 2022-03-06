@@ -260,6 +260,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Funcionario(a) \n";
                 std::cout << "[2] - Excluir Funcionario(a) \n";
                 std::cout << "[3] - Exibir Dados \n";
+                std::cout << "[4] - Procurar Funcionario(a) \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -446,6 +447,38 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 }
 
+                case 4: {
+
+                    std::cout << "---------- Procurar Funcionario(a) ----------\n";
+
+                    try {
+                        int codigo;
+                        std::string senha;
+                        bool funcionario_existe = false;
+
+                        std::cout << "Digite o codigo do funcionario: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a senha do funcionario: \n";
+                        std::cin >> senha;
+
+                        for (int i = 0; i < funcionarios.size(); i++) {
+                            if (funcionarios[i]->get_senha() == senha && funcionarios[i]->get_codigo() == codigo) {
+                                funcionario_existe = true;
+                                funcionarios[i]->exibir_dados();
+                                break;
+                            }
+                        }
+
+                        if (funcionario_existe = false) {
+                            throw std::invalid_argument("Erro: Funcionario nao encontrado. Nao existe nenhum fucionario com esse codigo e senha. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
+                    break;
+                }
+
                 case 0:
                     break;
                 
@@ -559,6 +592,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Cliente \n";
                 std::cout << "[2] - Excluir Cliente \n";
                 std::cout << "[3] - Exibir Dados \n";
+                std::cout << "[4] - Procurar Cliente \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -655,6 +689,35 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                     break;
                 }
+
+                case 4: {
+
+                    std::cout << "---------- Procurar Cliente ----------\n";
+
+                    try {
+                        int codigo;
+                        bool cliente_existe = false;
+
+                        std::cout << "Digite o codigo do cliente: \n";
+                        std::cin >> codigo;
+
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == codigo) {
+                                cliente_existe = true;
+                                clientes[i].exibir_dados();
+                                break;
+                            }
+                        }
+
+                        if (cliente_existe = false) {
+                            throw std::invalid_argument("Erro: Cliente nao encontrado. Nao existe nenhum cliente com esse codigo. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
+                    break;
+                }
                 
                 case 0:
                     break;
@@ -671,6 +734,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
                 std::cout << "[4] - Imprimir Nota Fiscal \n";
+                std::cout << "[5] -  Procurar Venda \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -858,6 +922,35 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                     break;
                 }
+
+                case 5: {
+
+                    std::cout << "---------- Procurar Venda ----------\n";
+
+                    try {
+                        int codigo;
+                        bool venda_existe = false;
+
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
+
+                        for (int i = 0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                venda_existe = true;
+                                vendas[i]->imprimir_nota_fiscal();
+                                break;
+                            }
+                        }
+
+                        if (venda_existe = false) {
+                            throw std::invalid_argument("Erro: Venda nao encontrado. Nao existe nenhum venda com esse codigo. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
+                    break;
+                }
                 
                 case 0:
                     break;
@@ -888,6 +981,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Cliente \n";
                 std::cout << "[2] - Excluir Cliente \n";
                 std::cout << "[3] - Exibir Dados \n";
+                std::cout << "[4] - Procurar Cliente \n";
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -978,6 +1072,35 @@ void tela_inicial(Funcionario *funcionario_login) {
 
                     break;
                 
+                case 4: {
+
+                    std::cout << "---------- Procurar Cliente ----------\n";
+
+                    try {
+                        int codigo;
+                        bool cliente_existe = false;
+
+                        std::cout << "Digite o codigo do cliente: \n";
+                        std::cin >> codigo;
+
+                        for (int i = 0; i < clientes.size(); i++) {
+                            if (clientes[i].get_codigo() == codigo) {
+                                cliente_existe = true;
+                                clientes[i].exibir_dados();
+                                break;
+                            }
+                        }
+
+                        if (cliente_existe = false) {
+                            throw std::invalid_argument("Erro: Cliente nao encontrado. Nao existe nenhum cliente com esse codigo. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
+                    break;
+                }
+                
                 case 0:
                     break;
                 
@@ -993,7 +1116,8 @@ void tela_inicial(Funcionario *funcionario_login) {
                 std::cout << "[1] - Cadastrar Venda \n";
                 std::cout << "[2] - Excluir Venda \n";
                 std::cout << "[3] - Exibir Vendas \n";
-                std::cout << "[4] - Imprimir Nota Fiscal \n";                
+                std::cout << "[4] - Imprimir Nota Fiscal \n";  
+                std::cout << "[5] - Procurar Venda \n";              
                 std::cout << "[0] - Voltar \n";
                 std::cout << "-------------------------------------------\n";
 
@@ -1171,6 +1295,35 @@ void tela_inicial(Funcionario *funcionario_login) {
                     catch (std::invalid_argument &error){
                         std::cout << error.what();
                     }               
+                    break;
+                }
+
+                case 5: {
+
+                    std::cout << "---------- Procurar Venda ----------\n";
+
+                    try {
+                        int codigo;
+                        bool venda_existe = false;
+
+                        std::cout << "Digite o codigo da venda: \n";
+                        std::cin >> codigo;
+
+                        for (int i = 0; i < vendas.size(); i++) {
+                            if (vendas[i]->get_codigo() == codigo) {
+                                venda_existe = true;
+                                vendas[i]->imprimir_nota_fiscal();
+                                break;
+                            }
+                        }
+
+                        if (venda_existe = false) {
+                            throw std::invalid_argument("Erro: Venda nao encontrado. Nao existe nenhum venda com esse codigo. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &error) {
+                        std::cout << error.what();
+                    }
                     break;
                 }
                 
