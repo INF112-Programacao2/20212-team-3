@@ -284,10 +284,12 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "[4] - Atendente \n";
                         std::cin >> codigo;
                         std::cout << "Digite o nome: \n";
+                        std::cin.ignore();
                         std::getline(std::cin,nome);
                         std::cout << "Digite o salario: \n";
                         std::cin >> salario; 
                         std::cout << "Digite o CPF: \n";
+                        std::cin.ignore();
                         std::getline(std::cin,cpf);                                      
                         std::cout << "Digite o endereco: \n";
                         std::getline(std::cin,endereco);                    
@@ -372,6 +374,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo do funcionario que deseja exluir: \n";
                         std::cin >> codigo;
                         std::cout << "Digite a senha do funcionario que deseja excluir: \n";
+                        std::cin.ignore();
                         std::getline(std::cin, senha);
 
                         for (contador = 0; contador < funcionarios.size(); contador++) {
@@ -453,6 +456,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo do funcionario: \n";
                         std::cin >> codigo;
                         std::cout << "Digite a senha do funcionario: \n";
+                        std::cin.ignore();
                         std::getline(std::cin, senha);
 
                         for (int i = 0; i < funcionarios.size(); i++) {
@@ -499,40 +503,33 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 1: {
                     std::cout << "---------- Adicionar Produto ----------\n";
 
-                    try {
-                        int codigo;
-                        std::string nome, validade, marca;
-                        double preco;
+                    int codigo;
+                    std::string nome, validade, marca;
+                    double preco;
                             
                             
-                        std::cout << "Digite o codigo do produto: " << std::endl;
-                        std::cin >> codigo;
-                        std::cout << "Digite o nome do produto: " << std::endl;
-                        std::getline(std::cin,nome);
-                        std::cout << "Digite o preco do produto: " << std::endl;  
-                        std::cin >> preco;
-                        std::cout << "Digite a validade do produto: " << std::endl;
-                        std::getline(std::cin, validade);
-                        std::cout << "Digite a marca do produto: " << std::endl;
-                        std::getline(std::cin, marca);
-                        std::cout << "Digite a quantidade: " << std::endl;
-                        std::cin >> quantidade1;
-
-                        if (estoque.verificar_codigo(codigo)) {
-                            throw std::invalid_argument("Erro: Nao foi possivel adicionar esse produto. Esse codigo ja esta sendo utilizado! \n");
-                        }
+                    std::cout << "Digite o codigo do produto: " << std::endl;
+                    std::cin >> codigo;
+                    std::cout << "Digite o nome do produto: " << std::endl;
+                    std::cin.ignore();
+                    std::getline(std::cin,nome);
+                    std::cout << "Digite o preco do produto: " << std::endl;  
+                    std::cin >> preco;
+                    std::cout << "Digite a validade do produto: " << std::endl;
+                    std::cin.ignore();
+                    std::getline(std::cin, validade);
+                    std::cout << "Digite a marca do produto: " << std::endl;
+                    std::getline(std::cin, marca);
+                    std::cout << "Digite a quantidade: " << std::endl;
+                    std::cin >> quantidade1;
                             
-                        Produto *pr = new Produto(codigo, nome, preco, validade, marca);
+                    Produto *pr = new Produto(codigo, nome, preco, validade, marca);
                             
-                        estoque.adicionar_produto(pr,quantidade1);
-                    }
-                    catch (std::invalid_argument &error) {
-                        std::cout << error.what();
-                    }
+                    estoque.adicionar_produto(pr,quantidade1);
                 }
                     break;
                 
-                case 2:{
+                case 2: {
                     std::cout << "---------- Excluir Produto ----------\n"; //pensando a respeito disso 
 
                     try {
@@ -603,6 +600,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "Digite o codigo: \n";
                         std::cin >> codigo;
                         std::cout << "Digite o nome: \n";
+                        std::cin.ignore();
                         std::getline(std::cin, nome);
                         std::cout << "Digite o CPF: \n";
                         std::getline(std::cin, cpf);
@@ -751,6 +749,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
                         std::cin >> valor_recebido;
                         std::cout << "Digite a data: \n";
+                        std::cin.ignore();
                         std::getline(std::cin, data);
                         std::cout << "Digite o codigo do cliente atendido: \n";
                         std::cin >> cliente_atendido_codigo;
@@ -1093,6 +1092,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
                         std::cin >> valor_recebido;
                         std::cout << "Digite a data: \n";
+                        std::cin.ignore();
                         std::getline(std::cin, data);
                         std::cout << "Digite o codigo do cliente atendido: \n";
                         std::cin >> cliente_atendido_codigo;
@@ -1277,35 +1277,28 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 1: {
                     std::cout << "---------- Adicionar Produto ----------\n";
 
-                    try {
-                        int codigo;
-                        std::string nome, validade, marca;
-                        double preco;
+                    int codigo;
+                    std::string nome, validade, marca;
+                    double preco;
                         
-                        std::cout << "Digite o codigo do produto: " << std::endl;
-                        std::cin >> codigo;
-                        std::cout << "Digite o nome do produto: " << std::endl;
-                        std::getline(std::cin, nome);
-                        std::cout << "Digite o preco do produto: " << std::endl;  
-                        std::cin >> preco;
-                        std::cout << "Digite a validade do produto: " << std::endl;
-                        std::getline(std::cin, validade);
-                        std::cout << "Digite a marca do produto: " << std::endl;
-                        std::getline(std::cin, marca);
-                        std::cout << "Digite a quantidade: " << std::endl;
-                        std::cin >> quantidade1;
-
-                        if (estoque.verificar_codigo(codigo)) {
-                            throw std::invalid_argument("Erro: Nao foi possivel adicionar esse produto. Esse codigo ja esta sendo utilizado. \n");
-                        }
+                    std::cout << "Digite o codigo do produto: " << std::endl;
+                    std::cin >> codigo;
+                    std::cout << "Digite o nome do produto: " << std::endl;
+                    std::cin.ignore();
+                    std::getline(std::cin, nome);
+                    std::cout << "Digite o preco do produto: " << std::endl;  
+                    std::cin >> preco;
+                    std::cout << "Digite a validade do produto: " << std::endl;
+                    std::cin.ignore();
+                    std::getline(std::cin, validade);
+                    std::cout << "Digite a marca do produto: " << std::endl;
+                    std::getline(std::cin, marca);
+                    std::cout << "Digite a quantidade: " << std::endl;
+                    std::cin >> quantidade1;
                         
-                        Produto *pr = new Produto(codigo, nome, preco, validade, marca);
+                    Produto *pr = new Produto(codigo, nome, preco, validade, marca);
                         
-                        estoque.adicionar_produto(pr,quantidade1);
-                    }
-                    catch (std::invalid_argument &error) {
-                        std::cout << error.what();
-                    }
+                    estoque.adicionar_produto(pr,quantidade1);
                     
                     break;
                 }
