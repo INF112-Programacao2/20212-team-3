@@ -41,4 +41,8 @@ tenha controle do andamento do NRW Supermarket.
  - Como Atendente quero listar os produtos do estoque, para que os clientes
 possam visualizar os produtos disponíveis.
 
-# Como Executar
+# Como Executar o Programa
+ - Va para o terminal.
+ - Va para o diretorio contendo os arquivos do programa.
+ - Digite make para compilar o programa.
+ - Digite ./output ( Mac ou Linux ) ou output ( Windows ) para executar o programa.
