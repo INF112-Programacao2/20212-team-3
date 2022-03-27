@@ -16,7 +16,7 @@ body {
   }
 
   .ig{
-    display:inline-flex;
+    display:flex;
   }
  .ig1{
     text-align:center;
@@ -28,8 +28,18 @@ p.text1{
     font-family:'Courier New', Courier, monospace;
    
 }
-/* ul.list{
+ul.list{
     list-style-type: circle;
     color:white;
     font-family: 'Courier New', Courier, monospace;
-} */
+}
+
+#div1{
+     text-align: center;
+}
+
+#div2{
+margin-top: 100px;
+margin-right: 100px;
+   text-align: center;
+}

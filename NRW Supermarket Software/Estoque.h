@@ -10,7 +10,7 @@ class Estoque {
 
 private:
     std::vector<Produto> _produtos; 
-    std::vector<int> _quantidade;
+    std::vector<int> _quantidade;           //dois vectors,um que contem os dados do produto,e o outro que terá sua quantidade
     
 public:
     void adicionar_produto(Produto *produto, int _quantidade); 
