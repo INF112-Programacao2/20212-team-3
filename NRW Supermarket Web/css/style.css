@@ -1,121 +1,185 @@
 * {
-    margin: 0;
-    padding: 0;
-    /* overflow:hidden; */
-  }
+  margin: 0;
+  padding: 0;
+  /* overflow:hidden; */
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url('../fonts/Anton-Regular.ttf'); ;
+}
   
-  body {
-    display:inline-block;
-    overflow-x: hidden
-  }
+@font-face {
+  font-family: 'Thin';
+  src: url('../fonts/Vds-Thin.ttf');
+}
   
-  @font-face {
-    font-family: 'Anton';
-    src: url('../fonts/Anton-Regular.ttf'); ;
-  }
+body {
+  overflow-x: hidden
+}
   
-  @font-face {
-    font-family: 'Thin';
-    src: url('../fonts/Vds-Thin.ttf');
-  }
+.container{
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(0, #16DB65, #000000);
+  position: absolute;
+  overflow: hidden;
+}
   
-  i {
-    color: #ffffff;
-    font-size: 150px;
-    padding: 30px;
-  }
+.titleHeaderDiv {
+  padding: 4px;
+}
   
-  .container{
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(0, #16DB65, #000000);
-  }
+.titleHeader {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  font-family: 'Anton';
+  text-transform: uppercase;
+  letter-spacing: 15px;
+}
+
+.botoesHeader {
+  display: block;
+  text-align: center;
+  margin-top: 40vh; 
+}
+
+.paragrafoSubTitleHeader {
+  color: white;
+  text-align: center; 
+  font-size: 25px;
+  text-transform: uppercase;
+  font-family: 'Thin';
+  padding: 5px;
+}
   
-  .titleHeaderDiv {
-    padding: 4px;
+.botoesHeader a {
+  border-style: solid;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  text-decoration:none;
+  display: inline-block;
+  margin-left: 20px;
+  font-family: 'Thin';
+} 
+
+.botoesHeader a:hover {
+  background-color: white;
+  border-color: white;
+  color: black;
+}
+
+.quadradoAnimado div {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border: 5px solid rgba(255,255,255,0.4);
+}
+
+.quadradoAnimado div:nth-child(1) {
+  top: 12%;
+  left: 42%;
+  animation: animate 10s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(2) {
+  top: 90%;
+  left: 90%;
+  animation: animate 7s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(3) {
+  top: 17%;
+  left: 6%;
+  animation: animate 9s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(4) {
+  top: 20%;
+  left: 60%;
+  animation: animate 10s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(5) {
+  top: 67%;
+  left: 10%;
+  animation: animate 6s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(6) {
+  top: 80%;
+  left: 70%;
+  animation: animate 12s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(7) {
+  top: 60%;
+  left: 80%;
+  animation: animate 15s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(8) {
+  top: 32%;
+  left: 25%;
+  animation: animate 16s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(9) {
+  top: 90%;
+  left: 25%;
+  animation: animate 9s linear infinite;
+}
+
+.quadradoAnimado div:nth-child(10) {
+  top: 20%;
+  left: 80%;
+  animation: animate 5s linear infinite;
+}
+
+.tracking-in-expand {
+  -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
+@keyframes animate {
+  0%{
+    transform: scale(0) translateY(0) rotate(0);
+    opacity: 1;
   }
-  
-  .titleHeader {
-    color: white;
-    font-size: 30px;
-    text-align: center;
-    font-family: 'Anton';
-    text-transform: uppercase;
-    letter-spacing: 15px;
+  100% {
+    transform: scale(1.3) translateY(-90px) rotate(360deg);
+    opacity: 0;
   }
+}
   
-  .divBtn {
-    display: block;
-    text-align: center;
-    padding: 10vh;
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
   }
-  
-  .btnHeader {
-    display: inline-block;
-    background-color: #FFC600;
-    color: white;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 1.5em;
-    text-decoration: none;
-    font-family: "Open Sans", sans-serif;
+  40% {
+    opacity: 0.6;
   }
-  
-  .apresentacao {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(0, #000000, #FFC600);
-  }
-  
-  .produtos {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(0, #120c56, #000000);  
-  }
-  
-  .ferramentas {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(0, white, white);
-    
-  }
-  
-  .ferramentas h1 {
-    font-family: 'Anton';
-    color: #050247;
-    text-transform: uppercase;
-    font-size: 50px;
-    text-align: center;
-  }
-  
-  .tracking-in-expand {
-      -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-      animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-  }
-  
-  @-webkit-keyframes tracking-in-expand {
-    0% {
-      letter-spacing: -0.5em;
-      opacity: 0;
+    100% {
+      opacity: 1;
     }
-    40% {
-      opacity: 0.6;
-    }
-      100% {
-        opacity: 1;
-      }
-    }
-    @keyframes tracking-in-expand {
-      0% {
-        letter-spacing: -0.5em;
-        opacity: 0;
-      }
-      40% {
-        opacity: 0.6;
-      }
-      100% {
-        opacity: 1;
-      }
-    }
+  }
+  @keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
     
     
