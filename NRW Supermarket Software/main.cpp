@@ -182,6 +182,7 @@ void tela_login(int *add_codigo, std::string *add_senha) {
             bool existe_funcionario = false;
 
             std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
+            std::cout << "Lista de Usuarios\n";
 
             for (int i=0; i < funcionarios.size(); i++) {
                 std::cout << "Codigo: " << funcionarios[i]->get_codigo() << "  -----  Senha: " << funcionarios[i]->get_senha() << std::endl;
@@ -200,14 +201,14 @@ void tela_login(int *add_codigo, std::string *add_senha) {
             }
 
             if (existe_funcionario == false) {
-                throw std::invalid_argument("Erro: Nao existe um funcionario com esse codigo e senha. \n");
+                throw std::invalid_argument("Erro: Nao existe um funcionario com esse codigo e/ou senha. \n");
             }
             else {
                 break;
             }
         }
         catch (std::invalid_argument &error) {
-            std::cout << error.what();
+            std::cerr << error.what() << std::endl;
         }
     }
 
@@ -911,7 +912,10 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "Opcao invalida! \n";
                     break;
                 }
-                break;                
+                break;
+
+            case   0:
+                break;              
             
             default:
                 std::cout << "Opcao invalida! \n";
@@ -1246,6 +1250,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                     std::cout << "Opcao invalida! \n";
                     break;
                 }
+                break;
+
+            case 0:
                 break;                
             
             default:
@@ -1384,6 +1391,9 @@ void tela_inicial(Funcionario *funcionario_login) {
                  
                 break;
             }
+
+            case 0:
+                break;
             
             default:
                 std::cout << "Opcao invalida! \n";
