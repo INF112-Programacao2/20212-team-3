@@ -18,7 +18,7 @@ void Gerente::set_curso_superior(bool curso_superior) {
     this->_curso_superior = curso_superior;
 }
 
-// metodo especializado para a classe Gerente (polimorfismo)
+// Metodo especializado para a classe Gerente (polimorfismo)
 void Gerente::exibir_dados() {
     std::cout << "------------------------------------------------\n";
     std::cout << "Dados do Gerente:\n";

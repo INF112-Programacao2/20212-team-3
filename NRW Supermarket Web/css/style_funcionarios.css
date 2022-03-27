@@ -1,15 +1,19 @@
-tr:hover {background-color: coral;}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+tr:hover {
+    background-color: coral;
+}
 
 body {
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(0, #16DB65, white);
+    background-color: black;
 }
 
 table, th, td {
     padding: 15px;
     border: 5px solid;
-    border-collapse: collapse;
     border-color: aqua;
     border-style: inset;
 }
@@ -20,7 +24,6 @@ table {
 
 th {
     height: 40px;
-    background: linear-gradient(0, white, #16DB65);
 }
 
 td {

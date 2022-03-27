@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0, azure, #16DB65);
+}
+
+table, th, td {
+    border: 5px solid;
+    border-collapse: collapse;
+    padding: 10px;
+    border-style: inset;
+    border-color: #04471C;
+}
+
+table {
+    width: 95%;
+}
+
+th {
+    height: 40px;
+    background: linear-gradient(0, azure, #16DB65);
+}
+
+td {
+    text-align: center;
+}
+
+tr:hover {
+    background-color: blueviolet;
+}
