@@ -6,6 +6,7 @@
 
 class Funcionario {
 
+// componentes reusaveis nas subclasses (gerente, caixa, atendente, estoquista)
 protected:
   std::string _nome;
   int _codigo;
@@ -17,8 +18,12 @@ protected:
   std::string _senha;
   
 public:
+  // construtor
   Funcionario(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha);
-  
+  // destrutor
+  ~Funcionario();
+
+  // metodos gets dos atributos protected
   std::string get_nome();
   int get_codigo();
   double get_salario();
@@ -28,6 +33,7 @@ public:
   std::string get_data_nascimento();
   std::string get_senha();
 
+  // metodos sets dos atributos protected
   void set_nome(std::string nome);
   void set_codigo(int codigo);
   void set_salario(double salario);
@@ -37,6 +43,8 @@ public:
   void set_data_nascimento(std::string data_nascimento);
   void set_senha(std::string senha);
 
+  // metodo polimorfico que pode ser sobrescrito de forma especializada nas subclasses
+  // ira obrigar a implementacao desse metodo nas subclasses
   virtual void exibir_dados() = 0;
   
 };
