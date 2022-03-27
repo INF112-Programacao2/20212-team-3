@@ -6,7 +6,7 @@
 
 class Funcionario {
 
-// componentes reusaveis nas subclasses (gerente, caixa, atendente, estoquista)
+// Componentes reusaveis nas subclasses (gerente, caixa, atendente, estoquista)
 protected:
   std::string _nome;
   int _codigo;

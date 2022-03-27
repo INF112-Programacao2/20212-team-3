@@ -20,7 +20,7 @@ double Carrinho::get_preco_total() {
     return this->_preco_total;
 }
 
-void Carrinho::set_codigo(unsigned int codigo) { //Codigos nao deveriam ser constantes/staticos? - RFZ
+void Carrinho::set_codigo(unsigned int codigo) {
     this->_codigo = codigo;
 }
 
@@ -37,7 +37,7 @@ void Carrinho::adicionar_produto(Produto *produto, int quantidade) {
 
 }
 
-void Carrinho::remover_produto(Produto *produto, int quantidade) {  //Tratamento de excessao - RFZ
+void Carrinho::remover_produto(Produto *produto, int quantidade) {
 
     for (int i = 0; i < quantidade; i++) {
         for (int j = 0; j < _produtos.size(); j++) {

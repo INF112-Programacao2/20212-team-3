@@ -11,6 +11,7 @@
 
 class Venda {
 
+// Atributos privados (exclusivos da classe Venda)
 private:
     int _codigo;
     int _forma_pagamento;
@@ -26,6 +27,7 @@ private:
 public:
     Venda(int codigo, int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
 
+    // Metodos get dos atributos privados
     int get_codigo();
     int get_forma_pagamento();
     std::string get_data();
@@ -37,6 +39,7 @@ public:
     Carrinho *get_carrinho(); 
     double get_valor_total_pagar();
 
+    // Metodos set dos atributos privados
     void set_codigo(int codigo);
     void set_forma_pagamento(int forma_pagamento);
     void set_data(std::string data);

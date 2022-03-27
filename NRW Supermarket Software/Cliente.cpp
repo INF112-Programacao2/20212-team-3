@@ -6,6 +6,10 @@
 Cliente::Cliente(int codigo, std::string nome, std::string cpf, std::string telefone, std::string endereco):
     _codigo(codigo), _nome(nome), _cpf(cpf), _telefone(telefone), _endereco(endereco) {}
 
+Cliente::~Cliente() {
+    
+}
+
 std::string Cliente::get_nome() {
     return this->_nome;
 }

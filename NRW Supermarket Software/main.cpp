@@ -51,6 +51,7 @@ int main(void) {
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
 
+    // Adiciona os produtos no estoque
     estoque.adicionar_produto(pr1,3); 
     estoque.adicionar_produto(pr2,5);
     estoque.adicionar_produto(pr3,6);
@@ -70,6 +71,7 @@ int main(void) {
     Cliente *cl2 = new Cliente(2, "Rafael Zardo", "158205782-00", "28 99983-7469", "Rua Estudante, 65, Vicosa");
     Cliente *cl3 = new Cliente(3, "Walter Bueno", "143784539-42", "77 99956-0568", "Av. Santa Rita, 168, Vicosa");
 
+    // Adiciona os clientes no vector clientes
     clientes.push_back(*cl1);
     clientes.push_back(*cl2);
     clientes.push_back(*cl3);
@@ -77,9 +79,9 @@ int main(void) {
     // Codigos dos gerentes = 1, dos caixas = 2, dos estoquistas = 3, dos atendentes = 4
     // Inicializando os objetos das subclasses de Funcionario
 
-    //Jeito 2: Solucao para o jeito 1 - RFZ
     Gerente gr1(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
     
+    // Adiciona
     gerentes.push_back(&gr1);
     funcionarios.push_back(&gr1);
 
@@ -181,7 +183,8 @@ void tela_login(int *add_codigo, std::string *add_senha) {
         try {
             bool existe_funcionario = false;
 
-            std::cout << "Bem Vindo ao sistema NRW Supermarket: \n";
+            std::cout << "Bem Vindo ao sistema NRW Supermarket: \n" << std::endl;
+            std::cout << "Acesse nosso website: https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html\n" << std::endl;
             std::cout << "Lista de Usuarios\n";
 
             for (int i=0; i < funcionarios.size(); i++) {

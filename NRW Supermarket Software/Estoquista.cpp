@@ -6,6 +6,10 @@
 Estoquista::Estoquista(int codigo, std::string nome, double salario, std::string cpf, std::string endereco, std::string email, std::string data_nascimento, std::string senha, bool informatica_basica):
     Funcionario(codigo, nome, salario, cpf, endereco, email, data_nascimento, senha), _informatica_basica(informatica_basica) {}
 
+Estoquista::~Estoquista() {
+
+}
+
 bool Estoquista::get_informatica_basica() {
     return this->_informatica_basica;
 }
@@ -14,6 +18,7 @@ void Estoquista::set_informatica_basica(bool informatica_basica) {
    this->_informatica_basica = informatica_basica;
 }
 
+// Metodo especializado para classe Estoquista (Polimorfismo)
 void Estoquista::exibir_dados() {
     std::cout << "------------------------------------------------\n";
     std::cout << "Dados do Estoquista:\n";

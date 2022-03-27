@@ -10,7 +10,7 @@
 // Gerente é subclasse da classe Funcionario
 class Gerente : public Funcionario {
 
-// Atributo exclusivo da classe Gerente
+// Atributo privado (exclusivo da classe Gerente)
 private:
     bool _curso_superior;
 

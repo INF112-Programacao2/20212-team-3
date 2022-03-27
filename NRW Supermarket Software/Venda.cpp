@@ -21,19 +21,21 @@ std::string Venda::get_data() {
     return this->_data;
 }
 
-Cliente* Venda::get_cliente_atendido() { //Revisar - RFZ
+Cliente* Venda::get_cliente_atendido() { 
     return _cliente_atendido;
 } 
 
-Atendente* Venda::get_atendente_consultado() { //Revisar - RFZ
+Atendente* Venda::get_atendente_consultado() {
     return _atendente_consultado;
 } 
 
 double Venda::get_desconto() {
-    if (Venda::get_forma_pagamento() == 1) { //Pagamento com cartao de credito
+    //Pagamento com cartao de credito
+    if (Venda::get_forma_pagamento() == 1) {
         this->_desconto = 0.05;
     } 
-    else { //Pagamento a vista
+    //Pagamento a vista
+    else {
         this->_desconto = 0.10;
     }
 
