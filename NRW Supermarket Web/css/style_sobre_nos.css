@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* overflow:hidden; */
+  }
+body {
+    display:inline-block;
+    overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(0,#16DB65,#0C120C);
+  }
+  @font-face {
+    font-family: 'Anton';
+    src: url('../fonts/Anton-Regular.ttf'); ;
+  }
+
+  .ig{
+    display:inline-flex;
+  }
+ .ig1{
+    text-align:center;
+    margin-top: 200px;
+ }
+p.text1{
+    margin: 0;
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+   
+}
+/* ul.list{
+    list-style-type: circle;
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+} */
