@@ -41,7 +41,7 @@ int main(void) {
     Produto *pr2 = new Produto(2, "Arroz", 21.90, "04/23", "Rei Arthur");
     Produto *pr3 = new Produto(3, "Feijao", 25.90, "05/22", "Camil");
     Produto *pr4 = new Produto(4, "Sabao em Po", 11.00, "07/22", "Omo");
-    Produto *pr5 = new Produto(5, "Oleo", 10.00, "10/22", "Soia");
+    Produto *pr5 = new Produto(5, "Oleo", 10.00, "10/22", "Soya");
     Produto *pr6 = new Produto(6, "Sabonete", 3.00, "05/22", "Lux");
     Produto *pr7 = new Produto(7, "File de Peito de Frango", 17.00, "12/22", "Uniaves");
     Produto *pr8 = new Produto(8, "Biscoito Recheado", 5.00, "11/22", "Oreo");
