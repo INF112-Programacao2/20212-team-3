@@ -44,26 +44,6 @@
     letter-spacing: 15px;
   }
   
-  .subTitleHeader {
-    color: white;
-    text-align: center;
-    margin-top: 30vh;
-    font-size: 45px;
-    text-transform: uppercase;
-    letter-spacing: 5px;
-    font-family: 'Anton';
-    text-shadow: 10px 10px 10px black;
-  }
-  
-  .paragrafoSubTitleHeader {
-    color: white;
-    text-align: center; 
-    font-size: 25px;
-    text-transform: uppercase;
-    font-family: 'Thin';
-    padding: 5px;
-  }
-  
   .divBtn {
     display: block;
     text-align: center;
