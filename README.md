@@ -18,7 +18,7 @@ Conheça tambem nosso site!
 
 - https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html
 
-Senha de acesso ao botão funcionarios: nrw2022
+- Senha de acesso ao botão funcionarios: nrw2022
 
 # Classes
  - Cliente
