@@ -5,9 +5,9 @@
 #include "Carrinho.h"
 #include "Produto.h"
 
-unsigned int codigo_suporte = 1;
+unsigned int codigo_suporte = 1;  // Variavel suporte para criar um novo codigo (codigo atual + 1) para todo carrinho criado
 
-Carrinho::Carrinho() {
+Carrinho::Carrinho() { //Construtor que gera um codigo novo para todo novo carrinho criado
     this->_codigo = codigo_suporte;
     codigo_suporte++;
 }
@@ -37,16 +37,16 @@ void Carrinho::adicionar_produto(Produto *produto, int quantidade) {
     for (int i = 0; i < quantidade; i++) {
         this->_produtos.push_back(*produto);
     }
-    calculo_preco_total();
+    calculo_preco_total(); // Toda vez que é adicionado um novo produto no carrinho, ele reconta o valor total dos produtos dentro do carrinho
 
 }
 
 void Carrinho::remover_produto(Produto *produto, int quantidade) {
 
-    for (int i = 0; i < quantidade; i++) {
+    for (int i = 0; i < quantidade; i++) { //Remove a quantidade solicitada de produtos
         for (int j = 0; j < _produtos.size(); j++) {
             if (this->_produtos[j].get_codigo() == produto->get_codigo()) { 
-                _produtos.erase(_produtos.begin() + (j));
+                _produtos.erase(_produtos.begin() + (j)); // Utiliza o erase para remover o produto alocado em _produtos
                 break;
             }
         }
@@ -66,10 +66,10 @@ void Carrinho::calculo_preco_total() {
 
     double preco_total_suporte;
 
-    this->set_preco_total(0);
+    this->set_preco_total(0); // Zera o preco total, para fazer a recontagem de todos produtos do carrinho
 
     for (int i = 0; i < this->_produtos.size(); i++) {
-        preco_total_suporte += this->_produtos[i].get_preco();
+        preco_total_suporte += this->_produtos[i].get_preco(); 
     }
     
     this->set_preco_total(preco_total_suporte);

@@ -46,7 +46,6 @@ double Venda::get_desconto() {
     return this->_desconto;
 }
 
-
 double Venda::get_valor_recebido() {
     return this->_valor_recebido;
 }
@@ -55,11 +54,11 @@ double Venda::get_troco() {
     return this->_troco;
 }
 
-Carrinho* Venda::get_carrinho() { //Revisar - RFZ
+Carrinho* Venda::get_carrinho() {
     return _carrinho;
 } 
 
-double Venda::get_valor_total_pagar() { //Pega o preco total do carrinho e aplica o desconto
+double Venda::get_valor_total_pagar() { // Obtem o preco total do carrinho e aplica o desconto para gerar o valor total a pagar
     return Venda::get_carrinho()->get_preco_total() - (Venda::get_carrinho()->get_preco_total() * this->get_desconto());
 }
 
@@ -75,11 +74,11 @@ void Venda::set_data(std::string data) {
     this->_data = data;
 }
 
-void Venda::set_cliente_atendido(Cliente *cliente_atendido) { //Revisar - RFZ
+void Venda::set_cliente_atendido(Cliente *cliente_atendido) {
     this->_cliente_atendido = cliente_atendido;
 } 
 
-void Venda::set_atendente_consultado(Atendente *atendente_consultado) {  //Revisar - RFZ
+void Venda::set_atendente_consultado(Atendente *atendente_consultado) {  
     this->_atendente_consultado = atendente_consultado;
 }
 
@@ -95,7 +94,7 @@ void Venda::set_troco(double troco) {
     this->_troco = troco;
 }
 
-void Venda::set_carrinho(Carrinho *carrinho) { //Revisar - RFZ
+void Venda::set_carrinho(Carrinho *carrinho) { 
     this->_carrinho = carrinho;
 }
 
@@ -134,18 +133,18 @@ void Venda::calcula_troco() {
 
     suporte_valor_total -= suporte_valor_recebido;
 
-    while (suporte_valor_total > 0) {
+    while (suporte_valor_total > 0) { //Enquanto o valor total for maior que 0, ira solicitar que a pessoa deposite mais dinheiro
         std::cout << "O dinheiro recebido ainda nao e suficiente para pagar o valor total, ainda e necessario pagar R$ " << suporte_valor_total << std::endl;
         std::cout << "Insira o restante do dinheiro: \n";
         std::cin >> suporte_valor_recebido;
-        suporte_valor_total -= suporte_valor_recebido;
+        suporte_valor_total -= suporte_valor_recebido; 
     }
 
     if (suporte_valor_total == 0.00) {
         this->set_troco(0);
     }
     else {
-        this->set_troco(abs(suporte_valor_total));
+        this->set_troco(abs(suporte_valor_total)); // Corrigi o valor negativo gerado no suporte_valor_total -= suporte_valor_recebido para gerar o troco
     }
 
     std::cout << "O valor do troco é: R$ " << this->get_troco() << std::endl;
