@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cmath>
+#include <iomanip>
 
 #include "Cliente.h"
 #include "Atendente.h"
@@ -144,9 +146,9 @@ void Venda::calcula_troco() {
         this->set_troco(0);
     }
     else {
-        this->set_troco(abs(suporte_valor_total)); // Corrigi o valor negativo gerado no suporte_valor_total -= suporte_valor_recebido para gerar o troco
+        this->set_troco((-1)*(suporte_valor_total)); // Corrigi o valor negativo gerado no suporte_valor_total -= suporte_valor_recebido para gerar o troco
     }
 
-    std::cout << "O valor do troco é: R$ " << this->get_troco() << std::endl;
+    std::cout << "O valor do troco e: R$ " << std::fixed << std::setprecision(2) << this->get_troco() << std::endl;
     this->set_valor_recebido(this->get_valor_total_pagar());
 }
