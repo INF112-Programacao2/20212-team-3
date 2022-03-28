@@ -3,6 +3,16 @@
     padding: 0;
 }
 
+@font-face {
+    font-family: 'Anton';
+    src: url('../fonts/Anton-Regular.ttf'); ;
+}
+    
+@font-face {
+    font-family: 'Thin';
+    src: url('../fonts/Vds-Thin.ttf');
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -18,7 +28,7 @@ table, th, td {
 }
 
 table {
-    width: 95%;
+    width: 100%;
 }
 
 th {
@@ -32,4 +42,28 @@ td {
 
 tr:hover {
     background-color: blueviolet;
+}
+
+.botoesHeader {
+    text-align: center;
+}
+
+.botoesHeader a {
+    border-style: solid;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    font-family: 'Thin';
+    margin-top: 50px;
+    display: inline-block;
+    width: 25%;
+} 
+  
+.botoesHeader a:hover {
+    background-color: white;
+    border-color: white;
+    color: black;
 }
