@@ -77,8 +77,8 @@ int main(void) {
     clientes.push_back(*cl3);
 
     // Codigos dos gerentes = 1, dos caixas = 2, dos estoquistas = 3, dos atendentes = 4
-    // Inicializando os objetos das subclasses de Funcionario
 
+    // Inicializando os objetos das subclasses de Funcionario
     Gerente gr1(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
     
     // Adiciona o gerente no vector gerentes e no vector funcionarios
