@@ -14,6 +14,12 @@ O grupo criou um software para supermercado chamado NRW Supermarket, que busca f
 
 ![Alt text](https://github.com/INF112-Programacao2/20212-team-3/blob/main/Imagens/logoNRW.gif)
 
+Conheça tambem nosso site!
+
+- https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html
+
+Senha de acesso ao botão funcionarios: nrw2022
+
 # Classes
  - Cliente
  - Produtos
