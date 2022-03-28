@@ -10,36 +10,8 @@ body {
     height: 100vh;
     background: linear-gradient(0,#16DB65,#0C120C);
   }
-  @font-face {
-    font-family: 'Anton';
-    src: url('../fonts/Anton-Regular.ttf'); ;
-  }
 
-  .ig{
-    display:flex;
-  }
- .ig1{
-    text-align:center;
-    margin-top: 200px;
- }
-p.text1{
-    margin: 0;
-    color: white;
-    font-family:'Courier New', Courier, monospace;
-   
-}
-ul.list{
-    list-style-type: circle;
-    color:white;
-    font-family: 'Courier New', Courier, monospace;
+#sobre{
+  color:white;
 }
 
-#div1{
-     text-align: center;
-}
-
-#div2{
-margin-top: 100px;
-margin-right: 100px;
-   text-align: center;
-}
