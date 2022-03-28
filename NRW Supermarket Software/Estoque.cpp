@@ -4,6 +4,7 @@
 #include "Estoque.h"
 #include "Produto.h"
 
+
 void Estoque::adicionar_produto(Produto *produto, int quantidade) {
        _produtos.push_back(*produto);
        _quantidade.push_back(quantidade);                //adiciona o produto e sua quantidade

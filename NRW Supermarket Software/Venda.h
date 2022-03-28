@@ -25,7 +25,8 @@ private:
     double _valor_total_pagar;
 
 public:
-    Venda(int codigo, int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho); //Revisar - RFZ
+    Venda(int codigo, int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho);
+    ~Venda();
 
     // Metodos get dos atributos privados
     int get_codigo();

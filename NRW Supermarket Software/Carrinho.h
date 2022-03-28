@@ -16,6 +16,7 @@ private:
 
 public:
     Carrinho();
+    ~Carrinho();
 
     unsigned int get_codigo();
     double get_preco_total();

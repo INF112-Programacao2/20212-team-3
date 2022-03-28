@@ -12,6 +12,10 @@ Carrinho::Carrinho() {
     codigo_suporte++;
 }
 
+Carrinho::~Carrinho() {
+    
+}
+
 unsigned int Carrinho::get_codigo() {
     return this->_codigo;
 }

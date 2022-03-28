@@ -28,7 +28,7 @@ std::vector<Carrinho*> carrinhos;
 std::vector<Venda*> vendas;
 
 /* TELAS */
-void tela_iniciar_software();
+void tela_iniciar_software(int *verifica_acesso);
 void tela_login(int *add_codigo, std::string *add_senha);
 void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login);
 void tela_inicial(Funcionario *funcionario_login);
@@ -118,29 +118,60 @@ int main(void) {
 
     Carrinho *cr2 = new Carrinho();
     carrinhos.push_back(cr2);
-    cr2->adicionar_produto(pr1,1);
-    cr2->adicionar_produto(pr2,3);
+    cr2->adicionar_produto(pr3,1);
+    cr2->adicionar_produto(pr4,3);
 
     Carrinho *cr3 = new Carrinho();
     carrinhos.push_back(cr3);
-    cr3->adicionar_produto(pr1,1);
-    cr3->adicionar_produto(pr2,3);
-       
-
-    Carrinho *cr4 = new Carrinho();
-    carrinhos.push_back(cr4);
-    cr4->adicionar_produto(pr1,1);
-    cr4->adicionar_produto(pr2,3);   
+    cr3->adicionar_produto(pr5,1);
+    cr3->adicionar_produto(pr6,5);
+    cr3->adicionar_produto(pr7,10);
 
     // Inicio do Software
 
     int add_codigo;
     std::string add_senha;
     Funcionario *funcionario_login;
+    int verificar_acesso;
 
     while (true) {
 
-        tela_iniciar_software();
+        tela_iniciar_software(&verificar_acesso);
+
+        if (verificar_acesso == 2) {
+            tela_encerrar_software();
+            // Deletando objetos alocados dinamicamente
+            delete[] pr1;
+            delete[] pr2;
+            delete[] pr3;
+            delete[] pr4;
+            delete[] pr5;
+            delete[] pr6;
+            delete[] pr7;
+            delete[] pr8;
+            delete[] pr9;
+            delete[] pr10;
+            delete[] pr11;
+            delete[] pr12;
+            delete[] pr13;
+            delete[] cl1;
+            delete[] cl2;
+            delete[] cl3;
+            delete[] cr1;
+            delete[] cr2;
+            delete[] cr3;
+            // Deletando itens alocados nos vectors (vectors ficam vazios)
+            funcionarios.clear();
+            gerentes.clear();
+            caixas.clear();
+            atendentes.clear();
+            estoquistas.clear();
+            carrinhos.clear();
+            clientes.clear();
+            vendas.clear();
+
+            exit(0); // Interrompe o programa
+        }
 
         tela_login(&add_codigo, &add_senha);
 
@@ -152,7 +183,7 @@ int main(void) {
 
 }
 
-void tela_iniciar_software() {
+void tela_iniciar_software(int *verificar_acesso) {
 
     int verificar_acessar_sistema;
 
@@ -170,8 +201,8 @@ void tela_iniciar_software() {
     }
 
     if (verificar_acessar_sistema == 2) {
-        tela_encerrar_software(); // Chama funcao que imprime a tela de encerramento do software
-        exit(0); //Cancela todo programa
+        *verificar_acesso = 2;
+        return;
     }
 }
 
@@ -191,14 +222,10 @@ void tela_login(int *add_codigo, std::string *add_senha) {
             bool existe_funcionario = false;
 
             std::cout << "Bem Vindo ao sistema NRW Supermarket: \n" << std::endl;
-            std::cout << "Acesse nosso website: https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html\n" << std::endl;
-            std::cout << "Lista de Usuarios\n";
+            std::cout << "Para ter acesso a lista de usuarios (senha e codigos) Acesse a pagina funcionarios do nosso website:\n";
+            std::cout << "https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html\n" << std::endl;
 
-            // Imprime as senhas e codigos de todos os funcionarios
-            for (int i=0; i < funcionarios.size(); i++) {
-                std::cout << "Codigo: " << funcionarios[i]->get_codigo() << "  -----  Senha: " << funcionarios[i]->get_senha() << std::endl;
-            }
-
+            std::cout << std::endl;
             std::cout << "Digite seu codigo: \n";
             std::cin >> codigo;
             std::cout << "Digite sua senha: \n";

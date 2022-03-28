@@ -8,7 +8,11 @@
 
 Venda::Venda(int codigo, int forma_pagamento, std::string data, Cliente *cliente_atendido, Atendente *atendente_consultado, double valor_recebido, Carrinho *carrinho):
     _codigo(codigo), _forma_pagamento(forma_pagamento), _data(data), _cliente_atendido(cliente_atendido), _atendente_consultado(atendente_consultado), _valor_recebido(valor_recebido), _carrinho(carrinho) {}
+
+Venda::~Venda() {
     
+}
+
 int Venda::get_codigo() {
     return this->_codigo;
 }

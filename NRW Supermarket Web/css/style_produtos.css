@@ -32,11 +32,13 @@ table {
 }
 
 th {
+    font-family: 'Anton';
     height: 40px;
     background: linear-gradient(0, azure, #16DB65);
 }
 
 td {
+    font-family: 'Thin';
     text-align: center;
 }
 
