@@ -81,13 +81,14 @@ int main(void) {
 
     Gerente gr1(1, "Roberto Costa", 15000, "245987542-87", "Av. Castelo Branco, 43, Vicosa", "roberto.costa@gmail.com", "02/04/1983", "1roberto", true);
     
-    // Adiciona
+    // Adiciona o gerente no vector gerentes e no vector funcionarios
     gerentes.push_back(&gr1);
     funcionarios.push_back(&gr1);
 
     Caixa cx1(2, "Ana Clara", 3500, "165378930-72", "Av. Brasil, 12, Vicosa", "clara.lispector@gmail.com", "08/04/2000", "2ana", true);
     Caixa cx2(2, "Toli Ramos", 2000, "124528547-01", "Av. PH Rolfs, 56, Vicosa", "toli.ramos@yahoo.com", "20/06/1996", "2toli", false);
 
+    // Adiciona os caixas no vector caixas e no vector funcionarios
     caixas.push_back(&cx1);
     caixas.push_back(&cx2);
     funcionarios.push_back(&cx1);
@@ -95,16 +96,20 @@ int main(void) {
 
     Estoquista es1(3, "Flavinho Pneu", 5000, "646233490-80", "Av. Santa Rita, 101, Vicosa", "flavio.pneu@yahoo.com", "01/01/1991", "3flavio", true);
 
+    // Adiciona o estoquista no vector estoquistas e no vector funcionarios
     estoquistas.push_back(&es1);
     funcionarios.push_back(&es1);
 
     Atendente at1(4, "Pedro Alves", 1200, "342765498-06", "Av. Santo Antonio, 234, Vicosa", "pedro.alves@hotmail.com", "29/02/1992", "4pedro", 20);
     Atendente at2(4, "Maria Catarina", 1350, "062506530-15", "Av. Papa Joao, 322, Vicosa", "maria.catarina@gmail.com", "29/02/1992", "4maria", 20);
 
+    // Adiciona os atendentes no vector atendentes e no vector funcionarios
     atendentes.push_back(&at1);
     atendentes.push_back(&at2);
     funcionarios.push_back(&at1);
     funcionarios.push_back(&at2);
+
+    // Criando objeto carrinho de compras, adicionando os carrinhos no vector carrinho e adicionando produtos nos carrinhos
 
     Carrinho *cr1 = new Carrinho();
     carrinhos.push_back(cr1);
@@ -128,6 +133,7 @@ int main(void) {
     cr4->adicionar_produto(pr2,3);   
 
     // Inicio do Software
+
     int add_codigo;
     std::string add_senha;
     Funcionario *funcionario_login;
@@ -155,6 +161,7 @@ void tela_iniciar_software() {
     std::cout << "[2] - Nao\n";
     std::cin >> verificar_acessar_sistema;
 
+    // Verifica se foi digitado uma opcao valida
     while (verificar_acessar_sistema != 1 && verificar_acessar_sistema != 2) {
         std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
         std::cout << "[1] - Sim \n";
@@ -163,7 +170,7 @@ void tela_iniciar_software() {
     }
 
     if (verificar_acessar_sistema == 2) {
-        tela_encerrar_software();
+        tela_encerrar_software(); // Chama funcao que imprime a tela de encerramento do software
         exit(0); //Cancela todo programa
     }
 }
@@ -187,6 +194,7 @@ void tela_login(int *add_codigo, std::string *add_senha) {
             std::cout << "Acesse nosso website: https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html\n" << std::endl;
             std::cout << "Lista de Usuarios\n";
 
+            // Imprime as senhas e codigos de todos os funcionarios
             for (int i=0; i < funcionarios.size(); i++) {
                 std::cout << "Codigo: " << funcionarios[i]->get_codigo() << "  -----  Senha: " << funcionarios[i]->get_senha() << std::endl;
             }
@@ -196,6 +204,7 @@ void tela_login(int *add_codigo, std::string *add_senha) {
             std::cout << "Digite sua senha: \n";
             std::cin >> senha;
 
+            // Verifica se existe um funcionario com a senha e codigo digitado
             for (int i=0; i < funcionarios.size(); i++) {
                 if (funcionarios[i]->get_codigo() == codigo && funcionarios[i]->get_senha() ==  senha) {
                     existe_funcionario = true;
@@ -203,9 +212,11 @@ void tela_login(int *add_codigo, std::string *add_senha) {
                 }
             }
 
+            // Tratamento de excecao se nao existir funcionario com o esse codigo e/ou senha
             if (existe_funcionario == false) {
                 throw std::invalid_argument("Erro: Nao existe um funcionario com esse codigo e/ou senha. \n");
             }
+            // Para o loop se foi digitado uma senha e codigo valido
             else {
                 break;
             }
@@ -215,12 +226,14 @@ void tela_login(int *add_codigo, std::string *add_senha) {
         }
     }
 
+    // Passa adiante os valores da senha e codigo digitados
     *add_codigo = codigo;
     *add_senha = senha;
 
 }
 
 void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login) {
+    // Percorre o vector funcionarios para encontrar qual o funcionario que entrou no sistema
     for (int i=0; i < funcionarios.size(); i++) {
         if (funcionarios[i]->get_senha() == *add_senha) {
             *funcionario_login = funcionarios[i];
@@ -534,7 +547,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 case 2: {
-                    std::cout << "---------- Excluir Produto ----------\n"; //pensando a respeito disso 
+                    std::cout << "---------- Excluir Produto ----------\n";
 
                     try {
                         int codigo, quantidade;
@@ -562,7 +575,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 case 4: {
-                    std::cout << "---------- Procurar Produto ----------\n"; //tratar erro associado a digitaçao errada de dados
+                    std::cout << "---------- Procurar Produto ----------\n";
                     int codigo1; 
                     std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
                     std::cin >> codigo1;
@@ -750,7 +763,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "[1] - Cartao de Credito (a vista) \n";
                         std::cout << "[2] - Dinheiro (a vista) \n";
                         std::cin >> forma_pagamento;
-                        std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
+                        std::cout <<  "Digite o valor recebido: \n";
                         std::cin >> valor_recebido;
                         std::cout << "Digite a data: \n";
                         std::cin.ignore();
@@ -1096,7 +1109,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         std::cout << "[1] - Cartao de Credito (a vista) \n";
                         std::cout << "[2] - Dinheiro (a vista) \n";
                         std::cin >> forma_pagamento;
-                        std::cout <<  "Digite o valor recebido: \n"; //Pensar em troco
+                        std::cout <<  "Digite o valor recebido: \n";
                         std::cin >> valor_recebido;
                         std::cout << "Digite a data: \n";
                         std::cin.ignore();
@@ -1341,7 +1354,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                     break;
                 
                 case 4: {
-                    std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
+                    std::cout << "---------- Procurar Produto ----------\n";
 
                     int codigo1; 
                     std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
@@ -1382,7 +1395,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                 break;
             
             case 2: {
-                std::cout << "---------- Procurar Produto ----------\n";//tratar erro associado a digitaçao errada de dados
+                std::cout << "---------- Procurar Produto ----------\n";
 
                 int codigo; 
                 std::cout << "Digite o codigo do produto que deseja procurar: " << std::endl;
