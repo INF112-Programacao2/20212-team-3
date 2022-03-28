@@ -119,7 +119,7 @@ void Venda::imprimir_nota_fiscal() {
     std::cout << "------------------------------------------------\n";
     std::cout << "Valor a Pagar: R$" << this->get_valor_total_pagar() << std::endl; 
     std::cout << "Forma de Pagamento: " << this->get_forma_pagamento() << std::endl;
-    std::cout << "Desconto: R$" << this->get_desconto() << std::endl; 
+    std::cout << "Desconto: " << this->get_desconto() * 100 << "%" << std::endl; 
     std::cout << "Valor Recebido: R$" << this->get_valor_recebido() << std::endl;
     std::cout << "Troco: R$" << this->get_troco() << std::endl; 
     std::cout << "------------------------------------------------\n";

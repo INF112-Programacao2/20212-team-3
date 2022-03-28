@@ -547,29 +547,39 @@ void tela_inicial(Funcionario *funcionario_login) {
                 case 1: {
                     std::cout << "---------- Adicionar Produto ----------\n";
 
-                    int codigo;
-                    std::string nome, validade, marca;
-                    double preco;
+                    try {
+                        int codigo;
+                        std::string nome, validade, marca;
+                        double preco;
                             
                             
-                    std::cout << "Digite o codigo do produto: " << std::endl;
-                    std::cin >> codigo;
-                    std::cout << "Digite o nome do produto: " << std::endl;
-                    std::cin.ignore();
-                    std::getline(std::cin,nome);
-                    std::cout << "Digite o preco do produto: " << std::endl;  
-                    std::cin >> preco;
-                    std::cout << "Digite a validade do produto: " << std::endl;
-                    std::cin.ignore();
-                    std::getline(std::cin, validade);
-                    std::cout << "Digite a marca do produto: " << std::endl;
-                    std::getline(std::cin, marca);
-                    std::cout << "Digite a quantidade: " << std::endl;
-                    std::cin >> quantidade1;
-                            
-                    Produto *pr = new Produto(codigo, nome, preco, validade, marca);
-                            
-                    estoque.adicionar_produto(pr,quantidade1);
+                        std::cout << "Digite o codigo do produto: " << std::endl;
+                        std::cin >> codigo;
+                        std::cout << "Digite o nome do produto: " << std::endl;
+                        std::cin.ignore();
+                        std::getline(std::cin,nome);
+                        std::cout << "Digite o preco do produto: " << std::endl;  
+                        std::cin >> preco;
+                        std::cout << "Digite a validade do produto: " << std::endl;
+                        std::cin.ignore();
+                        std::getline(std::cin, validade);
+                        std::cout << "Digite a marca do produto: " << std::endl;
+                        std::getline(std::cin, marca);
+                        std::cout << "Digite a quantidade: " << std::endl;
+                        std::cin >> quantidade1;
+
+                        if (estoque.verificar_codigo(codigo) == true) {
+                            throw std::invalid_argument("Erro: Ja existe um produto com esse codigo.\n");
+                        }
+
+                        if (estoque.verificar_codigo(codigo) == false) {
+                            Produto *pr = new Produto(codigo, nome, preco, validade, marca);
+                            estoque.adicionar_produto(pr,quantidade1);
+                        }
+                    }
+                    catch (std::invalid_argument &erro) {
+                        std::cerr << erro.what() << std::endl;
+                    }
                 }
                     break;
                 

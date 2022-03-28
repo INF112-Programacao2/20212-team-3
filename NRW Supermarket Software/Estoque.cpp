@@ -54,7 +54,8 @@ bool Estoque::procurar_produto(int codigo) {
 
 bool Estoque::verificar_codigo(int codigo) {
     for (int i=0; i < _produtos.size(); i++) {
-        if (_produtos[i].get_codigo() == codigo) {      //pesquisa o produto e caso tenha um produto com o codigo procurado,ele retorna true
+        if (_produtos[i].get_codigo() == codigo) { 
+            return true;     //pesquisa o produto e caso tenha um produto com o codigo procurado,ele retorna true
         }
     }
     return false;
