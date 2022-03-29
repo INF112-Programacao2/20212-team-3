@@ -336,6 +336,7 @@ void tela_cliente() {
                         std::cout << "Digite o codigo do carrinho que deseja excluir: \n";
                         std::cin >> codigo_carrinho;
 
+                        // deleta o carrinho
                         for (int i = 0; i < carrinhos.size(); i++) {
                             if (carrinhos[i]->get_codigo() == codigo_carrinho) {
                                 carrinhos.erase(carrinhos.begin()+i);
@@ -344,7 +345,7 @@ void tela_cliente() {
                                 break;
                             }
                         }
-
+                        // verifica se tem um carrinho com esse codigo
                         if (existe_carrinho == false) {
                             throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo! \n");
                         }
@@ -372,6 +373,7 @@ void tela_cliente() {
                         std::cout << "Digite o codigo do seu carrinho: \n";
                         std::cin >> codigo_carrinho;
 
+                        // carrinho_suporte aponta para o carrinho desejado
                         for (int i = 0; i < carrinhos.size(); i++) {
                             if (carrinhos[i]->get_codigo() == codigo_carrinho) {
                                 carrinho_suporte = carrinhos[i];
@@ -397,17 +399,19 @@ void tela_cliente() {
 
                             for (int i = 0; i < produtos.size(); i++) {
                                 if (produtos[i]->get_codigo() == codigo_produto) {
-                                    carrinho_suporte->adicionar_produto(produtos[i],quantidade);
-                                    estoque.excluir_produto(codigo_produto,quantidade);  
+                                    carrinho_suporte->adicionar_produto(produtos[i],quantidade);   // adiciona produto e sua quantidade no carrinho
+                                    estoque.excluir_produto(codigo_produto,quantidade);   // exclui a quantidade do produto adicionado no carrinho do estoque
                                     existe_produto = true;
                                     break;
                                 }
                             }
 
+                            // verifica se tem um carrinho com esse codigo
                             if (existe_carrinho == false) {
                                 throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo. \n");
                             }
 
+                            // verifica se tem um produto com esse codigo
                             if (existe_produto == false) {
                                 throw std::invalid_argument("Erro: Nao existe produto com esse codigo. \n");
                             }                      
@@ -439,6 +443,7 @@ void tela_cliente() {
                                 break;
                             }
 
+                        // carrinho_suporte aponta para o carrinho desejado
                         for (int i = 0; i < carrinhos.size(); i++) {
                             if (carrinhos[i]->get_codigo() == codigo_carrinho) {
                                 carrinho_suporte = carrinhos[i];
@@ -457,8 +462,8 @@ void tela_cliente() {
 
                             for (int i = 0; i < produtos.size(); i++) {
                                 if (produtos[i]->get_codigo() == codigo_produto) {
-                                    carrinho_suporte->remover_produto(produtos[i],quantidade);
-                                    estoque.adicionar_produto(produtos[i],quantidade); 
+                                    carrinho_suporte->remover_produto(produtos[i],quantidade); // remove o produto e sua quantidade do carrinho
+                                    estoque.adicionar_produto(produtos[i],quantidade); // adiciona o produto e sua quantidade removida do carrinho de volta ao estoque
                                     existe_produto = true;
                                     break;
                                 }
