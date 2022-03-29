@@ -18,6 +18,7 @@
 
 /* BASE DE DADOS */
 Estoque estoque;
+std::vector<Produto*> produtos;
 std::vector<Cliente> clientes;
 std::vector<Funcionario*> funcionarios;
 std::vector<Gerente*> gerentes;
@@ -51,6 +52,11 @@ int main(void) {
     Produto *pr11 = new Produto(11, "Miojo", 2.00, "10/23", "Nissin");
     Produto *pr12 = new Produto(12, "Leite Condensado", 10.00, "03/22", "Piracanjuba");
     Produto *pr13 = new Produto(13, "Doce de Leite", 25.00, "10/22", "Vicosa");
+
+    //Adiciona os produtos no vector de produtos
+    produtos.push_back(pr1);
+    produtos.push_back(pr2);
+    produtos.push_back(pr3);
 
     // Adiciona os produtos no estoque
     estoque.adicionar_produto(pr1,3); 
@@ -110,24 +116,6 @@ int main(void) {
     funcionarios.push_back(&at1);
     funcionarios.push_back(&at2);
 
-    // Criando objeto carrinho de compras, adicionando os carrinhos no vector carrinho e adicionando produtos nos carrinhos
-
-/*  Carrinho *cr1 = new Carrinho();
-    carrinhos.push_back(cr1);
-    cr1->adicionar_produto(pr1,1);
-    cr1->adicionar_produto(pr2,3);
-
-    Carrinho *cr2 = new Carrinho();
-    carrinhos.push_back(cr2);
-    cr2->adicionar_produto(pr3,1);
-    cr2->adicionar_produto(pr4,3);
-
-    Carrinho *cr3 = new Carrinho();
-    carrinhos.push_back(cr3);
-    cr3->adicionar_produto(pr5,1);
-    cr3->adicionar_produto(pr6,5);
-    cr3->adicionar_produto(pr7,10); */
-
     // Inicio do Software
 
     int add_codigo;
@@ -139,28 +127,25 @@ int main(void) {
 
         tela_iniciar_software(&verificar_acesso);
 
-        if (verificar_acesso == 2) {
+        if (verificar_acesso == 0) {
             tela_encerrar_software();
             // Deletando objetos alocados dinamicamente
-            delete[] pr1;
-            delete[] pr2;
-            delete[] pr3;
-            delete[] pr4;
-            delete[] pr5;
-            delete[] pr6;
-            delete[] pr7;
-            delete[] pr8;
-            delete[] pr9;
-            delete[] pr10;
-            delete[] pr11;
-            delete[] pr12;
-            delete[] pr13;
-            delete[] cl1;
-            delete[] cl2;
-            delete[] cl3;
-/*          delete[] cr1;
-            delete[] cr2;
-            delete[] cr3; */
+            delete pr1;
+            delete pr2;
+            delete pr3;
+            delete pr4;
+            delete pr5;
+            delete pr6;
+            delete pr7;
+            delete pr8;
+            delete pr9;
+            delete pr10;
+            delete pr11;
+            delete pr12;
+            delete pr13;
+            delete cl1;
+            delete cl2;
+            delete cl3;
             // Deletando itens alocados nos vectors (vectors ficam vazios)
             funcionarios.clear();
             gerentes.clear();
@@ -174,11 +159,11 @@ int main(void) {
             exit(0); // Interrompe o programa
         }
 
-        if (verificar_acesso == 1) {
+        if (verificar_acesso == 2) {
             tela_cliente();
         }
 
-        if (verificar_acesso == 0) {
+        if (verificar_acesso == 1) {
             tela_login(&add_codigo, &add_senha);
 
             encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
@@ -194,22 +179,22 @@ void tela_iniciar_software(int *verificar_acesso) {
     int verificar_acessar_sistema;
 
     std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
-    std::cout << "[0] - Sim (eh Funcionario) \n";
-    std::cout << "[1] - Sim (eh Cliente) \n";
-    std::cout << "[2] - Nao\n";
+    std::cout << "[1] - Sim (eh Funcionario) \n";
+    std::cout << "[2] - Sim (eh Cliente) \n";
+    std::cout << "[0] - Nao\n";
     std::cin >> verificar_acessar_sistema;
 
     // Verifica se foi digitado uma opcao valida
     while (verificar_acessar_sistema != 0 && verificar_acessar_sistema != 1 && verificar_acessar_sistema != 2) {
         std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
-        std::cout << "[0] - Sim (Funcionario) \n";
-        std::cout << "[1] - Sim (Cliente) \n";
-        std::cout << "[2] - Nao\n";
+        std::cout << "[1] - Sim (Funcionario) \n";
+        std::cout << "[2] - Sim (Cliente) \n";
+        std::cout << "[0] - Nao\n";
         std::cin >> verificar_acessar_sistema;
     }
 
-    if (verificar_acessar_sistema == 2) {
-        *verificar_acesso = 2;
+    if (verificar_acessar_sistema == 0) {
+        *verificar_acesso = 0;
         return;
     }
 
@@ -235,7 +220,6 @@ void tela_login(int *add_codigo, std::string *add_senha) {
             std::cout << "Para ter acesso a lista de usuarios (senha e codigos) Acesse a pagina funcionarios do nosso website:\n";
             std::cout << "https://inf112-programacao2.github.io/20212-team-3/NRW%20Supermarket%20Web/index.html\n" << std::endl;
 
-            std::cout << std::endl;
             std::cout << "Digite seu codigo: \n";
             std::cin >> codigo;
             std::cout << "Digite sua senha: \n";
@@ -305,40 +289,143 @@ void tela_cliente() {
         std::cin >> opcao_escolhida;
 
         switch (opcao_escolhida) {
-            case 1: {
+        case 1: {
 
-                std::cout << "Deseja criar um carrinho ? \n";
-                std::cout << "[1] - Sim \n";
-                std::cout << "[2] - Nao \n";
+                std::cout << "---------- Administrar Carrinho ----------\n";
+                std::cout << "[1] - Criar Carrinho \n";
+                std::cout << "[2] - Excluir Carrinho \n";
+                std::cout << "[3] - Adicionar Produto no Carrinho \n";
+                std::cout << "[4] - Remover Produto do Carrinho \n";
+                std::cout << "[0] - Voltar\n";
 
                 std::cin >> opcao_escolhida2;
 
                 switch (opcao_escolhida2) {
                 case 1: {
+
+                    std::cout << "---------- Criar Carrinho ----------\n";
+
                     Carrinho *cr = new Carrinho();
+    
                     carrinhos.push_back(cr);
 
                     std::cout << "O codigo do seu carrinho e: " << cr->get_codigo() << std::endl;
+                    break;
+                }
+
+                case 2: {
+
+                    std::cout << "---------- Excluir Carrinho ----------\n";
+
+                    int codigo_carrinho;
+
+                    std::cout << "Digite o codigo do carrinho que deseja excluir: \n";
+                    std::cin >> codigo_carrinho;
+
+                    for (int i = 0; i < carrinhos.size(); i++) {
+                        if (carrinhos[i]->get_codigo() == codigo_carrinho) {
+                            carrinhos.erase(carrinhos.begin()+i);
+                            break;
+                        }
+                    }
+
+                    break;
+                }
+
+                case 3: {
+
+                    std::cout << "---------- Adicionar Produto no Carrinho ----------\n";
+
+                    int codigo_produto;
+                    int codigo_carrinho;
+                    int quantidade;
+
+                    Carrinho* carrinho_suporte;
+
+                    std::cout << "Digite o codigo do seu carrinho: \n";
+                    std::cin >> codigo_carrinho;
+
+                    for (int i = 0; i < carrinhos.size(); i++) {
+                        if (carrinhos[i]->get_codigo() == codigo_carrinho) {
+                            carrinho_suporte = carrinhos[i];
+                        }
+                    }
+
                     std::cout << "Os codigos dos produtos disponivies no estoque sao: \n" << std::endl;
                     estoque.exibir_estoque_reduzido();
 
-                    int codigo;
-                    int quantidade;
+                    while (true) {
 
-                    do {
                         std::cout << "Digite o codigo do produto que deseja comprar: \n";
-                        std::cin >> codigo;
+                        std::cin >> codigo_produto;
+
                         std::cout << "Digite a quantidade desse produto que deseja comprar: \n";
                         std::cin >> quantidade;
 
-                    }
-                    while (codigo != -1);
-                    
+                        for (int i = 0; i < produtos.size(); i++) {
+                            if (produtos[i]->get_codigo() == codigo_produto) {
+                                carrinho_suporte->adicionar_produto(produtos[i],quantidade);
+                                break;
+                            }
+                        }
+
+                        estoque.excluir_produto(codigo_produto,quantidade);                        
+
+                        std::cout << "Deseja parar as compras? Caso queira, digite (-1)!\n";
+                        std::cin >> codigo_produto;
+
+                        if (codigo_produto == -1) {
+                            break;
+                        }
+
+                    }  
                     break;
                 }
-                case 2:
-                    std::cout << "Obrigado! Volte sempre. \n";
+
+                case 4: {
+                    std::cout << "---------- Remover Produto do Carrinho ----------\n";                    
+
+                    int codigo_produto;
+                    int codigo_carrinho;
+                    int quantidade;
+
+                    Carrinho* carrinho_suporte;
+
+                    std::cout << "Digite o codigo do seu carrinho: \n";
+                    std::cin >> codigo_carrinho;
+
+                    for (int i = 0; i < carrinhos.size(); i++) {
+                        if (carrinhos[i]->get_codigo() == codigo_carrinho) {
+                            carrinho_suporte = carrinhos[i];
+                        }
+                    }
+
+                    while (true) {
+
+                        std::cout << "Digite o codigo do produto que deseja excluir: \n";
+                        std::cin >> codigo_produto;
+
+                        std::cout << "Digite a quantidade desse produto que deseja excluir: \n";
+                        std::cin >> quantidade;
+
+                        for (int i = 0; i < produtos.size(); i++) {
+                            if (produtos[i]->get_codigo() == codigo_produto) {
+                                carrinho_suporte->remover_produto(produtos[i],quantidade);
+                                estoque.adicionar_produto(produtos[i],quantidade); 
+                                break;
+                            }
+                        }                       
+
+                        std::cout << "Deseja parar de remover? Caso queira, digite (-1)! \n";
+                        std::cin >> codigo_produto;
+
+                        if (codigo_produto == -1) {
+                            break;
+                        }
+
+                    }  
                     break;
+                }
 
                 default:
                     std::cout << "Opcao invalida! \n";

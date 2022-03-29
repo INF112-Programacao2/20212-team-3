@@ -4,10 +4,25 @@
 #include "Estoque.h"
 #include "Produto.h"
 
-
 void Estoque::adicionar_produto(Produto *produto, int quantidade) {
-       _produtos.push_back(*produto);
-       _quantidade.push_back(quantidade);                //adiciona o produto e sua quantidade
+
+    bool existe_produtos = false;
+
+    for (int i = 0; i < this->_produtos.size(); i++) {
+        if (produto->get_codigo() == _produtos[i].get_codigo()) {
+            for (int j = 0; j < quantidade; j++) {
+                _quantidade[i]++;
+            }
+            existe_produtos = true;
+            break;
+        }
+    }
+
+    if (existe_produtos == false) {
+        this->_produtos.push_back(*produto);
+        this->_quantidade.push_back(quantidade);                //adiciona o produto e sua quantidade
+    }
+    
 }
 
 void Estoque::excluir_produto(int codigo, int quantidade) {  
@@ -21,10 +36,10 @@ void Estoque::excluir_produto(int codigo, int quantidade) {
                     throw std::invalid_argument("A quantidade digita é maior que a presente no estoque!"); //Se a quantidade que ele requer for maior que a presente,logo é mostrado um erro.
                 }
                 if (_quantidade[contador] - quantidade == 0){                 //procura o produto pelo codigo e entao se a quantidade a ser retirada é igual a quantidade presente,logo ele exclui o produto do catalogo.
-                   _produtos.erase(_produtos.begin() + contador);  //procura o produto e exclui do vector _produtos.s
+                   this->_produtos.erase(_produtos.begin() + contador);  //procura o produto e exclui do vector _produtos.s
                 }
                 else if(_quantidade[contador] - quantidade > 0 ){
-                    _quantidade[contador] -= quantidade;   //apenas diminui a quantidade
+                    this->_quantidade[contador] -= quantidade;   //apenas diminui a quantidade
                 } 
             }
         }
@@ -37,7 +52,7 @@ void Estoque::excluir_produto(int codigo, int quantidade) {
 void Estoque::exibir_estoque() {
     for (int i = 0 ; i < _produtos.size(); i++) {
         _produtos[i].exibir_dados();
-        std::cout << "quantidade: " <<  _quantidade[i] << std::endl;
+        std::cout << "Quantidade: " <<  _quantidade[i] << std::endl;
     }
 }
 

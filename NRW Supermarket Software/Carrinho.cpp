@@ -51,6 +51,7 @@ void Carrinho::remover_produto(Produto *produto, int quantidade) {
             }
         }
     }
+    calculo_preco_total(); // Toda vez que é adicionado um novo produto no carrinho, ele reconta o valor total dos produtos dentro do carrinho
 
 }
 
