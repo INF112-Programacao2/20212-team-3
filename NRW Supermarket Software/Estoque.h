@@ -16,6 +16,7 @@ public:
     void adicionar_produto(Produto *produto, int _quantidade); 
     void excluir_produto(int codigo, int _quantidade); 
     void exibir_estoque();
+    void exibir_estoque_reduzido();
    
     bool procurar_produto(int codigo);
     bool verificar_codigo(int codigo);

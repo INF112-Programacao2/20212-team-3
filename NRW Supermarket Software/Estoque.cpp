@@ -39,7 +39,14 @@ void Estoque::exibir_estoque() {
         _produtos[i].exibir_dados();
         std::cout << "quantidade: " <<  _quantidade[i] << std::endl;
     }
- }
+}
+
+void Estoque::exibir_estoque_reduzido() {
+    for (int i=0; i < _produtos.size(); i++) {
+        std::cout << "Codigo: " << _produtos[i].get_codigo() << "  ---  Nome: " <<_produtos[i].get_nome() << "  ---  Preco: " << _produtos[i].get_preco() << "  ---  Quant: " << _quantidade[i] << std::endl;
+        std::cout << std::endl;
+    }
+}
 
 bool Estoque::procurar_produto(int codigo) {
          for(int i = 0; i < _produtos.size(); i++) {

@@ -33,6 +33,7 @@ void tela_login(int *add_codigo, std::string *add_senha);
 void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login);
 void tela_inicial(Funcionario *funcionario_login);
 void tela_encerrar_software();
+void tela_cliente();
 
 int main(void) {
 
@@ -111,7 +112,7 @@ int main(void) {
 
     // Criando objeto carrinho de compras, adicionando os carrinhos no vector carrinho e adicionando produtos nos carrinhos
 
-    Carrinho *cr1 = new Carrinho();
+/*  Carrinho *cr1 = new Carrinho();
     carrinhos.push_back(cr1);
     cr1->adicionar_produto(pr1,1);
     cr1->adicionar_produto(pr2,3);
@@ -125,7 +126,7 @@ int main(void) {
     carrinhos.push_back(cr3);
     cr3->adicionar_produto(pr5,1);
     cr3->adicionar_produto(pr6,5);
-    cr3->adicionar_produto(pr7,10);
+    cr3->adicionar_produto(pr7,10); */
 
     // Inicio do Software
 
@@ -157,9 +158,9 @@ int main(void) {
             delete[] cl1;
             delete[] cl2;
             delete[] cl3;
-            delete[] cr1;
+/*          delete[] cr1;
             delete[] cr2;
-            delete[] cr3;
+            delete[] cr3; */
             // Deletando itens alocados nos vectors (vectors ficam vazios)
             funcionarios.clear();
             gerentes.clear();
@@ -173,12 +174,17 @@ int main(void) {
             exit(0); // Interrompe o programa
         }
 
-        tela_login(&add_codigo, &add_senha);
+        if (verificar_acesso == 1) {
+            tela_cliente();
+        }
 
-        encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
-        
-        tela_inicial(funcionario_login);
+        if (verificar_acesso == 0) {
+            tela_login(&add_codigo, &add_senha);
 
+            encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
+            
+            tela_inicial(funcionario_login);
+        }
     }
 
 }
@@ -188,14 +194,16 @@ void tela_iniciar_software(int *verificar_acesso) {
     int verificar_acessar_sistema;
 
     std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
-    std::cout << "[1] - Sim \n";
+    std::cout << "[0] - Sim (eh Funcionario) \n";
+    std::cout << "[1] - Sim (eh Cliente) \n";
     std::cout << "[2] - Nao\n";
     std::cin >> verificar_acessar_sistema;
 
     // Verifica se foi digitado uma opcao valida
-    while (verificar_acessar_sistema != 1 && verificar_acessar_sistema != 2) {
+    while (verificar_acessar_sistema != 0 && verificar_acessar_sistema != 1 && verificar_acessar_sistema != 2) {
         std::cout << "Deseja entrar no sistema NRW Supermarket: \n";
-        std::cout << "[1] - Sim \n";
+        std::cout << "[0] - Sim (Funcionario) \n";
+        std::cout << "[1] - Sim (Cliente) \n";
         std::cout << "[2] - Nao\n";
         std::cin >> verificar_acessar_sistema;
     }
@@ -204,6 +212,8 @@ void tela_iniciar_software(int *verificar_acesso) {
         *verificar_acesso = 2;
         return;
     }
+
+    *verificar_acesso = verificar_acessar_sistema;
 }
 
 void tela_encerrar_software() {
@@ -280,6 +290,73 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
             break;
         }
     }
+}
+
+void tela_cliente() {
+
+    int opcao_escolhida;
+    int opcao_escolhida2;
+
+    do {
+        std::cout << "---------- Tela Inicial Cliente ----------\n";
+        std::cout << "[1] - Admistrar Carrinho \n";
+        std::cout << "[0] - Sair \n";
+
+        std::cin >> opcao_escolhida;
+
+        switch (opcao_escolhida) {
+            case 1: {
+
+                std::cout << "Deseja criar um carrinho ? \n";
+                std::cout << "[1] - Sim \n";
+                std::cout << "[2] - Nao \n";
+
+                std::cin >> opcao_escolhida2;
+
+                switch (opcao_escolhida2) {
+                case 1: {
+                    Carrinho *cr = new Carrinho();
+                    carrinhos.push_back(cr);
+
+                    std::cout << "O codigo do seu carrinho e: " << cr->get_codigo() << std::endl;
+                    std::cout << "Os codigos dos produtos disponivies no estoque sao: \n" << std::endl;
+                    estoque.exibir_estoque_reduzido();
+
+                    int codigo;
+                    int quantidade;
+
+                    do {
+                        std::cout << "Digite o codigo do produto que deseja comprar: \n";
+                        std::cin >> codigo;
+                        std::cout << "Digite a quantidade desse produto que deseja comprar: \n";
+                        std::cin >> quantidade;
+
+                    }
+                    while (codigo != -1);
+                    
+                    break;
+                }
+                case 2:
+                    std::cout << "Obrigado! Volte sempre. \n";
+                    break;
+
+                default:
+                    std::cout << "Opcao invalida! \n";
+                    break;
+                }
+
+                break;
+            }
+
+            case 0:
+                break;
+
+            default:
+                std::cout << "Opcao invalida! \n";
+                break;
+        }
+    }
+    while (opcao_escolhida != 0);
 }
 
 void tela_inicial(Funcionario *funcionario_login) {
