@@ -57,6 +57,16 @@ int main(void) {
     produtos.push_back(pr1);
     produtos.push_back(pr2);
     produtos.push_back(pr3);
+    produtos.push_back(pr4);
+    produtos.push_back(pr5);
+    produtos.push_back(pr6);
+    produtos.push_back(pr7);
+    produtos.push_back(pr8);
+    produtos.push_back(pr9);
+    produtos.push_back(pr10);
+    produtos.push_back(pr11);
+    produtos.push_back(pr12);
+    produtos.push_back(pr13);
 
     // Adiciona os produtos no estoque
     estoque.adicionar_produto(pr1,3); 
@@ -146,6 +156,7 @@ int main(void) {
             delete cl1;
             delete cl2;
             delete cl3;
+
             // Deletando itens alocados nos vectors (vectors ficam vazios)
             funcionarios.clear();
             gerentes.clear();
@@ -309,7 +320,8 @@ void tela_cliente() {
     
                     carrinhos.push_back(cr);
 
-                    std::cout << "O codigo do seu carrinho e: " << cr->get_codigo() << std::endl;
+                    std::cout << "O codigo do seu carrinho eh: " << cr->get_codigo() << std::endl;
+                    std::cout << std::endl;
                     break;
                 }
 
@@ -317,16 +329,28 @@ void tela_cliente() {
 
                     std::cout << "---------- Excluir Carrinho ----------\n";
 
-                    int codigo_carrinho;
+                    try {
+                        int codigo_carrinho;
+                        bool existe_carrinho = false;
 
-                    std::cout << "Digite o codigo do carrinho que deseja excluir: \n";
-                    std::cin >> codigo_carrinho;
+                        std::cout << "Digite o codigo do carrinho que deseja excluir: \n";
+                        std::cin >> codigo_carrinho;
 
-                    for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i]->get_codigo() == codigo_carrinho) {
-                            carrinhos.erase(carrinhos.begin()+i);
-                            break;
+                        for (int i = 0; i < carrinhos.size(); i++) {
+                            if (carrinhos[i]->get_codigo() == codigo_carrinho) {
+                                carrinhos.erase(carrinhos.begin()+i);
+                                std::cout << "Carrinho excluido com sucesso! \n";
+                                existe_carrinho = true;
+                                break;
+                            }
                         }
+
+                        if (existe_carrinho == false) {
+                            throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo! \n");
+                        }
+                    }
+                    catch (std::invalid_argument &erro) {
+                        std::cerr << erro.what() << std::endl;
                     }
 
                     break;
@@ -336,94 +360,123 @@ void tela_cliente() {
 
                     std::cout << "---------- Adicionar Produto no Carrinho ----------\n";
 
-                    int codigo_produto;
-                    int codigo_carrinho;
-                    int quantidade;
+                    try {
+                        int codigo_produto;
+                        int codigo_carrinho;
+                        int quantidade;
+                        bool existe_carrinho = false;
+                        bool existe_produto = false;
 
-                    Carrinho* carrinho_suporte;
+                        Carrinho* carrinho_suporte;
 
-                    std::cout << "Digite o codigo do seu carrinho: \n";
-                    std::cin >> codigo_carrinho;
+                        std::cout << "Digite o codigo do seu carrinho: \n";
+                        std::cin >> codigo_carrinho;
 
-                    for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i]->get_codigo() == codigo_carrinho) {
-                            carrinho_suporte = carrinhos[i];
-                        }
-                    }
-
-                    std::cout << "Os codigos dos produtos disponivies no estoque sao: \n" << std::endl;
-                    estoque.exibir_estoque_reduzido();
-
-                    while (true) {
-
-                        std::cout << "Digite o codigo do produto que deseja comprar: \n";
-                        std::cin >> codigo_produto;
-
-                        std::cout << "Digite a quantidade desse produto que deseja comprar: \n";
-                        std::cin >> quantidade;
-
-                        for (int i = 0; i < produtos.size(); i++) {
-                            if (produtos[i]->get_codigo() == codigo_produto) {
-                                carrinho_suporte->adicionar_produto(produtos[i],quantidade);
+                        for (int i = 0; i < carrinhos.size(); i++) {
+                            if (carrinhos[i]->get_codigo() == codigo_carrinho) {
+                                carrinho_suporte = carrinhos[i];
+                                existe_carrinho = true;
                                 break;
                             }
                         }
 
-                        estoque.excluir_produto(codigo_produto,quantidade);                        
+                        std::cout << "Os codigos dos produtos disponivies no estoque sao: \n" << std::endl;
+                        estoque.exibir_estoque_reduzido();
 
-                        std::cout << "Deseja parar as compras? Caso queira, digite (-1)!\n";
-                        std::cin >> codigo_produto;
+                        while (true) {
 
-                        if (codigo_produto == -1) {
-                            break;
+                            std::cout << "Digite o codigo do produto que deseja comprar (Digite -1 para encerrar): \n";
+                            std::cin >> codigo_produto;
+
+                            if (codigo_produto == -1) {
+                                break;
+                            }
+
+                            std::cout << "Digite a quantidade desse produto que deseja comprar: \n";
+                            std::cin >> quantidade;
+
+                            for (int i = 0; i < produtos.size(); i++) {
+                                if (produtos[i]->get_codigo() == codigo_produto) {
+                                    carrinho_suporte->adicionar_produto(produtos[i],quantidade);
+                                    estoque.excluir_produto(codigo_produto,quantidade);  
+                                    existe_produto = true;
+                                    break;
+                                }
+                            }
+
+                            if (existe_carrinho == false) {
+                                throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo. \n");
+                            }
+
+                            if (existe_produto == false) {
+                                throw std::invalid_argument("Erro: Nao existe produto com esse codigo. \n");
+                            }                      
                         }
+                    }
+                    catch (std::invalid_argument &erro) {
+                        std::cerr << erro.what() << std::endl;
+                    } 
 
-                    }  
                     break;
                 }
 
                 case 4: {
                     std::cout << "---------- Remover Produto do Carrinho ----------\n";                    
 
-                    int codigo_produto;
-                    int codigo_carrinho;
-                    int quantidade;
+                    try {
+                        int codigo_produto;
+                        int codigo_carrinho;
+                        int quantidade;
+                        bool existe_carrinho = false;
+                        bool existe_produto = false;
 
-                    Carrinho* carrinho_suporte;
+                        Carrinho* carrinho_suporte;
 
-                    std::cout << "Digite o codigo do seu carrinho: \n";
-                    std::cin >> codigo_carrinho;
-
-                    for (int i = 0; i < carrinhos.size(); i++) {
-                        if (carrinhos[i]->get_codigo() == codigo_carrinho) {
-                            carrinho_suporte = carrinhos[i];
-                        }
-                    }
-
-                    while (true) {
-
-                        std::cout << "Digite o codigo do produto que deseja excluir: \n";
-                        std::cin >> codigo_produto;
-
-                        std::cout << "Digite a quantidade desse produto que deseja excluir: \n";
-                        std::cin >> quantidade;
-
-                        for (int i = 0; i < produtos.size(); i++) {
-                            if (produtos[i]->get_codigo() == codigo_produto) {
-                                carrinho_suporte->remover_produto(produtos[i],quantidade);
-                                estoque.adicionar_produto(produtos[i],quantidade); 
-                                break;
-                            }
-                        }                       
-
-                        std::cout << "Deseja parar de remover? Caso queira, digite (-1)! \n";
-                        std::cin >> codigo_produto;
+                        std::cout << "Digite o codigo do seu carrinho (Digite -1 para encerrar): \n";
+                        std::cin >> codigo_carrinho;
 
                         if (codigo_produto == -1) {
-                            break;
+                                break;
+                            }
+
+                        for (int i = 0; i < carrinhos.size(); i++) {
+                            if (carrinhos[i]->get_codigo() == codigo_carrinho) {
+                                carrinho_suporte = carrinhos[i];
+                                existe_carrinho = true;
+                                break;
+                            }
                         }
 
-                    }  
+                        while (true) {
+
+                            std::cout << "Digite o codigo do produto que deseja excluir: \n";
+                            std::cin >> codigo_produto;
+
+                            std::cout << "Digite a quantidade desse produto que deseja excluir: \n";
+                            std::cin >> quantidade;
+
+                            for (int i = 0; i < produtos.size(); i++) {
+                                if (produtos[i]->get_codigo() == codigo_produto) {
+                                    carrinho_suporte->remover_produto(produtos[i],quantidade);
+                                    estoque.adicionar_produto(produtos[i],quantidade); 
+                                    existe_produto = true;
+                                    break;
+                                }
+                            }                      
+                        }
+
+                        if (existe_carrinho == false) {
+                            throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo. \n");
+                        }
+
+                        if (existe_produto == false) {
+                            throw std::invalid_argument("Erro: Nao existe produto com esse codigo. \n");
+                        }
+                    }
+                    catch (std::invalid_argument &erro) {
+                        std::cerr << erro.what() << std::endl;
+                    }
+
                     break;
                 }
 
@@ -739,6 +792,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         if (estoque.verificar_codigo(codigo) == false) {
                             Produto *pr = new Produto(codigo, nome, preco, validade, marca);
                             estoque.adicionar_produto(pr,quantidade1);
+                            produtos.push_back(pr);
                         }
                     }
                     catch (std::invalid_argument &erro) {
@@ -1528,6 +1582,7 @@ void tela_inicial(Funcionario *funcionario_login) {
                         if (estoque.verificar_codigo(codigo) == false) {
                             Produto *pr = new Produto(codigo, nome, preco, validade, marca);
                             estoque.adicionar_produto(pr,quantidade1);
+                            produtos.push_back(pr);
                         }
                     }
                     catch (std::invalid_argument &erro) {
