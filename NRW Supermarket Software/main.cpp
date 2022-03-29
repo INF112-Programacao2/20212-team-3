@@ -32,7 +32,7 @@ std::vector<Venda*> vendas;
 void tela_iniciar_software(int *verifica_acesso);
 void tela_login(int *add_codigo, std::string *add_senha);
 void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funcionario **funcionario_login);
-void tela_inicial(Funcionario *funcionario_login);
+void tela_funcionario(Funcionario *funcionario_login);
 void tela_encerrar_software();
 void tela_cliente();
 
@@ -179,7 +179,7 @@ int main(void) {
 
             encontrar_funcionario_logado(&add_codigo, &add_senha, &funcionario_login);
             
-            tela_inicial(funcionario_login);
+            tela_funcionario(funcionario_login);
         }
     }
 
@@ -287,6 +287,7 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
     }
 }
 
+// funcao para o cliente criar/excluir um carrinho de compras e para adicionar/remover produtos do carrinho
 void tela_cliente() {
 
     int opcao_escolhida;
@@ -504,7 +505,7 @@ void tela_cliente() {
     while (opcao_escolhida != 0);
 }
 
-void tela_inicial(Funcionario *funcionario_login) {
+void tela_funcionario(Funcionario *funcionario_login) {
     int opcao_escolhida;
     int opcao_escolhida2;
 
