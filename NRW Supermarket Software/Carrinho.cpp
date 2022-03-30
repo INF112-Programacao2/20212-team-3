@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 
 #include "Carrinho.h"
 #include "Produto.h"
+#include "Estoque.h"
 
 unsigned int codigo_suporte = 1;  // Variavel suporte para criar um novo codigo (codigo atual + 1) para todo carrinho criado
 
@@ -32,7 +34,21 @@ void Carrinho::set_preco_total(double preco_total) {
     this->_preco_total = preco_total;
 }
 
-void Carrinho::adicionar_produto(Produto *produto, int quantidade) {
+void Carrinho::adicionar_produto(Produto *produto, int quantidade, Estoque *estoque) {
+    int quantidade_produtos;
+    
+    // Impede a adicao no carrinho de uma quantidade maior que a presente no estoque
+    for (int i=0; i < estoque->get_produtos().size(); i++) {
+        if (produto->get_codigo() == estoque->get_produtos()[i].get_codigo()) {
+            quantidade_produtos = i;
+            break;
+        }
+    }
+
+    if (estoque->get_quantidade()[quantidade_produtos] < quantidade) {
+        std::cout << "O produto nao foi adicionado no carrinho \n";
+        return;
+    }
 
     for (int i = 0; i < quantidade; i++) {
         this->_produtos.push_back(*produto);
@@ -42,6 +58,19 @@ void Carrinho::adicionar_produto(Produto *produto, int quantidade) {
 }
 
 void Carrinho::remover_produto(Produto *produto, int quantidade) {
+    int quantidade_produtos = 0;
+
+    for (int i=0; i < _produtos.size(); i++) {
+        if (produto->get_codigo() == this->_produtos[i].get_codigo()) {
+            quantidade_produtos++;
+        }
+    }
+    
+    // Impede a remocao de uma quantidade maior que a presente no carrinho
+    if (quantidade_produtos < quantidade) {
+        std::cout << "Erro: Esse produto possui apenas " << quantidade_produtos << " unidades no carrinho \n" << std::endl;
+        return;
+    }
 
     for (int i = 0; i < quantidade; i++) { //Remove a quantidade solicitada de produtos
         for (int j = 0; j < _produtos.size(); j++) {
@@ -58,7 +87,7 @@ void Carrinho::remover_produto(Produto *produto, int quantidade) {
 void Carrinho::exibir_produtos() {
 
     for (int i = 0; i < this->_produtos.size(); i++) {
-        std::cout << "Nome: " << this->_produtos[i].get_nome() << " - Preco: R$ " << this->_produtos[i].get_preco() << std::endl; 
+        std::cout << "Nome: " << this->_produtos[i].get_nome() << std::fixed << std::setprecision(2) << " - Preco: R$ " << this->_produtos[i].get_preco() << std::endl; 
     }
 
 }

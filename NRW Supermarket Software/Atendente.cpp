@@ -34,5 +34,3 @@ void Atendente::exibir_dados() {
     std::cout << "Comissao: " << this->get_comissao() << std::endl;
     std::cout << "------------------------------------------------\n";
 }
-
-

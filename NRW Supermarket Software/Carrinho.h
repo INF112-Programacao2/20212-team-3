@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Produto.h"
+#include "Estoque.h"
 
 class Carrinho {
 
@@ -27,7 +28,7 @@ public:
     void set_codigo(unsigned int codigo);
     void set_preco_total(double preco_total);
 
-    void adicionar_produto(Produto *produto, int quantidade);
+    void adicionar_produto(Produto *produto, int quantidade, Estoque *estoque);
     void remover_produto(Produto *produto, int quantidade);
     void exibir_produtos();
     void calculo_preco_total();

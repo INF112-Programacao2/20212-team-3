@@ -1,8 +1,18 @@
 #include <iostream>
 #include <vector>
 #include <exception>
+#include <iomanip>
+
 #include "Estoque.h"
 #include "Produto.h"
+
+std::vector<Produto> Estoque::get_produtos() {
+    return this->_produtos;
+}
+
+std::vector<int> Estoque::get_quantidade() {
+    return this->_quantidade;
+}
 
 void Estoque::adicionar_produto(Produto *produto, int quantidade) {
 
@@ -33,7 +43,7 @@ void Estoque::excluir_produto(int codigo, int quantidade) {
         for (contador = 0; contador < _produtos.size(); contador++) {
             if (this->_produtos[contador].get_codigo() == codigo) {
                 if(_quantidade[contador] - quantidade < 0){
-                    throw std::invalid_argument("A quantidade digita é maior que a presente no estoque!"); //Se a quantidade que ele requer for maior que a presente,logo é mostrado um erro.
+                    throw std::invalid_argument("A quantidade digitada eh maior que a presente no estoque!"); //Se a quantidade que ele requer for maior que a presente,logo é mostrado um erro.
                 }
                 if (_quantidade[contador] - quantidade == 0){                 //procura o produto pelo codigo e entao se a quantidade a ser retirada é igual a quantidade presente,logo ele exclui o produto do catalogo.
                    this->_produtos.erase(_produtos.begin() + contador);  //procura o produto e exclui do vector _produtos.s
@@ -58,7 +68,7 @@ void Estoque::exibir_estoque() {
 
 void Estoque::exibir_estoque_reduzido() {
     for (int i=0; i < _produtos.size(); i++) {
-        std::cout << "Codigo: " << _produtos[i].get_codigo() << "  ---  Nome: " <<_produtos[i].get_nome() << "  ---  Preco: " << _produtos[i].get_preco() << "  ---  Quant: " << _quantidade[i] << std::endl;
+        std::cout << "Codigo: " << _produtos[i].get_codigo() << "  ---  Nome: " <<_produtos[i].get_nome() << "  ---  Preco: " << std::fixed << std::setprecision(2) << _produtos[i].get_preco() << "  ---  Quant: " << _quantidade[i] << std::endl;
         std::cout << std::endl;
     }
 }

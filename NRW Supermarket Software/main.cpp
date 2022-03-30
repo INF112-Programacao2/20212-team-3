@@ -287,7 +287,7 @@ void encontrar_funcionario_logado(int *add_codigo, std::string *add_senha, Funci
     }
 }
 
-// funcao para o cliente criar/excluir um carrinho de compras e para adicionar/remover produtos do carrinho
+// Funcao para o cliente criar/excluir um carrinho de compras e para adicionar/remover produtos do carrinho
 void tela_cliente() {
 
     int opcao_escolhida;
@@ -337,7 +337,7 @@ void tela_cliente() {
                         std::cout << "Digite o codigo do carrinho que deseja excluir: \n";
                         std::cin >> codigo_carrinho;
 
-                        // deleta o carrinho
+                        // Deleta o carrinho
                         for (int i = 0; i < carrinhos.size(); i++) {
                             if (carrinhos[i]->get_codigo() == codigo_carrinho) {
                                 carrinhos.erase(carrinhos.begin()+i);
@@ -346,7 +346,7 @@ void tela_cliente() {
                                 break;
                             }
                         }
-                        // verifica se tem um carrinho com esse codigo
+                        // Verifica se tem um carrinho com esse codigo
                         if (existe_carrinho == false) {
                             throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo! \n");
                         }
@@ -374,7 +374,7 @@ void tela_cliente() {
                         std::cout << "Digite o codigo do seu carrinho: \n";
                         std::cin >> codigo_carrinho;
 
-                        // carrinho_suporte aponta para o carrinho desejado
+                        // Carrinho_suporte aponta para o carrinho desejado
                         for (int i = 0; i < carrinhos.size(); i++) {
                             if (carrinhos[i]->get_codigo() == codigo_carrinho) {
                                 carrinho_suporte = carrinhos[i];
@@ -388,7 +388,7 @@ void tela_cliente() {
 
                         while (true) {
 
-                            std::cout << "Digite o codigo do produto que deseja comprar (Digite -1 para encerrar): \n";
+                            std::cout << "Digite o codigo do produto que deseja comprar (Digite -1 para encerrar as compras): \n";
                             std::cin >> codigo_produto;
 
                             if (codigo_produto == -1) {
@@ -400,19 +400,19 @@ void tela_cliente() {
 
                             for (int i = 0; i < produtos.size(); i++) {
                                 if (produtos[i]->get_codigo() == codigo_produto) {
-                                    carrinho_suporte->adicionar_produto(produtos[i],quantidade);   // adiciona produto e sua quantidade no carrinho
-                                    estoque.excluir_produto(codigo_produto,quantidade);   // exclui a quantidade do produto adicionado no carrinho do estoque
+                                    estoque.excluir_produto(codigo_produto, quantidade);           // Exclui a quantidade do produto adicionado no carrinho do estoque
+                                    carrinho_suporte->adicionar_produto(produtos[i], quantidade, &estoque);   // Adiciona produto e sua quantidade no carrinho                                                  
                                     existe_produto = true;
                                     break;
                                 }
                             }
 
-                            // verifica se tem um carrinho com esse codigo
+                            // Verifica se tem um carrinho com esse codigo
                             if (existe_carrinho == false) {
                                 throw std::invalid_argument("Erro: Nao existe carrinho com esse codigo. \n");
                             }
 
-                            // verifica se tem um produto com esse codigo
+                            // Verifica se tem um produto com esse codigo
                             if (existe_produto == false) {
                                 throw std::invalid_argument("Erro: Nao existe produto com esse codigo. \n");
                             }                      
@@ -437,14 +437,10 @@ void tela_cliente() {
 
                         Carrinho* carrinho_suporte;
 
-                        std::cout << "Digite o codigo do seu carrinho (Digite -1 para encerrar): \n";
+                        std::cout << "Digite o codigo do seu carrinho: \n";
                         std::cin >> codigo_carrinho;
 
-                        if (codigo_produto == -1) {
-                                break;
-                            }
-
-                        // carrinho_suporte aponta para o carrinho desejado
+                        // Carrinho_suporte aponta para o carrinho desejado
                         for (int i = 0; i < carrinhos.size(); i++) {
                             if (carrinhos[i]->get_codigo() == codigo_carrinho) {
                                 carrinho_suporte = carrinhos[i];
@@ -455,16 +451,20 @@ void tela_cliente() {
 
                         while (true) {
 
-                            std::cout << "Digite o codigo do produto que deseja excluir: \n";
+                            std::cout << "Digite o codigo do produto que deseja excluir (Digite -1 para encerrar): \n";
                             std::cin >> codigo_produto;
+
+                            if (codigo_produto == -1) {
+                                break;
+                            }
 
                             std::cout << "Digite a quantidade desse produto que deseja excluir: \n";
                             std::cin >> quantidade;
 
                             for (int i = 0; i < produtos.size(); i++) {
                                 if (produtos[i]->get_codigo() == codigo_produto) {
-                                    carrinho_suporte->remover_produto(produtos[i],quantidade); // remove o produto e sua quantidade do carrinho
-                                    estoque.adicionar_produto(produtos[i],quantidade); // adiciona o produto e sua quantidade removida do carrinho de volta ao estoque
+                                    carrinho_suporte->remover_produto(produtos[i], quantidade); // Remove o produto e sua quantidade do carrinho
+                                    estoque.adicionar_produto(produtos[i], quantidade); // Adiciona o produto e sua quantidade removida do carrinho de volta ao estoque
                                     existe_produto = true;
                                     break;
                                 }
@@ -537,6 +537,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                 case 1: {
                     
                     std::cout << "---------- Cadastrar Funcionario(a) ----------\n";
+
                     try {
                         int codigo;
                         std::string nome, cpf, endereco, email, data_nascimento, senha;
@@ -898,7 +899,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
 
                     } 
                     catch(std::invalid_argument &error) {
-                        std::cerr << error.what();
+                        std::cerr << error.what() << std::endl;
                     }
 
                     break;
@@ -934,7 +935,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         }
                     }
                     catch(std::invalid_argument &error) {
-                        std::cerr << error.what();
+                        std::cerr << error.what() << std::endl;
                     }
 
                     break;
@@ -980,7 +981,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         }
                     }
                     catch (std::invalid_argument &error) {
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }
                     break;
                 }
@@ -1086,7 +1087,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         venda_construtor->calcula_troco();
                     }
                     catch(std::invalid_argument &error) {
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }
 
                     break;
@@ -1176,7 +1177,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         }
                     }
                     catch (std::invalid_argument &error) {
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }
 
                     break;
@@ -1250,7 +1251,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
 
                     } 
                     catch(std::invalid_argument &error) {
-                        std::cerr << error.what();
+                        std::cerr << error.what() << std::endl;
                     }
 
                     break;
@@ -1325,7 +1326,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         }
                     }
                     catch (std::invalid_argument &error) {
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }
                     break;
                 }
@@ -1432,7 +1433,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         venda_construtor->calcula_troco();
                     }
                     catch(std::invalid_argument &error) {
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }
 
                     break;
@@ -1461,7 +1462,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         } 
                     }
                     catch (std::invalid_argument &error) {
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }   
                     break;
                 }
@@ -1515,7 +1516,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         } 
                     }
                     catch (std::invalid_argument &error){
-                        std::cout << error.what();
+                        std::cout << error.what() << std::endl;
                     }               
                     break;
                 }
@@ -1615,7 +1616,7 @@ void tela_funcionario(Funcionario *funcionario_login) {
                         estoque.excluir_produto(codigo, quantidade);
                     }
                     catch (std::invalid_argument &error){
-                        std::cerr << error.what(); 
+                        std::cerr << error.what() << std::endl; 
                     }
                     break;
                 }
