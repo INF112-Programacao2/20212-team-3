@@ -3,9 +3,9 @@ Este projeto foi realizado durante a disciplina de Programacao 2 - INF112, com o
 
 ## Integrantes
 <ul>
-  <li><a href="https://github.com/NataschaPalhares">Natascha Siqueira Martinez Palhares - 105460 </a></li>
-  <li><a href="https://github.com/rafazardo">Rafael Zardo Crevelari - 105468 </a></li>
-  <li><a href="https://github.com/Morphy999">Walter Bueno de Brito Neto - 105471 </a></li>
+  <li><a href="https://github.com/NataschaPalhares">Natascha Siqueira Martinez Palhares </a></li>
+  <li><a href="https://github.com/rafazardo">Rafael Zardo Crevelari </a></li>
+  <li><a href="https://github.com/Morphy999">Walter Bueno de Brito Neto </a></li>
 </ul>
 
 # Tema: Sistema de Gerenciamento de Supermercado
